@@ -1,0 +1,136 @@
+﻿@using INDMS.WebUI.Infrastructure.Encoding
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Application Name | @ViewBag.Title </title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @Styles.Render("~/bundles/css")
+    <meta name="description" content="The description of my page" />
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>AP</b></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg">Application Name</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        @{
+                            var name = string.Empty;
+                            var userId = string.Empty;
+                            if (Request.Cookies["INDMS"] != null)
+                            {
+                                name = System.Text.Encoding.ASCII.DecodeBase64(Request.Cookies["INDMS"]["Name"]);
+                                userId = Request.Cookies["INDMS"]["UserID"] + ".JPG";
+                            }
+                        }
+                        <img src="~/ProfilePic/@userId" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>@name @Html.ActionLink("Logout", "Logout", "Account")</p>
+
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="treeview" id="liLibrary">
+                        <a href="#">
+                            <i class="fa fa-book"></i> <span>Library</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li id="liPolicyLetter"><a href="~/Library/PolicyLetter"><i class="fa fa-circle-o"></i>Policy Letters</a></li>
+                            <li id="liStandard"><a href="~/Library/Standards"><i class="fa fa-circle-o"></i>Standards</a></li>
+                            <li id="liGuidelinesAndStandingOrders">
+                                <a href="#"><i class="fa fa-circle-o"></i>Guidelines & Standing Orders<i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li id="liStandingOrder"><a href="~/Library/StandingOrder"><i class="fa fa-circle-o"></i>Standing Orders</a></li>
+                                    <li id="liGuideLines"><a href="~/Library/GuideLines"><i class="fa fa-circle-o"></i>Guide Lines</a></li>
+                                </ul>
+                            </li>
+                            <li id="liGeneralBook"><a href="~/Library/GeneralBooks"><i class="fa fa-circle-o"></i>General Books</a></li>
+                            <li id="liDrawing"><a href="~/Library/Drawings"><i class="fa fa-circle-o"></i>Drawings</a></li>
+                        </ul>
+                    </li>
+                    <li id="liUtility" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-wrench"></i><span>Utility</span><i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li id="liProfile"><a href="~/Utility/Profile"><i class="fa fa-circle-o"></i>Profile</a></li>
+                            <li><a href="~/Utility/ChangePassword"><i class="fa fa-circle-o"></i>Change Password</a></li>
+                            <li><a href="~/Utility/CreateUser"><i class="fa fa-circle-o"></i>Create User</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        @RenderBody()
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Last Updated : 11-05-2016</b>
+            </div>
+            <strong>Developed By : Tech Elecon Pvt. Ltd. Copyright &copy; @DateTime.Now.Year All rights reserved.</strong>
+        </footer>
+        <!-- Control Sidebar -->
+    </div><!-- ./wrapper -->
+    @Scripts.Render("~/bundles/scripts")
+    <script>
+        $(function () {
+            $(".select2").select2();
+
+            //$('.dp').datepicker({
+            //    format: "DD/MM/YYYY",
+            //    startDate: "01-01-1947",
+            //    todayHighlight: true
+            //});
+
+            $(".dp").datepicker({
+                format: 'dd-mm-yyyy',
+                startDate: '01-01-1947'
+            });
+
+            $("#example1").DataTable({
+                "order": [[0, "desc"]]
+            });
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+    <script>
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+﻿@model INDMS.WebUI.ViewModels.PolicyLetterViewModel
+@{
+    ViewBag.Title = "Policy Letter";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Policy Letter
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Library</a></li>
+            <li class="active">Policy Letter</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Your Page Content Here -->
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["MSG"] != null)
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["MSG"]
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["Error"]
+                    </div>
+                }
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            @Html.ActionLink("New", "PolicyLetterNew", "Library", null, new { @class = "btn btn-primary" })
+                        </h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <td style="display:none">
+                                        ID
+                                    </td>
+                                    <td>
+                                        Year
+                                    </td>
+                                    <td>
+                                        Issuing Authority
+                                    </td>
+                                    <td>
+                                        Policy Letter No.
+                                    </td>
+                                    <td>
+                                        Subject
+                                    </td>
+                                    <td>
+                                        Date
+                                    </td>
+                                    <td>
+                                        File
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.PolicyLetters)
+                                {
+
+                                    <tr>
+                                        <td style="display:none">
+                                            @item.id
+                                        </td>
+                                        <td>
+                                            @item.Year
+                                        </td>
+                                        <td>
+                                            @item.IssuingAuthority
+                                        </td>
+                                        <td>
+                                            @item.PLNo
+                                        </td>
+                                        <td>
+                                            @item.Subject
+                                        </td>
+                                        <td>
+                                            @item.Date.ToShortDateString()
+                                        </td>
+                                        <td>
+                                            <a href="@item.FilePath" target="_blank" class="fa fa-folder-open-o" title="Open"></a> |
+                                            @Html.ActionLink(" ", "PolicyLetterEdit", new { id = @item.id }, new { @class = "fa fa-edit", @title = "Edit" })
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+@section scripts{
+    <script>
+        $(function () {
+            $('li').removeClass("active");
+            $('#liLibrary').addClass("active")
+            $('#liPolicyLetter ').addClass("active")
+            $('#liPolicyLetter i').addClass("text-aqua")
+        });
+    </script>
+}

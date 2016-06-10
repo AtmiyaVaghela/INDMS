@@ -1,0 +1,9 @@
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Release\INDMS.Domain.dll.config
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Release\INDMS.Domain.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Release\INDMS.Domain.pdb
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Release\EntityFramework.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Release\EntityFramework.SqlServer.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Release\EntityFramework.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Release\EntityFramework.SqlServer.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\obj\Release\INDMS.Domain.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\obj\Release\INDMS.Domain.pdb

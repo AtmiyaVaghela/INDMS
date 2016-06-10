@@ -1,0 +1,247 @@
+﻿@model INDMS.WebUI.ViewModels.StandardViewModel
+@{
+    ViewBag.Title = "New - Standards";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Standards
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Library</a></li>
+            <li class="active">Standards</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Your Page Content Here -->
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["MSG"] != null)
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["MSG"]
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["Error"]
+                    </div>
+                }
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"></h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    @using (Html.BeginForm("Standards", "Library", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-horizontal">
+                            @Html.AntiForgeryToken()
+                            <div class="box-body">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    @Html.Label("Standard No", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model.Standard.StandardNo, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Standard.StandardNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Standard.Year, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model.Standard.Year, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Standard.Year, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Standard.Revision, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model.Standard.Revision, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Standard.Revision, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Subject", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        <select id="sSubjectType" name="Standard.SubjectParam" class="form-control"></select>
+                                        @*@Html.DropDownListFor(m => m.Standard.SubjectParam, new SelectList(ViewBag.SubjectType), new { @class = "form-control" })*@
+                                        @Html.ValidationMessageFor(model => model.Standard.SubjectParam, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-6">
+                                        <select id="subject" name="Standard.Subject" class="form-control select2"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="divOSubject" style="display:none">
+                                    <div class="col-md-offset-2 col-md-6">
+                                        @Html.TextBoxFor(model => model.OSubject, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Type", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        <select id="TypeD" name="Standard.Type" class="form-control select2"></select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="divOType" style="display:none">
+                                    <div class="col-md-offset-2 col-md-6">
+                                        @Html.TextBoxFor(model => model.OType, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("File", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        <input type="file" id="inputFile" name="inputFile">
+                                        <p class="help-block">File must be PDF.</p>
+                                    </div>
+                                </div>
+                            </div><!-- /.box-body -->
+                            <div class="box-footer">
+                                <div class="col-md-offset-2 col-md-6">
+                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div><!-- /.box -->     
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+@section scripts{
+    <script>
+        $(function () {          
+
+            $.ajax({
+                url: "@Url.Action("GetJsonObjOfParam","Library")",
+                type: 'POST',
+                data: { data: "StdSubject" },
+                success: function (data) {
+                    $('#sSubjectType').empty();
+                    $.each(data, function (index, optiondata) {
+                        $("#sSubjectType").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
+                    });
+                    //$("#sSubjectType").append("<option value='OTHERS'>OTHERS</option>");
+                    $("#sSubjectType option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                    $("#sSubjectType").val("");
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong");
+
+                }
+            });
+
+            $("#sSubjectType").change(function () {
+                var value = $('#sSubjectType').val();
+                $('#subject').empty();
+                $('#select2-subject-container').html("");
+
+                var keyName;
+                if (value == "EQUIPMENT") {
+                    keyName = "StdEquipment";
+                }
+                else if (value == "SPARES FOR") {
+                    keyName = "StdSpareFor";
+                }
+                else {
+                    keyName = "";
+                }
+
+                if (keyName != "") {
+
+                    //show subject div
+                    //$('#subject').parent().removeAttr("style");
+
+                    $.ajax({
+                        url: "@Url.Action("GetJsonObjOfParam","Library")",
+                        type: 'POST',
+                        data: { data: keyName },
+                        success: function (data) {
+                            $('#subject').empty();
+                            $.each(data, function (index, optiondata) {
+                                $("#subject").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
+                            });
+                            $("#subject").append("<option value='OTHERS'>OTHERS</option>");
+                            $("#subject option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                            $("#subject").val("");
+                        },
+
+                        error: function (xhr) {
+                            alert("Something seems Wrong");
+
+                        }
+                    });
+                }
+                else {
+                    //hide subject div
+                    //$('#subject').parent().css("display", "none");
+
+                    $('#subject').empty();
+                    $('#select2-subject-container').html("");
+                }
+
+            });
+            $("#subject").change(function () {
+                var subjectVar = $("#subject").val();
+                if (subjectVar == "OTHERS") {
+                    $("#divOSubject").css('display', 'block');
+                }
+                else {
+                    $("#OSubject").val("");
+                    $("#divOSubject").css('display', 'none');
+                }
+            });
+
+            var keyName = "StdType";
+            $.ajax({
+                url: "@Url.Action("GetJsonObjOfParam","Library")",
+                type: 'POST',
+                data: { data: keyName },
+                success: function (data) {
+                    $('#TypeD').empty();
+                    $.each(data, function (index, optiondata) {
+                        $("#TypeD").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
+                    });
+                    $("#TypeD").append("<option value='OTHERS'>OTHERS</option>");
+                    $("#TypeD option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                    $("#TypeD").val("");
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong");
+
+                }
+            });
+
+            $("#TypeD").change(function () {
+                var typeVar = $("#TypeD").val();
+                if (typeVar == "OTHERS") {
+                    $("#divOType").css('display', 'block');
+                }
+                else {
+                    $("#TypeD").val();
+                    $("#divOType").css('display', 'none');
+                }
+            });
+
+            $('li').removeClass("active");
+            $('#liLibrary').addClass("active")
+            $('#liStandard ').addClass("active")
+            $('#liStandard i').addClass("text-aqua")
+        });
+    </script>
+}

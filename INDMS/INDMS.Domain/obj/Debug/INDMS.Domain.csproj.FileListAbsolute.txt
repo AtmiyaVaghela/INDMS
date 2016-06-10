@@ -1,0 +1,40 @@
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.pdb
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.csprojResolveAssemblyReference.cache
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.pdb
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.dll.config
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Debug\EntityFramework.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Debug\EntityFramework.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.dll.config
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.pdb
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\EntityFramework.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\EntityFramework.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.pdb
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.dll.config
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.pdb
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.Domain\bin\Debug\EntityFramework.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.Domain\bin\Debug\EntityFramework.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.pdb
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.csprojResolveAssemblyReference.cache
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.dll.config
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.pdb
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\EntityFramework.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\EntityFramework.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.csprojResolveAssemblyReference.cache
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.pdb

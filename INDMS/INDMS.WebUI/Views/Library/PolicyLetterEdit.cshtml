@@ -1,0 +1,170 @@
+﻿@model INDMS.WebUI.ViewModels.PolicyLetterViewModel
+@{
+    ViewBag.Title = "Edit - Policy Letter";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Edit - Policy Letter
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Library</a></li>
+            <li class="active">Policy Letter</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Your Page Content Here -->
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["MSG"] != null)
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["MSG"]
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["Error"]
+                    </div>
+                }
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            <p>@Html.ActionLink("Back", "PolicyLetter", null, new { @class = "btn btn-primary" })</p>
+                        </h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    @using (Html.BeginForm("PolicyLetterEdit", "Library", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-horizontal">
+                            @Html.AntiForgeryToken()
+                            <div class="box-body">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+
+                                    @Html.HiddenFor(x => x.PLetter.id)
+
+                                    @Html.LabelFor(model => model.PLetter.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model.PLetter.Year, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.PLetter.Year, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Issuing Authority", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        <select id="sIssuingAuthority" class="form-control select2" name="PLetter.IssuingAuthority"></select>
+                                        @Html.ValidationMessageFor(model => model.PLetter.IssuingAuthority, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="divOIssuingAutherity" style="display:none">
+                                    <div class="col-md-offset-2 col-md-6">
+                                        @Html.TextBoxFor(model => model.OIssuingAutherity, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Policy Letter No", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(m => m.PLetter.PLNo, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.PLetter.PLNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PLetter.Subject, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(m => m.PLetter.Subject, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.PLetter.Subject, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PLetter.Date, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.PLetter.Date, new { @class = "form-control dp" })
+                                        </div><!-- /.input group -->
+                                        @Html.ValidationMessageFor(model => model.PLetter.Date, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("File", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.HiddenFor(x => @Model.file)
+                                        @if (Model.file != null)
+                                        {
+                                            <a href="@Model.file" target="_blank" class="fa fa-folder-open-o" title="Open">Open</a>
+                                        }
+                                        <input type="file" id="inputFile" name="inputFile">
+                                        <p class="help-block">File must be PDF.</p>
+                                    </div>
+                                </div>
+                            </div><!-- /.box-body -->
+                            <div class="box-footer">
+                                <div class="col-md-offset-2 col-md-6">
+                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+@section scripts{
+    <script>
+        $(function () {
+            $('#PLetter_Date').val($('#PLetter_Date').val().substr(0, 10));
+
+            $("#sIssuingAuthority").change(function () {
+                var value = $('#sIssuingAuthority').val();
+                if (value == "OTHERS") {
+                    $('#divOIssuingAutherity').css('display', 'block');
+                }
+                else {
+                    $('#OIssuingAutherity').val('');
+                    $('#divOIssuingAutherity').css('display', 'none');
+                }
+            });
+
+
+
+            $.ajax({
+                url: "@Url.Action("GetJsonObjOfParam","Library")",
+                type: 'POST',
+                data: { data: "IssuingAuthority" },
+                success: function (data) {
+                    $('#sIssuingAuthority').empty();
+                    $.each(data, function (index, optiondata) {
+                        $("#sIssuingAuthority").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
+                    });
+                    $("#sIssuingAuthority").append("<option value='OTHERS'>OTHERS</option>");
+                    $("#sIssuingAuthority option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                    $('#sIssuingAuthority').select2("val", "@Model.PLetter.IssuingAuthority");
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong");
+                }
+            })
+
+            $('li').removeClass("active");
+            $('#liLibrary').addClass("active")
+            $('#liPolicyLetter ').addClass("active")
+            $('#liPolicyLetter i').addClass("text-aqua")
+
+        });
+    </script>
+}

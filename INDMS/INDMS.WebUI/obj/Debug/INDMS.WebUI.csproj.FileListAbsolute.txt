@@ -1,0 +1,156 @@
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\INDMS.WebUI.dll.config
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\INDMS.WebUI.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\INDMS.WebUI.pdb
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\INDMS.Domain.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Helpers.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Mvc.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Razor.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Deployment.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Webpages.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Razor.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\INDMS.Domain.pdb
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Razor.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Webpages.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Deployment.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Razor.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Helpers.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\System.Web.Mvc.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.csprojResolveAssemblyReference.cache
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.pdb
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\Ninject.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\Ninject.Web.Common.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\Ninject.Web.Mvc.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\WebActivatorEx.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\Ninject.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\Ninject.Web.Common.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\Ninject.Web.Mvc.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\EntityFramework.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\EntityFramework.SqlServer.dll
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\EntityFramework.xml
+D:\Work Space\ProjectsNew\INDMS\INDMS.WebUI\bin\EntityFramework.SqlServer.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\INDMS.WebUI.dll.config
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\INDMS.WebUI.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\INDMS.WebUI.pdb
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\EntityFramework.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\EntityFramework.SqlServer.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\INDMS.Domain.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.Web.Common.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.Web.Mvc.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Helpers.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Mvc.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Razor.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Razor.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\WebActivatorEx.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\INDMS.Domain.pdb
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\EntityFramework.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\EntityFramework.SqlServer.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.Web.Common.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.Web.Mvc.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Razor.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Razor.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Helpers.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Mvc.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.csprojResolveAssemblyReference.cache
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.pdb
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Glimpse.Ado.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Glimpse.AspNet.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Glimpse.Core.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Glimpse.EF6.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Glimpse.Mvc5.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Antlr3.Runtime.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Newtonsoft.Json.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Optimization.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\WebGrease.dll
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Antlr3.Runtime.pdb
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\Newtonsoft.Json.xml
+C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Optimization.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\INDMS.WebUI.dll.config
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\INDMS.WebUI.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\INDMS.WebUI.pdb
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Antlr3.Runtime.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\EntityFramework.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\EntityFramework.SqlServer.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Glimpse.Ado.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Glimpse.AspNet.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Glimpse.Core.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Glimpse.EF6.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Glimpse.Mvc5.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\INDMS.Domain.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Newtonsoft.Json.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Ninject.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Ninject.Web.Common.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Ninject.Web.Mvc.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Helpers.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Mvc.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Optimization.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Razor.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Deployment.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Webpages.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Razor.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\WebActivatorEx.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\WebGrease.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\INDMS.Domain.pdb
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Antlr3.Runtime.pdb
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\EntityFramework.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\EntityFramework.SqlServer.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Newtonsoft.Json.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Ninject.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Ninject.Web.Common.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\Ninject.Web.Mvc.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Optimization.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Razor.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Webpages.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Deployment.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Razor.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Helpers.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\bin\System.Web.Mvc.xml
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.csprojResolveAssemblyReference.cache
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.dll
+C:\Users\advaghela\Desktop\GIT\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.pdb
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\INDMS.WebUI.dll.config
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\INDMS.WebUI.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\INDMS.WebUI.pdb
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\Antlr3.Runtime.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\EntityFramework.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\EntityFramework.SqlServer.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\INDMS.Domain.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\Newtonsoft.Json.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.Web.Common.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.Web.Mvc.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Helpers.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Mvc.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Optimization.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Razor.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Deployment.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Razor.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\WebActivatorEx.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\WebGrease.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\INDMS.Domain.pdb
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\Antlr3.Runtime.pdb
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\EntityFramework.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\EntityFramework.SqlServer.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\Newtonsoft.Json.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.Web.Common.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\Ninject.Web.Mvc.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Optimization.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Razor.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Deployment.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Razor.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Helpers.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\bin\System.Web.Mvc.xml
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.csprojResolveAssemblyReference.cache
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.dll
+C:\Users\advaghela\Desktop\GIT\GitASPMVC\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.pdb
