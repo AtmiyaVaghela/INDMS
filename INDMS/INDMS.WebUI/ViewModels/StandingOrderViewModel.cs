@@ -9,7 +9,6 @@ namespace INDMS.WebUI.ViewModels
         public string OIssuingAutherity { get; set; }
         public string OSubject { get; set; }
         public IEnumerable<StandingOrder> StandingOrders { get; set; }
-
         public string file { get; set; }
     }
 }

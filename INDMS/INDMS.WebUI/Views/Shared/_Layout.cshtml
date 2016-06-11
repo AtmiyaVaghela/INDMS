@@ -39,8 +39,7 @@
                         @{
                             var name = string.Empty;
                             var userId = string.Empty;
-                            if (Request.Cookies["INDMS"] != null)
-                            {
+                            if (Request.Cookies["INDMS"] != null) {
                                 name = System.Text.Encoding.ASCII.DecodeBase64(Request.Cookies["INDMS"]["Name"]);
                                 userId = Request.Cookies["INDMS"]["UserID"] + ".JPG";
                             }
@@ -101,9 +100,10 @@
         @RenderBody()
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
-                <b>Last Updated : 11-05-2016</b>
-            </div>
-            <strong>Developed By : Tech Elecon Pvt. Ltd. Copyright &copy; @DateTime.Now.Year All rights reserved.</strong>
+                <b>Last Updated : 11-05-2016</b><br />
+                <strong>Copyright &copy; @DateTime.Now.Year All rights reserved.</strong>
+            </div>           
+            <img src="~/Img/Tech Elecon logo.png" style="width:150px" />
         </footer>
         <!-- Control Sidebar -->
     </div><!-- ./wrapper -->

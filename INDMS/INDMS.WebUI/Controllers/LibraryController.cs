@@ -517,25 +517,34 @@ namespace INDMS.WebUI.Controllers {
                                     so.StandingOrder.FilePath = "/Uploads/StandingOrders/" + FileName + ".pdf";
                                     string tPath = Path.Combine(Server.MapPath("~/Uploads/StandingOrders/"), FileName + ".pdf");
                                     inputFile.SaveAs(tPath);
-
-                                    so.StandingOrder.CreatedBy = Request.Cookies["INDMS"]["UserID"];
-                                    so.StandingOrder.CreatedDate = null;
-
-                                    db.StandingOrders.Add(so.StandingOrder);
-                                    db.SaveChanges();
-
-                                    TempData["RowId"] = so.StandingOrder.id;
-                                    TempData["MSG"] = "Save Successfully";
-
-                                    return RedirectToAction("StandingOrder");
                                 }
                                 else {
-                                    TempData["Error"] = "Please Select PDF file only";
+                                    TempData["Error"] = "Only PDF Files.";
                                 }
                             }
                             else {
-                                TempData["Error"] = "Please Select file";
+                                so.StandingOrder.FilePath = so.file;
                             }
+
+                            so.StandingOrder.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                            so.StandingOrder.CreatedDate = null;
+
+                            try {
+                                db.Entry(so.StandingOrder).State = EntityState.Modified;
+                                db.SaveChanges();
+                                ModelState.Clear();
+
+                                TempData["RowId"] = so.StandingOrder.id;
+                                TempData["MSG"] = "Save Successfully";
+
+                                return RedirectToAction("StandingOrder");
+                            }
+                            catch (RetryLimitExceededException /* dex */) {
+                                TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
+                            }
+                            catch (Exception ex) {
+                                TempData["Error"] = ex.Message;
+                            }                            
                         }
                         else {
                             TempData["Error"] = "Please Enter Revision.";
