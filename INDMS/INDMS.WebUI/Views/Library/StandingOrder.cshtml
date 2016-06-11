@@ -20,96 +20,22 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
                     </div>
                 }
 
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"></h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    @using (Html.BeginForm("StandingOrder", "Library", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div class="form-horizontal">
-                            @Html.AntiForgeryToken()
-                            <div class="box-body">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                                <div class="form-group">
-                                    @Html.Label("Issuing Authority", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        <select id="sIssuingAuthority" class="form-control select2" name="StandingOrder.IssuingAuthority"></select>
-                                        @Html.ValidationMessageFor(model => model.StandingOrder.IssuingAuthority, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group" id="divOIssuingAutherity" style="display:none">
-                                    <div class="col-md-offset-2 col-md-6">
-                                        @Html.TextBoxFor(model => model.OIssuingAutherity, null, new { @class = "form-control" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.StandingOrder.Subject, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        <select id="sSubject" class="form-control select2" name="StandingOrder.Subject"></select>
-                                        @Html.ValidationMessageFor(model => model.StandingOrder.Subject, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group" id="divOSubject" style="display:none">
-                                    <div class="col-md-offset-2 col-md-6">
-                                        @Html.TextBoxFor(model => model.OSubject, null, new { @class = "form-control" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.StandingOrder.Year, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(m => m.StandingOrder.Year, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.StandingOrder.Year, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.StandingOrder.Revision, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(m => m.StandingOrder.Revision, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.StandingOrder.Revision, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.Label("File", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        <input type="file" id="inputFile" name="inputFile">
-                                        <p class="help-block">File must be PDF.</p>
-                                    </div>
-                                </div>
-                            </div><!-- /.box-body -->
-                            <div class="box-footer">
-                                <div class="col-md-offset-2 col-md-6">
-                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div><!-- /.box -->
-
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Data</h3>
+                        <h3 class="box-title"></h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -135,31 +61,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.StandingOrders)
-                                {
-                                    <tr>
-
-                                        <td>
-                                            @item.IssuingAuthority
-                                        </td>
-                                        <td>
-                                            @item.Subject
-                                        </td>
-                                        <td>
-                                            @item.Year
-                                        </td>
-                                        <td>
-                                            @item.Revision
-                                        </td>
-                                        <td>
-                                            <a href="@item.FilePath" target="_blank">Open</a>
-                                        </td>
-                                    </tr>
+                                @foreach (var item in Model.StandingOrders) {
+                                <tr>
+                                    <td>
+                                        @item.IssuingAuthority
+                                    </td>
+                                    <td>
+                                        @item.Subject
+                                    </td>
+                                    <td>
+                                        @item.Year
+                                    </td>
+                                    <td>
+                                        @item.Revision
+                                    </td>
+                                    <td>
+                                        <a href="@item.FilePath" target="_blank" class="fa fa-folder-open-o" title="Open"></a> |
+                                        @Html.ActionLink(" ", "StandingOrderEdit", new { id = @item.id }, new { @class = "fa fa-edit", @title = "Edit" })
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
     </section><!-- /.content -->
@@ -167,68 +93,6 @@
 @section scripts{
     <script>
         $(function () {
-            $("#sIssuingAuthority").change(function () {
-                var value = $('#sIssuingAuthority').val();
-                if (value == "OTHERS") {
-                    $('#divOIssuingAutherity').css('display', 'block');
-                }
-                else {
-                    $('#OIssuingAutherity').val('');
-                    $('#divOIssuingAutherity').css('display', 'none');
-                }
-            });
-
-            $.ajax({
-                url: "@Url.Action("GetJsonObjOfParam","Library")",
-                type: 'POST',
-                data: { data: "IssuingAuthority" },
-                success: function (data) {
-                    $('#sIssuingAuthority').empty();
-                    $.each(data, function (index, optiondata) {
-                        $("#sIssuingAuthority").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
-                    });
-                    $("#sIssuingAuthority").append("<option value='OTHERS'>OTHERS</option>");
-                    $("#sIssuingAuthority option").eq(0).before($("<option></option>").val("").text("-Select-"));
-                    $("#sIssuingAuthority").val("");
-                },
-
-                error: function (xhr) {
-                    alert("Something seems Wrong");
-
-                }
-            });
-
-            $("#sSubject").change(function () {
-                var value = $('#sSubject').val();
-                if (value == "OTHERS") {
-                    $('#divOSubject').css('display', 'block');
-                }
-                else {
-                    $('#OIssuingAutherity').val('');
-                    $('#divOSubject').css('display', 'none');
-                }
-            });
-
-            $.ajax({
-                url: "@Url.Action("GetJsonObjOfParam","Library")",
-                type: 'POST',
-                data: { data: "SoSubject" },
-                success: function (data) {
-                    $('#sSubject').empty();
-                    $.each(data, function (index, optiondata) {
-                        $("#sSubject").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
-                    });
-                    $("#sSubject").append("<option value='OTHERS'>OTHERS</option>");
-                    $("#sSubject option").eq(0).before($("<option></option>").val("").text("-Select-"));
-                    $("#sSubject").val("");
-                },
-
-                error: function (xhr) {
-                    alert("Something seems Wrong");
-
-                }
-            });
-
             $('li').removeClass("active");
             $('#liLibrary').addClass("active")
             $('#liStandingOrder ').addClass("active")

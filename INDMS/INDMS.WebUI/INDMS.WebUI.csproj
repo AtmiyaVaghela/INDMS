@@ -2205,6 +2205,8 @@
     <Content Include="Views\Library\PolicyLetterEdit.cshtml" />
     <Content Include="Views\Library\StandardNew.cshtml" />
     <Content Include="Views\Library\StandardEdit.cshtml" />
+    <Content Include="Views\Library\StandingOrderNew.cshtml" />
+    <Content Include="Views\Library\StandingOrderEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

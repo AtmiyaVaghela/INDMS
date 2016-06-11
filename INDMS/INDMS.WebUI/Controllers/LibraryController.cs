@@ -257,67 +257,64 @@ namespace INDMS.WebUI.Controllers {
                                         TempData["Error"] = "Please Enter Subject.";
                                     }
                                 }
+
+                                if (!string.IsNullOrEmpty(m.Standard.Type)) {
+                                    if (m.Standard.Type.Equals("OTHERS")) {
+                                        m.Standard.Type = m.OType.Trim().ToUpper();
+                                        string strType = m.OType.Trim().ToUpper();
+                                        if (!string.IsNullOrEmpty(strType)) {
+                                            string keyName = "StdType";
+                                            if (keyName != string.Empty) {
+                                                string keyValue = m.Standard.Type;
+                                                AddParam(keyName, keyValue);
+                                            }
+                                        }
+                                        else {
+                                            TempData["Error"] = "Please Enter Type.";
+                                        }
+                                    }
+
+                                    if (inputFile != null && inputFile.ContentLength > 0) {
+                                        if (inputFile.ContentType == "application/pdf") {
+                                            Guid FileName = Guid.NewGuid();
+                                            m.Standard.FilePath = "/Uploads/Standards/" + FileName + ".pdf";
+                                            string tPath = Path.Combine(Server.MapPath("~/Uploads/Standards/"), FileName + ".pdf");
+                                            inputFile.SaveAs(tPath);
+                                        }
+                                        else {
+                                            TempData["Error"] = "Only PDF Files.";
+                                        }
+                                    }
+                                    else{
+                                        m.Standard.FilePath = m.file;
+                                    }
+                                    
+                                    m.Standard.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                                    m.Standard.CreatedDate = null;
+
+                                    try {
+                                        db.Entry(m.Standard).State = EntityState.Modified;
+                                        db.SaveChanges();
+                                        ModelState.Clear();
+
+                                        TempData["RowId"] = m.Standard.Id;
+                                        TempData["MSG"] = "Save Successfully";
+                                        
+                                        return RedirectToAction("Standards");
+                                    }
+                                    catch (RetryLimitExceededException /* dex */) {
+                                        TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
+                                    }
+                                    catch (Exception ex) {
+                                        TempData["Error"] = ex.Message;
+                                    }
+                                }  
+                                else {
+                                    TempData["Error"] = "Please Select Type.";
+                                }                            
                             }
                             catch (Exception) {
                                 TempData["Error"] = "Subject is not added to the Parameter Master.";
-                            }
-
-                            if (!string.IsNullOrEmpty(m.Standard.Type)) {
-                                if (m.Standard.Type.Equals("OTHERS")) {
-                                    m.Standard.Type = m.OType.Trim().ToUpper();
-                                    string strType = m.OType.Trim().ToUpper();
-                                    if (!string.IsNullOrEmpty(strType)) {
-                                        string keyName = "StdType";
-                                        if (keyName != string.Empty) {
-                                            string keyValue = m.Standard.Type;
-                                            AddParam(keyName, keyValue);
-                                        }
-                                    }
-                                    else {
-                                        TempData["Error"] = "Please Enter Type.";
-                                    }
-                                }
-
-                                if (inputFile != null && inputFile.ContentLength > 0) {
-                                    if (inputFile.ContentType == "application/pdf") {
-                                        Guid FileName = Guid.NewGuid();
-                                        m.Standard.FilePath = "/Uploads/Standards/" + FileName + ".pdf";
-                                        string tPath = Path.Combine(Server.MapPath("~/Uploads/Standards/"), FileName + ".pdf");
-                                        inputFile.SaveAs(tPath);
-                                    }
-                                    else {
-                                        TempData["Error"] = "Only PDF Files.";
-                                    }
-                                }
-                                else if (!m.file.Equals("")) {
-                                    m.Standard.FilePath = m.file;
-                                }
-                                else {
-                                    TempData["Error"] = "Please Select file";
-                                }
-
-                                m.Standard.CreatedBy = Request.Cookies["INDMS"]["UserID"];
-                                m.Standard.CreatedDate = null;
-
-                                try {
-                                    db.Entry(m.Standard).State = EntityState.Modified;
-                                    db.SaveChanges();
-                                    ModelState.Clear();
-
-                                    TempData["RowId"] = m.Standard.Id;
-                                    TempData["MSG"] = "Save Successfully";
-
-                                    return RedirectToAction("Standards");
-                                }
-                                catch (RetryLimitExceededException /* dex */) {
-                                    TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
-                                }
-                                catch (Exception ex) {
-                                    TempData["Error"] = ex.Message;
-                                }
-                            }
-                            else {
-                                TempData["Error"] = "Please Select Type.";
                             }
                         }
                         else {
@@ -335,14 +332,13 @@ namespace INDMS.WebUI.Controllers {
             else {
                 TempData["Error"] = "Please Enter Standard No.";
             }
-
+            
             StandardViewModel mv = new StandardViewModel {
                 Standard = m.Standard,
                 OSubject = m.OSubject,
                 OType = m.OType,
                 file = m.file
             };
-
             return View(mv);
         }
 
@@ -451,6 +447,114 @@ namespace INDMS.WebUI.Controllers {
         public ActionResult StandingOrder() {
             StandingOrderViewModel so = new StandingOrderViewModel();
             so.StandingOrders = db.StandingOrders.OrderByDescending(x => x.id);
+            return View(so);
+        }
+
+        [AuthUser]
+        public ActionResult StandingOrderNew() {
+            return View();
+        }
+
+        [AuthUser]
+        public ActionResult StandingOrderEdit(int? id) {
+            StandingOrderViewModel m = new StandingOrderViewModel();
+
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else {
+                m.StandingOrder = db.StandingOrders.Find(id);
+                if (m.StandingOrder == null) {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else {
+                    m.file = m.StandingOrder.FilePath;
+                }
+            }
+            return View(m);
+        }
+
+        [HttpPost]
+        [AuthUser]
+        public ActionResult StandingOrderEdit(StandingOrderViewModel so, HttpPostedFileBase inputFile) {
+            if (!string.IsNullOrEmpty(so.StandingOrder.IssuingAuthority)) {
+                if (!string.IsNullOrEmpty(so.StandingOrder.Subject)) {
+                    if (!string.IsNullOrEmpty(so.StandingOrder.Year)) {
+                        if (!string.IsNullOrEmpty(so.StandingOrder.Revision)) {
+                            if (so.StandingOrder.IssuingAuthority.Equals("OTHERS")) {
+                                string strType = so.OIssuingAutherity.Trim().ToUpper();
+                                if (!string.IsNullOrEmpty(strType)) {
+                                    string keyName = "IssuingAuthority";
+                                    if (keyName != string.Empty) {
+                                        so.StandingOrder.IssuingAuthority = so.OIssuingAutherity.Trim().ToUpper();
+                                        string keyValue = so.StandingOrder.IssuingAuthority;
+                                        AddParam(keyName, keyValue);
+                                    }
+                                }
+                                else {
+                                    TempData["Error"] = "Please Enter Issuing Authority.";
+                                }
+                            }
+
+                            if (so.StandingOrder.Subject.Equals("OTHERS")) {
+                                string strSubject = so.OSubject.Trim().ToUpper();
+                                if (!string.IsNullOrEmpty(strSubject)) {
+                                    string keyName = "SoSubject";
+                                    if (keyName != string.Empty) {
+                                        so.StandingOrder.Subject = so.OSubject.Trim().ToUpper();
+                                        string keyValue = so.StandingOrder.Subject;
+                                        AddParam(keyName, keyValue);
+                                    }
+                                }
+                                else {
+                                    TempData["Error"] = "Please Enter Subject.";
+                                }
+                            }
+
+                            if (inputFile != null && inputFile.ContentLength > 0) {
+                                if (inputFile.ContentType == "application/pdf") {
+                                    Guid FileName = Guid.NewGuid();
+                                    so.StandingOrder.FilePath = "/Uploads/StandingOrders/" + FileName + ".pdf";
+                                    string tPath = Path.Combine(Server.MapPath("~/Uploads/StandingOrders/"), FileName + ".pdf");
+                                    inputFile.SaveAs(tPath);
+
+                                    so.StandingOrder.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                                    so.StandingOrder.CreatedDate = null;
+
+                                    db.StandingOrders.Add(so.StandingOrder);
+                                    db.SaveChanges();
+
+                                    TempData["RowId"] = so.StandingOrder.id;
+                                    TempData["MSG"] = "Save Successfully";
+
+                                    return RedirectToAction("StandingOrder");
+                                }
+                                else {
+                                    TempData["Error"] = "Please Select PDF file only";
+                                }
+                            }
+                            else {
+                                TempData["Error"] = "Please Select file";
+                            }
+                        }
+                        else {
+                            TempData["Error"] = "Please Enter Revision.";
+                        }
+                    }
+                    else {
+                        TempData["Error"] = "Please Enter Year.";
+                    }
+                }
+                else {
+                    TempData["Error"] = "Please Select Subject";
+                }
+            }
+            else {
+                TempData["Error"] = "Please select Issuing Authority.";
+            }
+
+            so.StandingOrders = db.StandingOrders.OrderByDescending(x => x.id);
+
             return View(so);
         }
 
