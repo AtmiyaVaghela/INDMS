@@ -827,6 +827,87 @@ namespace INDMS.WebUI.Controllers {
             return View(gbvm);
         }
 
+        [AuthUser]
+        public ActionResult GeneralBooksNew() {
+            return View();
+        }
+
+        [AuthUser]
+        public ActionResult GeneralBooksEdit(int? id) {
+            GeneralBookViewModel m = new GeneralBookViewModel();
+
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else {
+                m.GeneralBook = db.GeneralBooks.Find(id);
+                if (m.GeneralBook == null) {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else {
+                    m.file = m.GeneralBook.FilePath;
+                }
+            }
+            return View(m);
+        }
+
+        [HttpPost]
+        [AuthUser]
+        public ActionResult GeneralBooksEdit(GeneralBookViewModel gbvm, HttpPostedFileBase inputFile) {
+            if (!string.IsNullOrEmpty(gbvm.GeneralBook.Title)) {
+                if (!string.IsNullOrEmpty(gbvm.GeneralBook.Subject)) {
+                    if (!string.IsNullOrEmpty(gbvm.GeneralBook.Year)) {
+                        if (inputFile != null && inputFile.ContentLength > 0) {
+                            if (inputFile.ContentType == "application/pdf") {
+                                Guid FileName = Guid.NewGuid();
+                                gbvm.GeneralBook.FilePath = "/Uploads/GeneralBooks/" + FileName + ".pdf";
+                                string tPath = Path.Combine(Server.MapPath("~/Uploads/GeneralBooks/"), FileName + ".pdf");
+                                inputFile.SaveAs(tPath);
+                            }
+                            else {
+                                TempData["Error"] = "Only PDF Files.";
+                            }
+                        }
+                        else {
+                            gbvm.GeneralBook.FilePath = gbvm.file;
+                        }
+
+                        gbvm.GeneralBook.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                        gbvm.GeneralBook.CreatedDate = null;
+
+                        try {
+                            db.Entry(gbvm.GeneralBook).State = EntityState.Modified;
+                            db.SaveChanges();
+                            ModelState.Clear();
+
+                            TempData["RowId"] = gbvm.GeneralBook.ID;
+                            TempData["MSG"] = "Save Successfully";
+
+                            return RedirectToAction("GeneralBooks");
+                        }
+                        catch (RetryLimitExceededException /* dex */) {
+                            TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
+                        }
+                        catch (Exception ex) {
+                            TempData["Error"] = ex.Message;
+                        }
+                    }
+                    else {
+                        TempData["Error"] = "Please Enter Year";
+                    }
+                }
+                else {
+                    TempData["Error"] = "Please Enter Title";
+                }
+            }
+            else {
+                TempData["Error"] = "Please Enter Title";
+            }
+
+            gbvm.GeneralBooks = db.GeneralBooks.OrderByDescending(x => x.ID);
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthUser]

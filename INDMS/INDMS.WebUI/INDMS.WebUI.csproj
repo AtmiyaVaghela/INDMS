@@ -2210,6 +2210,8 @@
     <Content Include="Views\Library\StandingOrderEdit.cshtml" />
     <Content Include="Views\Library\GuideLinesNew.cshtml" />
     <Content Include="Views\Library\GuideLinesEdit.cshtml" />
+    <Content Include="Views\Library\GeneralBooksNew.cshtml" />
+    <Content Include="Views\Library\GeneralBooksEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

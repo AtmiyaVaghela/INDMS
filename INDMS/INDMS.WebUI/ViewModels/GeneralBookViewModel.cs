@@ -7,5 +7,7 @@ namespace INDMS.WebUI.ViewModels
     {
         public GeneralBook GeneralBook { get; set; }
         public IEnumerable<GeneralBook> GeneralBooks { get; set; }
+
+        public string file { get; set; }
     }
 }

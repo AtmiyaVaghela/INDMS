@@ -35,59 +35,11 @@
                     </div>
                 }
 
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"></h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    @using (Html.BeginForm("GeneralBooks", "Library", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div class="form-horizontal">
-                            @Html.AntiForgeryToken()
-                            <div class="box-body">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.GeneralBook.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(model => model.GeneralBook.Title, null, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.GeneralBook.Title, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.GeneralBook.Subject, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(model => model.GeneralBook.Subject, null, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.GeneralBook.Subject, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.GeneralBook.Year, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(m => m.GeneralBook.Year, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.GeneralBook.Year, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("File", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        <input type="file" id="inputFile" name="inputFile">
-                                        <p class="help-block">File must be PDF.</p>
-                                    </div>
-                                </div>
-                            </div><!-- /.box-body -->
-                            <div class="box-footer">
-                                <div class="col-md-offset-2 col-md-6">
-                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div><!-- /.box -->
+           
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Data</h3>
+                        <h3 class="box-title">@Html.ActionLink("New", "GeneralBooks", "Library", null, new { @class = "btn btn-primary" })</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -123,7 +75,8 @@
                                             @item.Year
                                         </td>
                                         <td>
-                                            <a href="@item.FilePath" target="_blank">Open</a>
+                                            <a href="@item.FilePath" target="_blank" class="fa fa-folder-open-o" title="Open"></a> |
+                                            @Html.ActionLink(" ", "GeneralBooksEdit", new { id = @item.ID }, new { @class = "fa fa-edit", @title = "Edit" })
                                         </td>
                                     </tr>
 
