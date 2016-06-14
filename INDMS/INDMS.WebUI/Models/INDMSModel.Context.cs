@@ -34,5 +34,6 @@ namespace INDMS.WebUI.Models
         public virtual DbSet<StandingOrder> StandingOrders { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Drawing> Drawings { get; set; }
+        public virtual DbSet<QAP> QAPs { get; set; }
     }
 }

@@ -2085,6 +2085,9 @@
     <Compile Include="Models\PolicyLetter.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\QAP.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Role.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>

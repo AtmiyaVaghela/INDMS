@@ -38,3 +38,17 @@ drop table GeneralBooks;
 
 EXEC sp_rename 'GeneralBooks1', 'GeneralBooks';  
 
+CREATE TABLE [dbo].[QAP] (
+    [Id]           INT             IDENTITY (1, 1) NOT NULL,
+    [PONo]         VARCHAR (MAX)   NULL,
+    [FileNo]       VARCHAR (MAX)   NULL,
+    [QAPNo]        VARCHAR (MAX)   NOT NULL,
+    [Subject]      VARCHAR (MAX)   NOT NULL,
+    [ApprovalDate] DATETIME        NOT NULL,
+    [ApprovedBy]   VARCHAR (MAX)   NOT NULL,
+    [DrawingNoRef] VARBINARY (MAX) NULL,
+    [FilePath]     VARCHAR (MAX)   NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+

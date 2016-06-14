@@ -24,7 +24,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="varchar(max)" Nullable="false" />
           <Property Name="Subject" Type="varchar(max)" Nullable="false" />
           <Property Name="Year" Type="varchar" MaxLength="10" Nullable="false" />
@@ -68,6 +68,20 @@
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="QAP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PONo" Type="varchar(max)" />
+          <Property Name="FileNo" Type="varchar(max)" />
+          <Property Name="QAPNo" Type="varchar(max)" Nullable="false" />
+          <Property Name="Subject" Type="varchar(max)" Nullable="false" />
+          <Property Name="ApprovalDate" Type="datetime" Nullable="false" />
+          <Property Name="ApprovedBy" Type="varchar(max)" Nullable="false" />
+          <Property Name="DrawingNoRef" Type="varbinary(max)" />
+          <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="Id" />
@@ -79,7 +93,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StandardNo" Type="varchar(max)" Nullable="false" />
           <Property Name="Year" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Revision" Type="varchar(max)" Nullable="false" />
@@ -123,6 +137,7 @@
           <EntitySet Name="GuideLine" EntityType="Self.GuideLine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParameterMaster" EntityType="Self.ParameterMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PolicyLetter" EntityType="Self.PolicyLetter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QAP" EntityType="Self.QAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Standards" EntityType="Self.Standards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StandingOrders" EntityType="Self.StandingOrders" Schema="dbo" store:Type="Tables" />
@@ -239,6 +254,7 @@
           <EntitySet Name="StandingOrders" EntityType="Self.StandingOrder" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Drawings" EntityType="INDMSModel.Drawing" />
+          <EntitySet Name="QAPs" EntityType="INDMSModel.QAP" />
         </EntityContainer>
         <EntityType Name="Drawing">
           <Key>
@@ -253,6 +269,20 @@
           <Property Name="ApprovalBy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="QAP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PONo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QAPNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovalDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ApprovedBy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DrawingNoRef" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
@@ -376,6 +406,21 @@
                 <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="DrawingNo" ColumnName="DrawingNo" />
+                <ScalarProperty Name="FileNo" ColumnName="FileNo" />
+                <ScalarProperty Name="PONo" ColumnName="PONo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QAPs">
+            <EntityTypeMapping TypeName="INDMSModel.QAP">
+              <MappingFragment StoreEntitySet="QAP">
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="DrawingNoRef" ColumnName="DrawingNoRef" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="QAPNo" ColumnName="QAPNo" />
                 <ScalarProperty Name="FileNo" ColumnName="FileNo" />
                 <ScalarProperty Name="PONo" ColumnName="PONo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

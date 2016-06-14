@@ -1132,17 +1132,7 @@ namespace INDMS.WebUI.Controllers {
         }
 
         #endregion Drawing
-
-        private void PopulateIssuingAuthorityDropDownList() {
-            var issuingAuthorityQuery = from d in db.ParameterMasters
-                                        where d.KeyName == "IssuingAuthority"
-                                        orderby d.KeyValue
-                                        select d.KeyValue;
-
-            ViewBag.IssuingAuthority = issuingAuthorityQuery;
-            //ViewBag.IssuingAuthority = new SelectList(issuingAuthorityQuery, "KeyValue", "KeyValue", string.Empty);
-        }
-
+        
         [HttpPost]
         public ActionResult GetJsonObjOfParam(string data) {
             IEnumerable<string> KeyValueList = from d in db.ParameterMasters

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Add\Desktop\GitASPMVC\INDMS\INDMS.WebUI\Models\INDMSModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\advaghela\Desktop\GIT\INDMS\INDMS\INDMS.WebUI\Models\INDMSModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
