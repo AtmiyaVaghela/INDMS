@@ -285,10 +285,10 @@ namespace INDMS.WebUI.Controllers {
                                             TempData["Error"] = "Only PDF Files.";
                                         }
                                     }
-                                    else{
+                                    else {
                                         m.Standard.FilePath = m.file;
                                     }
-                                    
+
                                     m.Standard.CreatedBy = Request.Cookies["INDMS"]["UserID"];
                                     m.Standard.CreatedDate = null;
 
@@ -299,7 +299,7 @@ namespace INDMS.WebUI.Controllers {
 
                                         TempData["RowId"] = m.Standard.Id;
                                         TempData["MSG"] = "Save Successfully";
-                                        
+
                                         return RedirectToAction("Standards");
                                     }
                                     catch (RetryLimitExceededException /* dex */) {
@@ -308,10 +308,10 @@ namespace INDMS.WebUI.Controllers {
                                     catch (Exception ex) {
                                         TempData["Error"] = ex.Message;
                                     }
-                                }  
+                                }
                                 else {
                                     TempData["Error"] = "Please Select Type.";
-                                }                            
+                                }
                             }
                             catch (Exception) {
                                 TempData["Error"] = "Subject is not added to the Parameter Master.";
@@ -332,7 +332,7 @@ namespace INDMS.WebUI.Controllers {
             else {
                 TempData["Error"] = "Please Enter Standard No.";
             }
-            
+
             StandardViewModel mv = new StandardViewModel {
                 Standard = m.Standard,
                 OSubject = m.OSubject,
@@ -544,7 +544,7 @@ namespace INDMS.WebUI.Controllers {
                             }
                             catch (Exception ex) {
                                 TempData["Error"] = ex.Message;
-                            }                            
+                            }
                         }
                         else {
                             TempData["Error"] = "Please Enter Revision.";
@@ -662,6 +662,102 @@ namespace INDMS.WebUI.Controllers {
             gvm.GuideLines = db.GuideLines.OrderByDescending(x => x.ID);
             return View(gvm);
         }
+
+        [AuthUser]
+        public ActionResult GuideLinesNew() {
+            return View();
+        }
+
+        [AuthUser]
+        public ActionResult GuideLinesEdit(int? id) {
+            GuideLineViewModel m = new GuideLineViewModel();
+
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else {
+                m.GuideLine = db.GuideLines.Find(id);
+                if (m.GuideLine == null) {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else {
+                    m.file = m.GuideLine.FilePath;
+                }
+            }
+            return View(m);
+        }
+
+        [HttpPost]
+        [AuthUser]
+        public ActionResult GuideLinesEdit(GuideLineViewModel gvm, HttpPostedFileBase inputFile) {
+            if (!string.IsNullOrEmpty(gvm.GuideLine.IssuingAuthority)) {
+                if (!string.IsNullOrEmpty(gvm.GuideLine.Subject)) {
+                    if (!string.IsNullOrEmpty(gvm.GuideLine.Year)) {
+                        if (gvm.GuideLine.IssuingAuthority.Equals("OTHERS")) {
+                            string strIssuingAuthority = gvm.OIssuingAutherity.Trim().ToUpper();
+                            if (!string.IsNullOrEmpty(strIssuingAuthority)) {
+                                string keyName = "IssuingAuthority";
+                                if (keyName != string.Empty) {
+                                    gvm.GuideLine.IssuingAuthority = gvm.OIssuingAutherity.Trim().ToUpper();
+                                    string keyValue = gvm.GuideLine.IssuingAuthority;
+                                    AddParam(keyName, keyValue);
+                                }
+                            }
+                            else {
+                                TempData["Error"] = "Please Enter Issuing Authority.";
+                            }
+                        }
+
+                        if (inputFile != null && inputFile.ContentLength > 0) {
+                            if (inputFile.ContentType == "application/pdf") {
+                                Guid FileName = Guid.NewGuid();
+                                gvm.GuideLine.FilePath = "/Uploads/GuideLines/" + FileName + ".pdf";
+                                string tPath = Path.Combine(Server.MapPath("~/Uploads/GuideLines/"), FileName + ".pdf");
+                                inputFile.SaveAs(tPath);
+                            }
+                            else {
+                                TempData["Error"] = "Only PDF Files.";
+                            }
+                        }
+                        else {
+                            gvm.GuideLine.FilePath = gvm.file;
+                        }
+
+                        gvm.GuideLine.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                        gvm.GuideLine.CreatedDate = null;
+
+                        try {
+                            db.Entry(gvm.GuideLine).State = EntityState.Modified;
+                            db.SaveChanges();
+                            ModelState.Clear();
+
+                            TempData["RowId"] = gvm.GuideLine.ID;
+                            TempData["MSG"] = "Save Successfully";
+
+                            return RedirectToAction("GuideLines");
+                        }
+                        catch (RetryLimitExceededException /* dex */) {
+                            TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
+                        }
+                        catch (Exception ex) {
+                            TempData["Error"] = ex.Message;
+                        }
+                    }
+                    else {
+                        TempData["Error"] = "Please Enter Year";
+                    }
+                }
+                else {
+                    TempData["Error"] = "Please Enter Subject.";
+                }
+            }
+            else {
+                TempData["Error"] = "Please select IssuingAuthority.";
+            }
+            gvm.GuideLines = db.GuideLines.OrderByDescending(x => x.ID);
+            return View(gvm);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

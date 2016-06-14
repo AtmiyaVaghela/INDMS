@@ -1,7 +1,7 @@
 ﻿@model INDMS.WebUI.ViewModels.GuideLineViewModel
 @{
 
-    ViewBag.Title = "Guide Lines";
+    ViewBag.Title = "Edit - Guide Lines";
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -9,7 +9,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Guide Lines
+            Edit - Guide Lines
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -21,34 +21,36 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
                     </div>
                 }
 
-                @*<div class="box box-primary">
+                <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title"></h3>
+                        <h3 class="box-title">
+                            <p>@Html.ActionLink("Back", "GuideLines", null, new { @class = "btn btn-primary" })</p>
+                        </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    @using (Html.BeginForm("GuideLines", "Library", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
+                    @using (Html.BeginForm("GuideLinesEdit", "Library", FormMethod.Post, new { enctype = "multipart/form-data" })) {
                         <div class="form-horizontal">
                             @Html.AntiForgeryToken()
                             <div class="box-body">
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                                 <div class="form-group">
+
+                                    @Html.HiddenFor(x=>x.GuideLine.ID)
+
                                     @Html.Label("Issuing Authority", new { @class = "control-label col-md-2" })
                                     <div class="col-md-6">
                                         <select id="sIssuingAuthority" class="form-control select2" name="GuideLine.IssuingAuthority"></select>
@@ -78,10 +80,15 @@
                                 <div class="form-group">
                                     @Html.Label("File", new { @class = "control-label col-md-2" })
                                     <div class="col-md-6">
+                                        @Html.HiddenFor(x => @Model.file)
+                                        @if (Model.file != null) {
+                                            <a href="@Model.file" target="_blank" class="fa fa-folder-open-o" title="Open">Open</a>
+                                        }
                                         <input type="file" id="inputFile" name="inputFile">
                                         <p class="help-block">File must be PDF.</p>
                                     </div>
                                 </div>
+
                             </div><!-- /.box-body -->
                             <div class="box-footer">
                                 <div class="col-md-offset-2 col-md-6">
@@ -90,63 +97,14 @@
                             </div>
                         </div>
                     }
-                </div><!-- /.box -->*@
-
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">
-                            @Html.ActionLink("New", "GuideLinesNew", "Library", null, new { @class = "btn btn-primary" })
-                        </h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <td>
-                                        Issuing Authority
-                                    </td>
-                                    <td>
-                                        Subject
-                                    </td>
-                                    <td>
-                                        Year
-                                    </td>
-                                    <td>
-                                        File
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.GuideLines)
-                                {
-                                    <tr>
-
-                                        <td>
-                                            @item.IssuingAuthority
-                                        </td>
-                                        <td>
-                                            @item.Subject
-                                        </td>
-                                        <td>
-                                            @item.Year
-                                        </td>
-                                        <td>
-                                            <a href="@item.FilePath" target="_blank" class="fa fa-folder-open-o" title="Open"></a> |
-                                            @Html.ActionLink(" ", "GuideLinesEdit", new { id = @item.ID }, new { @class = "fa fa-edit", @title = "Edit" })
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                </div><!-- /.box -->
             </div>
         </div>
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 @section scripts{
     <script>
-        @*$(function () {
+        $(function () {
             $("#sIssuingAuthority").change(function () {
                 var value = $('#sIssuingAuthority').val();
                 if (value == "OTHERS") {
@@ -169,15 +127,14 @@
                     });
                     $("#sIssuingAuthority").append("<option value='OTHERS'>OTHERS</option>");
                     $("#sIssuingAuthority option").eq(0).before($("<option></option>").val("").text("-Select-"));
-                    $("#sIssuingAuthority").val("");
+                    $('#sIssuingAuthority').select2("val", "@Model.GuideLine.IssuingAuthority");
                 },
 
                 error: function (xhr) {
                     alert("Something seems Wrong");
 
                 }
-            });*@
-
+            });
             $('li').removeClass("active");
             $('#liLibrary').addClass("active");
             $('#liGuideLines ').addClass("active");

@@ -2208,6 +2208,8 @@
     <Content Include="Views\Library\StandardEdit.cshtml" />
     <Content Include="Views\Library\StandingOrderNew.cshtml" />
     <Content Include="Views\Library\StandingOrderEdit.cshtml" />
+    <Content Include="Views\Library\GuideLinesNew.cshtml" />
+    <Content Include="Views\Library\GuideLinesEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
