@@ -974,6 +974,101 @@ namespace INDMS.WebUI.Controllers {
             return View(m);
         }
 
+        [AuthUser]
+        public ActionResult DrawingsNew() {
+            return View();
+        }
+
+        [AuthUser]
+        public ActionResult DrawingsEdit(int? id) {
+            DrawingViewModel m = new DrawingViewModel();
+
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else {
+                m.Drawing = db.Drawings.Find(id);
+                if (m.Drawing == null) {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else {
+                    m.file = m.Drawing.FilePath;
+                }
+            }
+            return View(m);
+        }
+
+        [HttpPost]
+        [AuthUser]
+        public ActionResult DrawingsEdit(DrawingViewModel m, HttpPostedFileBase inputFile) {
+            if (ModelState.IsValid) {
+                try {
+                    if (!string.IsNullOrEmpty(m.Drawing.DrawingNo)) {
+                        if (!string.IsNullOrEmpty(m.Drawing.Subject)) {
+                            if (!string.IsNullOrEmpty(m.Drawing.ApprovalBy)) {
+
+                                if (inputFile != null && inputFile.ContentLength > 0) {
+                                    if (inputFile.ContentType == "application/pdf") {
+                                        Guid FileName = Guid.NewGuid();
+                                        m.Drawing.FilePath = "/Uploads/Drawings/" + FileName + ".pdf";
+                                        string tPath = Path.Combine(Server.MapPath("~/Uploads/Drawings/"), FileName + ".pdf");
+                                        inputFile.SaveAs(tPath);
+                                    }
+                                    else {
+                                        TempData["Error"] = "Only PDF Files.";
+                                    }
+                                }
+                                else {
+                                    m.Drawing.FilePath = m.file;
+                                }
+
+                                m.Drawing.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                                m.Drawing.CreatedDate = null;
+
+                                try {
+                                    db.Entry(m.Drawing).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    ModelState.Clear();
+
+                                    TempData["RowId"] = m.Drawing.Id;
+                                    TempData["MSG"] = "Save Successfully";
+
+                                    return RedirectToAction("Drawings");
+                                }
+                                catch (RetryLimitExceededException /* dex */) {
+                                    TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
+                                }
+                                catch (Exception ex) {
+                                    TempData["Error"] = ex.Message;
+                                }
+                            }
+                            else {
+                                TempData["Error"] = "Please Select Approval By.";
+                            }
+                        }
+                        else {
+                            TempData["Error"] = "Please Enter Subject";
+                        }
+                    }
+                    else {
+                        TempData["Error"] = "Please Enter Drawing No.";
+                    }
+                }
+                catch (Exception ex) {
+                    TempData["Error"] = ex.Message;
+                }
+            }
+
+            m.Drawings = db.Drawings.OrderByDescending(x => x.Id);
+            foreach (Drawing item in m.Drawings) {
+                item.ApprovalBy = db.Users.SingleOrDefault(x => x.UserId == new Guid(item.ApprovalBy)).Name;
+                //from d in db.Users
+                //              where d.UserId.ToString() == item.ApprovalBy
+                //              select d.Name;
+            }
+            return View(m);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthUser]

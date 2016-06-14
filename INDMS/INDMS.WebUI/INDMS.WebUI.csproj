@@ -2212,6 +2212,8 @@
     <Content Include="Views\Library\GuideLinesEdit.cshtml" />
     <Content Include="Views\Library\GeneralBooksNew.cshtml" />
     <Content Include="Views\Library\GeneralBooksEdit.cshtml" />
+    <Content Include="Views\Library\DrawingsNew.cshtml" />
+    <Content Include="Views\Library\DrawingsEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

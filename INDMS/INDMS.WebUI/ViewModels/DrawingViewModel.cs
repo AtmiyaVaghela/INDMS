@@ -7,5 +7,7 @@ namespace INDMS.WebUI.ViewModels
     {
         public Drawing Drawing { get; set; }
         public IEnumerable<Drawing> Drawings { get; set; }
+
+        public string file { get; set; }
     }
 }

@@ -20,101 +20,22 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
                     </div>
                 }
 
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"></h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    @using (Html.BeginForm("Drawings", "Library", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div class="form-horizontal">
-                            @Html.AntiForgeryToken()
-                            <div class="box-body">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                                <div class="form-group">
-                                    @Html.Label("PO No", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(model => model.Drawing.PONo, null, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.Drawing.PONo, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("File No", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(model => model.Drawing.FileNo, null, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.Drawing.FileNo, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("Drawing No", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(model => model.Drawing.DrawingNo, null, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.Drawing.DrawingNo, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Drawing.Subject, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(model => model.Drawing.Subject, null, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.Drawing.Subject, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("Approval Date", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            @Html.TextBoxFor(m => m.Drawing.ApprovalDate, new { @class = "form-control dp" })
-                                        </div><!-- /.input group -->
-                                        @Html.ValidationMessageFor(model => model.Drawing.ApprovalDate, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("Approval By", new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-6">
-                                        <select id="sApprovalBy" class="form-control select2" name="Drawing.ApprovalBy"></select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.Label("File", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        <input type="file" id="inputFile" name="inputFile">
-                                        <p class="help-block">File must be PDF.</p>
-                                    </div>
-                                </div>
-                            </div><!-- /.box-body -->
-                            <div class="box-footer">
-                                <div class="col-md-offset-2 col-md-6">
-                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div><!-- /.box -->
-
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Data</h3>
+                        <h3 class="box-title">@Html.ActionLink("New", "DrawingsNew", "Library", null, new { @class = "btn btn-primary" })</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -145,10 +66,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.Drawings != null)
-                                {
-                                    foreach (var item in Model.Drawings)
-                                    {
+                                @if (Model.Drawings != null) {
+                                    foreach (var item in Model.Drawings) {
                                         <tr>
                                             <td>
                                                 @item.PONo
@@ -169,7 +88,8 @@
                                                 @item.ApprovalDate.ToShortDateString()
                                             </td>
                                             <td>
-                                                <a href="@item.FilePath" target="_blank">Open</a>
+                                                <a href="@item.FilePath" target="_blank" class="fa fa-folder-open-o" title="Open"></a> |
+                                                @Html.ActionLink(" ", "DrawingsEdit", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
                                             </td>
                                         </tr>
                                     }
@@ -185,28 +105,6 @@
 @section scripts{
     <script>
         $(function () {
-
-            $.ajax({
-                url: "@Url.Action("GetJsonObjOfUsers", "Library")",
-                type: 'POST',
-                data: {},
-                success: function (data) {
-                    $('#sApprovalBy').empty();
-                    $.each(data, function (index, optiondata) {
-
-                        $("#sApprovalBy").append("<option value='" + optiondata.UserId + "'>" + optiondata.Name + "</option>");
-                    });
-                    //$("#sApprovalBy").append("<option value='OTHERS'>OTHERS</option>");
-                    $("#sApprovalBy option").eq(0).before($("<option></option>").val("").text("-Select-"));
-                    $("#sApprovalBy").val("");
-                },
-
-                error: function (xhr) {
-                    alert("Something seems Wrong");
-
-                }
-            });
-
             $('li').removeClass("active");
             $('#liLibrary').addClass("active")
             $('#liDrawing ').addClass("active")
