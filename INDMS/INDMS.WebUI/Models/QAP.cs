@@ -23,5 +23,7 @@ namespace INDMS.WebUI.Models
         public string ApprovedBy { get; set; }
         public string DrawingNoRef { get; set; }
         public string FilePath { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

@@ -2238,6 +2238,7 @@
     <Folder Include="Uploads\GeneralBooks\" />
     <Folder Include="Uploads\GuideLines\" />
     <Folder Include="Uploads\PolicyLetter\" />
+    <Folder Include="Uploads\QAP\" />
     <Folder Include="Uploads\Standards\" />
     <Folder Include="Uploads\StandingOrders\" />
   </ItemGroup>

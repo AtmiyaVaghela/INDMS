@@ -51,4 +51,10 @@ CREATE TABLE [dbo].[QAP] (
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
+ALTER TABLE [dbo].[QAP]
+ADD  [CreatedDate]  DATETIME
+
+ALTER TABLE [dbo].[QAP]
+ADD [CreatedBy]   VARCHAR (50)  NULL
+
 

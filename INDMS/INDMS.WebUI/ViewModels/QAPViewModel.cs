@@ -10,6 +10,7 @@ namespace INDMS.WebUI.ViewModels {
         public IEnumerable<QAP> QAPs { get; set; }
         public string file { get; set; }
 
-        public int[] DrawingId { get; set; }     
+        public int[] DrawingId { get; set; }
+        public string DrawingNo { get; set; }
     }
 }

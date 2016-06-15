@@ -81,6 +81,8 @@
           <Property Name="ApprovedBy" Type="varchar(max)" Nullable="false" />
           <Property Name="DrawingNoRef" Type="varchar(max)" />
           <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -284,6 +286,8 @@
           <Property Name="ApprovedBy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="DrawingNoRef" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -415,6 +419,8 @@
           <EntitySetMapping Name="QAPs">
             <EntityTypeMapping TypeName="INDMSModel.QAP">
               <MappingFragment StoreEntitySet="QAP">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="FilePath" ColumnName="FilePath" />
                 <ScalarProperty Name="DrawingNoRef" ColumnName="DrawingNoRef" />
                 <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />

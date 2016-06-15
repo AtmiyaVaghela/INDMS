@@ -125,6 +125,8 @@
     <EntitySetMapping Name="QAPs">
       <EntityTypeMapping TypeName="INDMSModel.QAP">
         <MappingFragment StoreEntitySet="QAP">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="FilePath" ColumnName="FilePath" />
           <ScalarProperty Name="DrawingNoRef" ColumnName="DrawingNoRef" />
           <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />

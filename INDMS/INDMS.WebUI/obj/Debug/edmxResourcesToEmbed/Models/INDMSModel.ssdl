@@ -76,6 +76,8 @@
     <Property Name="ApprovedBy" Type="varchar(max)" Nullable="false" />
     <Property Name="DrawingNoRef" Type="varchar(max)" />
     <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>

@@ -1139,6 +1139,19 @@ namespace INDMS.WebUI.Controllers {
         public ActionResult QAP() {
             QAPViewModel m = new QAPViewModel();
             m.QAPs = db.QAPs.OrderByDescending(x => x.Id);
+
+            foreach (QAP item in m.QAPs) {
+                item.ApprovedBy = db.Users.SingleOrDefault(x => x.UserId == new Guid(item.ApprovedBy)).Name;
+                string[] d = item.DrawingNoRef.Split(',');
+
+                item.DrawingNoRef = string.Empty;
+
+                foreach (var i in d) {
+                    item.DrawingNoRef += db.Drawings.ToList().SingleOrDefault(x => x.Id == Convert.ToInt32(i)).DrawingNo + " ,";
+                }
+
+                item.DrawingNoRef = item.DrawingNoRef.Substring(0, item.DrawingNoRef.Length - 1);
+            }
             return View(m);
         }
 
@@ -1151,7 +1164,61 @@ namespace INDMS.WebUI.Controllers {
         [ValidateAntiForgeryToken]
         [AuthUser]
         public ActionResult QAPNew(QAPViewModel m, HttpPostedFileBase inputFile) {
+            if (ModelState.IsValid) {
+                try {
+                    if (!string.IsNullOrEmpty(m.QAP.QAPNo)) {
+                        if (!string.IsNullOrEmpty(m.QAP.Subject)) {
+                            if (!string.IsNullOrEmpty(m.QAP.ApprovedBy)) {
+                                if (inputFile != null && inputFile.ContentLength > 0) {
+                                    if (inputFile.ContentType == "application/pdf") {
 
+                                        Guid FileName = Guid.NewGuid();
+                                        m.QAP.FilePath = "/Uploads/QAP/" + FileName + ".pdf";
+                                        string tPath = Path.Combine(Server.MapPath("~/Uploads/QAP/"), FileName + ".pdf");
+                                        inputFile.SaveAs(tPath);
+
+                                        foreach (var i in m.DrawingId) {
+                                            m.QAP.DrawingNoRef += i + ",";
+                                        }
+
+                                        m.QAP.DrawingNoRef = m.QAP.DrawingNoRef.Substring(0, m.QAP.DrawingNoRef.Length - 1);
+
+
+                                        m.QAP.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                                        m.QAP.CreatedDate = null;
+
+                                        db.QAPs.Add(m.QAP);
+                                        db.SaveChanges();
+
+                                        TempData["RowId"] = m.QAP.Id;
+                                        TempData["MSG"] = "Save Successfully";
+
+                                        return RedirectToAction("QAP");
+                                    }
+                                    else {
+                                        TempData["Error"] = "Please select only PDF file.";
+                                    }
+                                }
+                                else {
+                                    TempData["Error"] = "Please Select File";
+                                }
+                            }
+                            else {
+                                TempData["Error"] = "Please Enter Approved By";
+                            }
+                        }
+                        else {
+                            TempData["Error"] = "Please Enter Subject";
+                        }
+                    }
+                    else {
+                        TempData["Error"] = "Please Enter QAP No.";
+                    }
+                }
+                catch (Exception ex) {
+                    TempData["Error"] = ex.Message;
+                }
+            }
             return View();
         }
 
@@ -1177,7 +1244,7 @@ namespace INDMS.WebUI.Controllers {
 
         public ActionResult GetJsonObjOfDrawingNoRef() {
             IEnumerable<Drawing> Drawing = from d in db.Drawings
-                                         select d;
+                                           select d;
             return Json(Drawing, JsonRequestBehavior.AllowGet);
         }
 
