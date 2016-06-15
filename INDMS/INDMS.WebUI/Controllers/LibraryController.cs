@@ -129,7 +129,7 @@ namespace INDMS.WebUI.Controllers {
 
         [HttpPost]
         [AuthUser]
-        public ActionResult PolicyLetter(PolicyLetterViewModel pl, HttpPostedFileBase inputFile) {
+        public ActionResult PolicyLetterNew(PolicyLetterViewModel pl, HttpPostedFileBase inputFile) {
             if (!string.IsNullOrEmpty(pl.PLetter.Year)) {
                 if (inputFile != null && inputFile.ContentLength > 0) {
                     if (inputFile.ContentType == "application/pdf") {
@@ -345,7 +345,7 @@ namespace INDMS.WebUI.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthUser]
-        public ActionResult Standards(StandardViewModel svm, HttpPostedFileBase inputFile) {
+        public ActionResult StandardsNew(StandardViewModel svm, HttpPostedFileBase inputFile) {
             if (!string.IsNullOrEmpty(svm.Standard.StandardNo)) {
                 if (!string.IsNullOrEmpty(svm.Standard.Year)) {
                     if (!string.IsNullOrEmpty(svm.Standard.Revision)) {
@@ -570,7 +570,7 @@ namespace INDMS.WebUI.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthUser]
-        public ActionResult StandingOrder(StandingOrderViewModel so, HttpPostedFileBase inputFile) {
+        public ActionResult StandingOrderNew(StandingOrderViewModel so, HttpPostedFileBase inputFile) {
             if (!string.IsNullOrEmpty(so.StandingOrder.IssuingAuthority)) {
                 if (!string.IsNullOrEmpty(so.StandingOrder.Subject)) {
                     if (!string.IsNullOrEmpty(so.StandingOrder.Year)) {
@@ -762,7 +762,7 @@ namespace INDMS.WebUI.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthUser]
-        public ActionResult GuideLines(GuideLineViewModel gvm, HttpPostedFileBase inputFile) {
+        public ActionResult GuideLinesNew(GuideLineViewModel gvm, HttpPostedFileBase inputFile) {
             if (!string.IsNullOrEmpty(gvm.GuideLine.IssuingAuthority)) {
                 if (!string.IsNullOrEmpty(gvm.GuideLine.Subject)) {
                     if (!string.IsNullOrEmpty(gvm.GuideLine.Year)) {
@@ -911,7 +911,7 @@ namespace INDMS.WebUI.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthUser]
-        public ActionResult GeneralBooks(GeneralBookViewModel gbvm, HttpPostedFileBase inputFile) {
+        public ActionResult GeneralBooksNew(GeneralBookViewModel gbvm, HttpPostedFileBase inputFile) {
             if (!string.IsNullOrEmpty(gbvm.GeneralBook.Title)) {
                 if (!string.IsNullOrEmpty(gbvm.GeneralBook.Subject)) {
                     if (!string.IsNullOrEmpty(gbvm.GeneralBook.Year)) {
@@ -1072,7 +1072,7 @@ namespace INDMS.WebUI.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthUser]
-        public ActionResult Drawings(DrawingViewModel m, HttpPostedFileBase inputFile) {
+        public ActionResult DrawingsNew(DrawingViewModel m, HttpPostedFileBase inputFile) {
             if (ModelState.IsValid) {
                 try {
                     if (!string.IsNullOrEmpty(m.Drawing.DrawingNo)) {
@@ -1144,6 +1144,14 @@ namespace INDMS.WebUI.Controllers {
 
         [AuthUser]
         public ActionResult QAPNew() {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AuthUser]
+        public ActionResult QAPNew(QAPViewModel m, HttpPostedFileBase inputFile) {
+
             return View();
         }
 

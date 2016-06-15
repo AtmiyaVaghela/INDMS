@@ -79,7 +79,7 @@
           <Property Name="Subject" Type="varchar(max)" Nullable="false" />
           <Property Name="ApprovalDate" Type="datetime" Nullable="false" />
           <Property Name="ApprovedBy" Type="varchar(max)" Nullable="false" />
-          <Property Name="DrawingNoRef" Type="varbinary(max)" />
+          <Property Name="DrawingNoRef" Type="varchar(max)" />
           <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
@@ -282,7 +282,7 @@
           <Property Name="Subject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ApprovalDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ApprovedBy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DrawingNoRef" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DrawingNoRef" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>

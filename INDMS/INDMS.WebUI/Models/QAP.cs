@@ -21,7 +21,7 @@ namespace INDMS.WebUI.Models
         public string Subject { get; set; }
         public System.DateTime ApprovalDate { get; set; }
         public string ApprovedBy { get; set; }
-        public byte[] DrawingNoRef { get; set; }
+        public string DrawingNoRef { get; set; }
         public string FilePath { get; set; }
     }
 }

@@ -41,7 +41,7 @@
                         </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    @using (Html.BeginForm("QAP", "Library", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+                    @using (Html.BeginForm("QAPNew", "Library", FormMethod.Post, new { enctype = "multipart/form-data" })) {
                         <div class="form-horizontal">
                             @Html.AntiForgeryToken()
                             <div class="box-body">
@@ -97,7 +97,7 @@
                                 <div class="form-group">
                                     @Html.Label("Drawing No. Reference", new { @class = "control-label col-md-2" })
                                     <div class="col-md-6">
-                                        <select id="sDrawingNoRef" multiple="multiple" class="form-control select2" data-placeholder="Select Drawing No"></select>
+                                        <select id="sDrawingNoRef" multiple="multiple" class="form-control select2" name="DrawingId" data-placeholder="Select Drawing No"></select>
                                     </div>
                                 </div>
 
@@ -127,7 +127,7 @@
 
             $.ajax({
                 url: "@Url.Action("GetJsonObjOfUsers", "Library")",
-                type: 'POST',
+                type: 'GET',
                 data: {},
                 success: function (data) {
                     $('#sApprovalBy').empty();

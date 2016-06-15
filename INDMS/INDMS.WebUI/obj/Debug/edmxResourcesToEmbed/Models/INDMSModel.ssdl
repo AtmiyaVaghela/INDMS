@@ -74,7 +74,7 @@
     <Property Name="Subject" Type="varchar(max)" Nullable="false" />
     <Property Name="ApprovalDate" Type="datetime" Nullable="false" />
     <Property Name="ApprovedBy" Type="varchar(max)" Nullable="false" />
-    <Property Name="DrawingNoRef" Type="varbinary(max)" />
+    <Property Name="DrawingNoRef" Type="varchar(max)" />
     <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Roles">
