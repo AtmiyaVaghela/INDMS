@@ -11,9 +11,9 @@ namespace INDMS.WebUI.App_Start
                 "~/plugins/font-awesome-4.6.2/css/font-awesome.min.css",
                 "~/plugins/ionicons-2.0.1/css/ionicons.min.css",
                 "~/plugins/jvectormap/jquery-jvectormap-1.2.2.css",
+                 "~/plugins/select2/select2.min.css",
                 "~/Content/AdminLTE.min.css",
-                "~/Content/skins/_all-skins.min.css",
-                "~/plugins/select2/select2.min.css",
+                "~/Content/skins/_all-skins.min.css",               
                 "~/plugins/datepicker/datepicker3.css",
                 "~/plugins/datatables/dataTables.bootstrap.css"
                 ));

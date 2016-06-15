@@ -1132,7 +1132,23 @@ namespace INDMS.WebUI.Controllers {
         }
 
         #endregion Drawing
-        
+
+        #region QAP
+
+        [AuthUser]
+        public ActionResult QAP() {
+            QAPViewModel m = new QAPViewModel();
+            m.QAPs = db.QAPs.OrderByDescending(x => x.Id);
+            return View(m);
+        }
+
+        [AuthUser]
+        public ActionResult QAPNew() {
+            return View();
+        }
+
+        #endregion QAP
+
         [HttpPost]
         public ActionResult GetJsonObjOfParam(string data) {
             IEnumerable<string> KeyValueList = from d in db.ParameterMasters
@@ -1143,12 +1159,18 @@ namespace INDMS.WebUI.Controllers {
             return Json(KeyValueList, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult GetJsonObjOfUsers() {
             IEnumerable<User> Users = from d in db.Users
                                       where d.Active != "N"
                                       select d;
             return Json(Users, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetJsonObjOfDrawingNoRef() {
+            IEnumerable<Drawing> Drawing = from d in db.Drawings
+                                         select d;
+            return Json(Drawing, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing) {

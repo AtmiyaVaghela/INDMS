@@ -2107,6 +2107,7 @@
     <Compile Include="ViewModels\GuideLineViewModel.cs" />
     <Compile Include="ViewModels\PolicyLetterViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\QAPViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />
     <Compile Include="ViewModels\StandingOrderViewModel.cs" />
   </ItemGroup>
@@ -2217,6 +2218,8 @@
     <Content Include="Views\Library\GeneralBooksEdit.cshtml" />
     <Content Include="Views\Library\DrawingsNew.cshtml" />
     <Content Include="Views\Library\DrawingsEdit.cshtml" />
+    <Content Include="Views\Library\QAP.cshtml" />
+    <Content Include="Views\Library\QAPNew.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

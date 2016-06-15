@@ -46,7 +46,7 @@ CREATE TABLE [dbo].[QAP] (
     [Subject]      VARCHAR (MAX)   NOT NULL,
     [ApprovalDate] DATETIME        NOT NULL,
     [ApprovedBy]   VARCHAR (MAX)   NOT NULL,
-    [DrawingNoRef] VARBINARY (MAX) NULL,
+    [DrawingNoRef] VARCHAR(MAX) NULL,
     [FilePath]     VARCHAR (MAX)   NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );

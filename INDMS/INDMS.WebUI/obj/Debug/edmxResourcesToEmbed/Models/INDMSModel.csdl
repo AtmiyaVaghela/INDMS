@@ -107,6 +107,7 @@
     <EntitySet Name="StandingOrders" EntityType="Self.StandingOrder" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="Drawings" EntityType="INDMSModel.Drawing" />
+    <EntitySet Name="QAPs" EntityType="INDMSModel.QAP" />
   </EntityContainer>
   <EntityType Name="Drawing">
     <Key>
@@ -121,6 +122,20 @@
     <Property Name="ApprovalBy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="QAP">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PONo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="QAPNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ApprovalDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ApprovedBy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DrawingNoRef" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>
