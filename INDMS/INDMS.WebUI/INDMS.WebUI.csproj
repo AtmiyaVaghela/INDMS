@@ -2230,6 +2230,7 @@
     <Content Include="Views\Library\QAPNew.cshtml" />
     <Content Include="Views\Library\QAPEdit.cshtml" />
     <Content Include="Views\MovementOrder\New.cshtml" />
+    <Content Include="Views\MovementOrder\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

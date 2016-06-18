@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-inline pull-left">
                     <div class="pull-left" style="padding-right:5px"><b>1.</b> The following move sanction of</div>
-                    <div class="pull-left" style="padding-right:5px"> @Html.TextBoxFor(model => model.MovementOrder.InspectorName, null, new { @class = "form-control col-md-4" })</div>
+                    <div class="pull-left" style="padding-right:5px"> @Html.TextBoxFor(model => model.MovementOrder.InspectorName, null, new { @class = "form-control col-md-4", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })</div>
                     <div class="pull-left" style="padding-right:5px"> @Html.TextBoxFor(model => model.MovementOrder.Designation, null, new { @class = "form-control col-md-4" }) </div>
                     <div class="pull-left" style="padding-right:5px"> of this establishment is hereby approved for ty.duty to </div>
                     <div class="pull-left" style="padding-right:5px"> @Html.TextBoxFor(model => model.MovementOrder.FirmName, null, new { @class = "form-control col-md-4" }) </div>
