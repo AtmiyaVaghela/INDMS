@@ -44,6 +44,36 @@
           <Property Name="CreatedBy" Type="varchar(max)" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="MovementOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNo" Type="varchar(max)" Nullable="false" />
+          <Property Name="Subject" Type="varchar(max)" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="InspectorName" Type="varchar(max)" Nullable="false" />
+          <Property Name="Designation" Type="varchar(max)" Nullable="false" />
+          <Property Name="FirmName" Type="varchar(max)" Nullable="false" />
+          <Property Name="OnwardStartDate" Type="datetime" Nullable="false" />
+          <Property Name="OnwardEndDate" Type="datetime" Nullable="false" />
+          <Property Name="OnwordFrom" Type="varchar(max)" Nullable="false" />
+          <Property Name="OnwordTo" Type="varchar(max)" Nullable="false" />
+          <Property Name="OnwordModeOfTravel" Type="varchar(max)" Nullable="false" />
+          <Property Name="ReturnStartDate" Type="datetime" Nullable="false" />
+          <Property Name="ReturnEndDate" Type="datetime" Nullable="false" />
+          <Property Name="ReturnFrom" Type="varchar(max)" Nullable="false" />
+          <Property Name="ReturnTo" Type="varchar(max)" Nullable="false" />
+          <Property Name="ReturnModeOfTravel" Type="varchar(max)" Nullable="false" />
+          <Property Name="SigningAuthority" Type="varchar(max)" Nullable="false" />
+          <Property Name="SADesignation" Type="varchar(max)" Nullable="false" />
+          <Property Name="Distribution" Type="varchar(max)" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="varchar(max)" />
+          <Property Name="Flag" Type="varchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="ParameterMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -137,6 +167,7 @@
           <EntitySet Name="Drawings" EntityType="Self.Drawings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralBooks" EntityType="Self.GeneralBooks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GuideLine" EntityType="Self.GuideLine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovementOrder" EntityType="Self.MovementOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParameterMaster" EntityType="Self.ParameterMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PolicyLetter" EntityType="Self.PolicyLetter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QAP" EntityType="Self.QAP" Schema="dbo" store:Type="Tables" />
@@ -257,6 +288,7 @@
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Drawings" EntityType="INDMSModel.Drawing" />
           <EntitySet Name="QAPs" EntityType="INDMSModel.QAP" />
+          <EntitySet Name="MovementOrders" EntityType="INDMSModel.MovementOrder" />
         </EntityContainer>
         <EntityType Name="Drawing">
           <Key>
@@ -288,6 +320,36 @@
           <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MovementOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InspectorName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FirmName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OnwardStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OnwardEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OnwordFrom" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OnwordTo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OnwordModeOfTravel" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReturnStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReturnEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReturnFrom" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReturnTo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReturnModeOfTravel" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SigningAuthority" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SADesignation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Distribution" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Flag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -429,6 +491,37 @@
                 <ScalarProperty Name="QAPNo" ColumnName="QAPNo" />
                 <ScalarProperty Name="FileNo" ColumnName="FileNo" />
                 <ScalarProperty Name="PONo" ColumnName="PONo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovementOrders">
+            <EntityTypeMapping TypeName="INDMSModel.MovementOrder">
+              <MappingFragment StoreEntitySet="MovementOrder">
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Distribution" ColumnName="Distribution" />
+                <ScalarProperty Name="SADesignation" ColumnName="SADesignation" />
+                <ScalarProperty Name="SigningAuthority" ColumnName="SigningAuthority" />
+                <ScalarProperty Name="ReturnModeOfTravel" ColumnName="ReturnModeOfTravel" />
+                <ScalarProperty Name="ReturnTo" ColumnName="ReturnTo" />
+                <ScalarProperty Name="ReturnFrom" ColumnName="ReturnFrom" />
+                <ScalarProperty Name="ReturnEndDate" ColumnName="ReturnEndDate" />
+                <ScalarProperty Name="ReturnStartDate" ColumnName="ReturnStartDate" />
+                <ScalarProperty Name="OnwordModeOfTravel" ColumnName="OnwordModeOfTravel" />
+                <ScalarProperty Name="OnwordTo" ColumnName="OnwordTo" />
+                <ScalarProperty Name="OnwordFrom" ColumnName="OnwordFrom" />
+                <ScalarProperty Name="OnwardEndDate" ColumnName="OnwardEndDate" />
+                <ScalarProperty Name="OnwardStartDate" ColumnName="OnwardStartDate" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="InspectorName" ColumnName="InspectorName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

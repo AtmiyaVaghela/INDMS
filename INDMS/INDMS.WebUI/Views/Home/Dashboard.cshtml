@@ -16,6 +16,36 @@
     </section>
     <!-- Main content -->
     <section class="content">
-        <!-- Your Page Content Here -->
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Uploads</span>
+                        <span class="info-box-number" id="uploads"></span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+@section scripts{
+    <script>
+        $(function () {
+            $.ajax({
+                url: "@Url.Action("GetJsonObjOfUpload", "Home")",
+                type: 'GET',
+                data: {},
+                success: function (data) {
+                    $('#uploads').empty();
+                    $("#uploads").html(data);          
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong binding Uploads");
+
+                }
+            });
+        });
+    </script>
+}

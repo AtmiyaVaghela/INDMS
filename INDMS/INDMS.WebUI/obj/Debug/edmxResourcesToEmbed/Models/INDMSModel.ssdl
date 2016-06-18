@@ -39,6 +39,36 @@
     <Property Name="CreatedBy" Type="varchar(max)" />
     <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="MovementOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderNo" Type="varchar(max)" Nullable="false" />
+    <Property Name="Subject" Type="varchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="InspectorName" Type="varchar(max)" Nullable="false" />
+    <Property Name="Designation" Type="varchar(max)" Nullable="false" />
+    <Property Name="FirmName" Type="varchar(max)" Nullable="false" />
+    <Property Name="OnwardStartDate" Type="datetime" Nullable="false" />
+    <Property Name="OnwardEndDate" Type="datetime" Nullable="false" />
+    <Property Name="OnwordFrom" Type="varchar(max)" Nullable="false" />
+    <Property Name="OnwordTo" Type="varchar(max)" Nullable="false" />
+    <Property Name="OnwordModeOfTravel" Type="varchar(max)" Nullable="false" />
+    <Property Name="ReturnStartDate" Type="datetime" Nullable="false" />
+    <Property Name="ReturnEndDate" Type="datetime" Nullable="false" />
+    <Property Name="ReturnFrom" Type="varchar(max)" Nullable="false" />
+    <Property Name="ReturnTo" Type="varchar(max)" Nullable="false" />
+    <Property Name="ReturnModeOfTravel" Type="varchar(max)" Nullable="false" />
+    <Property Name="SigningAuthority" Type="varchar(max)" Nullable="false" />
+    <Property Name="SADesignation" Type="varchar(max)" Nullable="false" />
+    <Property Name="Distribution" Type="varchar(max)" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="varchar(max)" />
+    <Property Name="UpdatedDate" Type="varchar(max)" />
+    <Property Name="Flag" Type="varchar(max)" Nullable="false" />
+  </EntityType>
   <EntityType Name="ParameterMaster">
     <Key>
       <PropertyRef Name="Id" />
@@ -132,6 +162,7 @@
     <EntitySet Name="Drawings" EntityType="Self.Drawings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GeneralBooks" EntityType="Self.GeneralBooks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GuideLine" EntityType="Self.GuideLine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MovementOrder" EntityType="Self.MovementOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParameterMaster" EntityType="Self.ParameterMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PolicyLetter" EntityType="Self.PolicyLetter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QAP" EntityType="Self.QAP" Schema="dbo" store:Type="Tables" />

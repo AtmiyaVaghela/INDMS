@@ -108,6 +108,7 @@
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="Drawings" EntityType="INDMSModel.Drawing" />
     <EntitySet Name="QAPs" EntityType="INDMSModel.QAP" />
+    <EntitySet Name="MovementOrders" EntityType="INDMSModel.MovementOrder" />
   </EntityContainer>
   <EntityType Name="Drawing">
     <Key>
@@ -139,5 +140,35 @@
     <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MovementOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="InspectorName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FirmName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OnwardStartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OnwardEndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OnwordFrom" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OnwordTo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OnwordModeOfTravel" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnStartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReturnEndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReturnFrom" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnTo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnModeOfTravel" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SigningAuthority" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SADesignation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Distribution" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Flag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

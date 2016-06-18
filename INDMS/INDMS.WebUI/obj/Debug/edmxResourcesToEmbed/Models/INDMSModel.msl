@@ -139,5 +139,36 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="MovementOrders">
+      <EntityTypeMapping TypeName="INDMSModel.MovementOrder">
+        <MappingFragment StoreEntitySet="MovementOrder">
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Distribution" ColumnName="Distribution" />
+          <ScalarProperty Name="SADesignation" ColumnName="SADesignation" />
+          <ScalarProperty Name="SigningAuthority" ColumnName="SigningAuthority" />
+          <ScalarProperty Name="ReturnModeOfTravel" ColumnName="ReturnModeOfTravel" />
+          <ScalarProperty Name="ReturnTo" ColumnName="ReturnTo" />
+          <ScalarProperty Name="ReturnFrom" ColumnName="ReturnFrom" />
+          <ScalarProperty Name="ReturnEndDate" ColumnName="ReturnEndDate" />
+          <ScalarProperty Name="ReturnStartDate" ColumnName="ReturnStartDate" />
+          <ScalarProperty Name="OnwordModeOfTravel" ColumnName="OnwordModeOfTravel" />
+          <ScalarProperty Name="OnwordTo" ColumnName="OnwordTo" />
+          <ScalarProperty Name="OnwordFrom" ColumnName="OnwordFrom" />
+          <ScalarProperty Name="OnwardEndDate" ColumnName="OnwardEndDate" />
+          <ScalarProperty Name="OnwardStartDate" ColumnName="OnwardStartDate" />
+          <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="InspectorName" ColumnName="InspectorName" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
