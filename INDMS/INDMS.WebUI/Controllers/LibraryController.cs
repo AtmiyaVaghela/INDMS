@@ -1222,6 +1222,31 @@ namespace INDMS.WebUI.Controllers {
             return View();
         }
 
+        [AuthUser]
+        public ActionResult QAPEdit(int? id) {
+            QAPViewModel m = new QAPViewModel();
+
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else {
+                m.QAP = db.QAPs.Find(id);
+                string[] s = m.QAP.DrawingNoRef.Split(',');
+                m.DrawingId = new Int32[s.Length];
+                for (int i = 0; i < s.Length; i++) {
+                    m.DrawingId[i] = Convert.ToInt32(s[i]);
+                }
+
+                if (m.QAP == null) {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else {
+                    m.file = m.QAP.FilePath;
+                }
+            }
+            return View(m);
+        }
+
         #endregion QAP
 
         [HttpPost]

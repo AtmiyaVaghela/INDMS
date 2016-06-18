@@ -2220,6 +2220,7 @@
     <Content Include="Views\Library\DrawingsEdit.cshtml" />
     <Content Include="Views\Library\QAP.cshtml" />
     <Content Include="Views\Library\QAPNew.cshtml" />
+    <Content Include="Views\Library\QAPEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

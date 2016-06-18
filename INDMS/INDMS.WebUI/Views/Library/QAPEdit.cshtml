@@ -1,7 +1,9 @@
 ﻿@model INDMS.WebUI.ViewModels.QAPViewModel
 
+@using Newtonsoft.Json.Serialization;
+
 @{
-    ViewBag.Title = "New - QAP";
+    ViewBag.Title = "Edit - QAP";
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -9,7 +11,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            New - QAP
+            Edit - QAP
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Library</a></li>
@@ -48,6 +50,8 @@
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                                 <div class="form-group">
+                                    @Html.HiddenFor(x => x.QAP.Id)
+
                                     @Html.Label("PO No", new { @class = "control-label col-md-2" })
                                     <div class="col-md-6">
                                         @Html.TextBoxFor(model => model.QAP.PONo, null, new { @class = "form-control" })
@@ -104,6 +108,10 @@
                                 <div class="form-group">
                                     @Html.Label("File", new { @class = "control-label col-md-2" })
                                     <div class="col-md-6">
+                                        @Html.HiddenFor(x => @Model.file)
+                                        @if (Model.file != null) {
+                                            <a href="@Model.file" target="_blank" class="fa fa-folder-open-o" title="Open">Open</a>
+                                        }
                                         <input type="file" id="inputFile" name="inputFile">
                                         <p class="help-block">File must be PDF.</p>
                                     </div>
@@ -144,6 +152,8 @@
                 }
             });
 
+            var d = @Newtonsoft.Json.JsonConvert.SerializeObject(Model.DrawingId);
+
             $.ajax({
                 url: "@Url.Action("GetJsonObjOfDrawingNoRef", "Library")",
                 type: 'GET',
@@ -154,6 +164,10 @@
                         $("#sDrawingNoRef").append("<option value='" + optiondata.Id + "'>" + optiondata.DrawingNo + "</option>");
                     });
                     //$("#sApprovalBy").append("<option value='OTHERS'>OTHERS</option>");
+                   
+                    $.each(d,function(index,optionData){
+                        alert(optionData);
+                    });
                 },
 
                 error: function (xhr) {
