@@ -120,7 +120,7 @@
 
             $.ajax({
                 url: "@Url.Action("GetJsonObjOfUsers", "Library")",
-                type: 'POST',
+                type: 'GET',
                 data: {},
                 success: function (data) {
                     $('#sApprovalBy').empty();
@@ -134,7 +134,7 @@
                 },
 
                 error: function (xhr) {
-                    alert("Something seems Wrong");
+                    alert("Something seems Wrong binding Approval Person");
 
                 }
             });

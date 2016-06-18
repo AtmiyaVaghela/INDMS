@@ -6,20 +6,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace INDMS.WebUI.Infrastructure.Filters
-{
-    public class AuthUser : AuthorizeAttribute, IDisposable
-    {
+namespace INDMS.WebUI.Infrastructure.Filters {
+    public class AuthUser : AuthorizeAttribute, IDisposable {
         private INDMSEntities db = new INDMSEntities();
 
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
-        {
+        protected override bool AuthorizeCore(HttpContextBase httpContext) {
             bool authorise = false;
-            if (HttpContext.Current.Request.Cookies["INDMS"] != null)
-            {
+            if (HttpContext.Current.Request.Cookies["INDMS"] != null) {
                 string strUserId = HttpContext.Current.Request.Cookies["INDMS"]["UserID"];
-                if (!strUserId.Equals("00000000-0000-0000-0000-000000000000"))
-                {
+                if (!strUserId.Equals("00000000-0000-0000-0000-000000000000")) {
                     Guid userId = new Guid(strUserId);
 
                     //find UserId in database
@@ -28,46 +23,39 @@ namespace INDMS.WebUI.Infrastructure.Filters
                                where u.UserId == userId
                                select u;
 
-                    if (user.Any())
-                    {
+                    if (user.Any()) {
                         authorise = true;
                     }
-                    else
-                    {
-                        if (System.Text.Encoding.ASCII.DecodeBase64(HttpContext.Current.Request.Cookies["INDMS"]["UserName"]) == "Admin")
-                        {
+                    else {
+                        if (System.Text.Encoding.ASCII.DecodeBase64(HttpContext.Current.Request.Cookies["INDMS"]["UserName"]) == "Admin") {
                             authorise = true;
                         }
-                        else
-                        {
+                        else {
                             authorise = false;
                         }
                     }
                 }
-                else if (strUserId.Equals("00000000-0000-0000-0000-000000000000"))
-                {
+                else if (strUserId.Equals("00000000-0000-0000-0000-000000000000")) {
                     return authorise = true;
                 }
             }
             return authorise;
         }
 
-        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
-        {
-            if (HttpContext.Current.Request.Cookies["INDMS"] == null)
-            {
+
+
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext) {
+            if (HttpContext.Current.Request.Cookies["INDMS"] == null) {
                 filterContext.Result = new RedirectToRouteResult(new
                     RouteValueDictionary(new { controller = "Account", action = "Login" }));
             }
-            else
-            {
+            else {
                 filterContext.Result = new RedirectToRouteResult(new
                     RouteValueDictionary(new { controller = "Error", action = "AccessDenied" }));
             }
         }
 
-        public void Dispose()
-        {
+        public void Dispose() {
             throw new NotImplementedException();
         }
     }

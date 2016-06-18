@@ -2040,6 +2040,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -2054,10 +2055,12 @@
     <Compile Include="Infrastructure\CAuthRole.cs" />
     <Compile Include="Infrastructure\Encoding\EncodingForBase64.cs" />
     <Compile Include="Infrastructure\Filters\AuthUser.cs" />
+    <Compile Include="Infrastructure\Filters\ExceptionHandlerAttribute.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\Drawing.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ExceptionLogger.cs" />
     <Compile Include="Models\GeneralBook.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
@@ -2235,6 +2238,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Logs\" />
     <Folder Include="Uploads\Drawings\" />
     <Folder Include="Uploads\GeneralBooks\" />
     <Folder Include="Uploads\GuideLines\" />

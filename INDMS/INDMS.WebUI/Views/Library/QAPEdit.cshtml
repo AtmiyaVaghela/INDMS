@@ -144,7 +144,7 @@
                     });
                     //$("#sApprovalBy").append("<option value='OTHERS'>OTHERS</option>");
                     $("#sApprovalBy option").eq(0).before($("<option></option>").val("").text("-Select-"));
-                    $("#sApprovalBy").val("");
+                    $("#sApprovalBy").select2("val","@Model.QAP.ApprovedBy");
                 },
 
                 error: function (xhr) {
@@ -164,10 +164,9 @@
                         $("#sDrawingNoRef").append("<option value='" + optiondata.Id + "'>" + optiondata.DrawingNo + "</option>");
                     });
                     //$("#sApprovalBy").append("<option value='OTHERS'>OTHERS</option>");
-                   
-                    $.each(d,function(index,optionData){
-                        alert(optionData);
-                    });
+
+                    $('#sDrawingNoRef').select2({}).select2('val', d);
+                 
                 },
 
                 error: function (xhr) {

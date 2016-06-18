@@ -13,6 +13,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace INDMS.WebUI.Controllers {
+    [ExceptionHandler]
     public class LibraryController : Controller {
         private INDMSEntities db = new INDMSEntities();
 
@@ -1258,8 +1259,7 @@ namespace INDMS.WebUI.Controllers {
 
             return Json(KeyValueList, JsonRequestBehavior.AllowGet);
         }
-
-        [HttpGet]
+        
         public ActionResult GetJsonObjOfUsers() {
             IEnumerable<User> Users = from d in db.Users
                                       where d.Active != "N"
