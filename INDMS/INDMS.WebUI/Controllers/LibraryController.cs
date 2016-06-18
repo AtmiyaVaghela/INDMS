@@ -1220,7 +1220,7 @@ namespace INDMS.WebUI.Controllers {
                     TempData["Error"] = ex.Message;
                 }
             }
-            return View();
+            return View(m);
         }
 
         [AuthUser]
@@ -1248,6 +1248,75 @@ namespace INDMS.WebUI.Controllers {
             return View(m);
         }
 
+        [HttpPost]
+        [AuthUser]
+        public ActionResult QAPEdit(QAPViewModel m, HttpPostedFile inputFile) {
+            if (ModelState.IsValid) {
+                try {
+                    if (!string.IsNullOrEmpty(m.QAP.QAPNo)) {
+                        if (!string.IsNullOrEmpty(m.QAP.Subject)) {
+                            if (!string.IsNullOrEmpty(m.QAP.ApprovedBy)) {
+
+                                if (inputFile != null && inputFile.ContentLength > 0) {
+                                    if (inputFile.ContentType == "application/pdf") {
+                                        Guid FileName = Guid.NewGuid();
+                                        m.QAP.FilePath = "/Uploads/QAP/" + FileName + ".pdf";
+                                        string tPath = Path.Combine(Server.MapPath("~/Uploads/QAP/"), FileName + ".pdf");
+                                        inputFile.SaveAs(tPath);
+                                    }
+                                    else {
+                                        TempData["Error"] = "Only PDF Files.";
+                                    }
+                                }
+                                else {
+                                    m.QAP.FilePath = m.file;
+                                }
+
+                                foreach (var i in m.DrawingId) {
+                                    m.QAP.DrawingNoRef += i + ",";
+                                }
+
+                                m.QAP.DrawingNoRef = m.QAP.DrawingNoRef.Substring(0, m.QAP.DrawingNoRef.Length - 1);
+
+                                m.QAP.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                                m.QAP.CreatedDate = null;
+
+                                try {
+                                    db.Entry(m.QAP).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    ModelState.Clear();
+
+                                    TempData["RowId"] = m.QAP.Id;
+                                    TempData["MSG"] = "Save Successfully";
+
+                                    return RedirectToAction("QAP");
+                                }
+                                catch (RetryLimitExceededException /* dex */) {
+                                    TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
+                                }
+                                catch (Exception ex) {
+                                    TempData["Error"] = ex.Message;
+                                }                         
+                            }
+                            else {
+                                TempData["Error"] = "Please Enter Approved By";
+                            }
+                        }
+                        else {
+                            TempData["Error"] = "Please Enter Subject";
+                        }
+                    }
+                    else {
+                        TempData["Error"] = "Please Enter QAP No.";
+                    }
+                }
+                catch (Exception ex) {
+                    TempData["Error"] = ex.Message;
+                }
+            }
+            return View(m);
+        }
+
         #endregion QAP
 
         [HttpPost]
@@ -1259,7 +1328,7 @@ namespace INDMS.WebUI.Controllers {
 
             return Json(KeyValueList, JsonRequestBehavior.AllowGet);
         }
-        
+
         public ActionResult GetJsonObjOfUsers() {
             IEnumerable<User> Users = from d in db.Users
                                       where d.Active != "N"
