@@ -27,3 +27,6 @@ CREATE TABLE [dbo].[MovementOrder] (
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
+ALTER TABLE [dbo].[User]
+ADD [Designation]   VARCHAR (MAX)  NULL
+

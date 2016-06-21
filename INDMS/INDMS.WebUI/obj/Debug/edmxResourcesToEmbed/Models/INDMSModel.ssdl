@@ -157,6 +157,7 @@
     <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="Active" Type="varchar" MaxLength="10" />
+    <Property Name="Designation" Type="varchar(max)" />
   </EntityType>
   <EntityContainer Name="INDMSModelStoreContainer">
     <EntitySet Name="Drawings" EntityType="Self.Drawings" Schema="dbo" store:Type="Tables" />

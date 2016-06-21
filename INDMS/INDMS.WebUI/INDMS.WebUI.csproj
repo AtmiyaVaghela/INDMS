@@ -2118,6 +2118,7 @@
     <Compile Include="ViewModels\QAPViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />
     <Compile Include="ViewModels\StandingOrderViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -2231,6 +2232,8 @@
     <Content Include="Views\Library\QAPEdit.cshtml" />
     <Content Include="Views\MovementOrder\New.cshtml" />
     <Content Include="Views\MovementOrder\Index.cshtml" />
+    <Content Include="Views\Utility\UserList.cshtml" />
+    <Content Include="Views\Utility\UserEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

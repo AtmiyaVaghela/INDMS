@@ -1,7 +1,7 @@
 ﻿@model INDMS.WebUI.Models.User
 
 @{
-    ViewBag.Title = "CreateUser";
+    ViewBag.Title = "Edit - Uer";
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -9,7 +9,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Create User
+            Edit User
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -42,12 +42,14 @@
                         <h3 class="box-title"></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    @using (Html.BeginForm()) {
+                    @using (Html.BeginForm("UserEdit","Utility",FormMethod.Post)) {
                         <div class="form-horizontal">
                             @Html.AntiForgeryToken()
                             <div class="box-body">
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group">
+                                    @Html.HiddenFor(x=>x.UserId)
+
                                     @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter User Name" } })
@@ -121,14 +123,14 @@
                 type: 'GET',
                 data: {},
                 success: function (data) {
-                  
+
                     $('#sDesignation').empty();
                     $.each(data, function (index, optiondata) {
                         $("#sDesignation").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
                     });
                     $("#sDesignation").append("<option value='OTHERS'>OTHERS</option>");
                     $("#sDesignation option").eq(0).before($("<option></option>").val("").text("-Select-"));
-                    $('#sDesignation').select2("val", "");
+                    $('#sDesignation').select2("val", "@Model.Designation");
                 },
 
                 error: function (xhr) {
@@ -137,4 +139,4 @@
             });
         });
     </script>
-    }
+}

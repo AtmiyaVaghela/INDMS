@@ -94,6 +94,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="INDMSModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Password" ColumnName="Password" />

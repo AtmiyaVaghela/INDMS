@@ -34,121 +34,189 @@
                 }
             </div>
         </div>
-        <div class="box">
-            <div class="box-header">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
+                </h3>
+            </div> @*/ .box-header*@
+            <!--form start-->
+            @using (Html.BeginForm("New", "MovementOrder", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+                <div class="form-horizontal">
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.Label("", "Movement Order No.", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.OrderNo, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.OrderNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Subject", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.Subject, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.Subject, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MovementOrder.Date, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.MovementOrder.Date, new { @class = "form-control dp" })
+                                </div><!-- /.input group -->
+                                @Html.ValidationMessageFor(model => model.MovementOrder.Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Inspector Name", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                <select id="sInspectorName" class="form-control select2" name="MovementOrder.InspectorName"></select>
+                            
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Designation", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.Designation, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.Designation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Firm Name", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.FirmName, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.FirmName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Onward Journey", new { @class = "control-label col-md-2" })
 
-            </div>
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        No. QAEV/ <b>TY MEMO NO.</b>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        Date <b>DATE</b>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="text-center text-bold" style="font-size:large">MOVEMENT ORDER / MOVE SANCTION</p>
-                    </div>
-                </div>
-                <div class="form-inline pull-left">
-                    <div class="pull-left" style="padding-right:5px"><b>1.</b> The following move sanction of</div>
-                    <div class="pull-left" style="padding-right:5px"> @Html.TextBoxFor(model => model.MovementOrder.InspectorName, null, new { @class = "form-control col-md-4", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })</div>
-                    <div class="pull-left" style="padding-right:5px"> @Html.TextBoxFor(model => model.MovementOrder.Designation, null, new { @class = "form-control col-md-4" }) </div>
-                    <div class="pull-left" style="padding-right:5px"> of this establishment is hereby approved for ty.duty to </div>
-                    <div class="pull-left" style="padding-right:5px"> @Html.TextBoxFor(model => model.MovementOrder.FirmName, null, new { @class = "form-control col-md-4" }) </div>
-                    <div class="pull-left">for inspection of naval Equipments.:-</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <b> a) Outward Journey</b>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Time & Date</th>
-                                    <th>From</th>
-                                    <th>To</th>
-                                    <th>Time & Date</th>
-                                    <th>Mode Of Travel</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>@Html.TextBoxFor(model => model.MovementOrder.OnwardStartDate, null, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBoxFor(model => model.MovementOrder.OnwordFrom, null, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBoxFor(model => model.MovementOrder.OnwordTo, null, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBoxFor(model => model.MovementOrder.ReturnEndDate, null, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBoxFor(model => model.MovementOrder.OnwordModeOfTravel, null, new { @class = "form-control" })</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <b>b) Return Journey</b>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Time & Date</th>
-                                    <th>From</th>
-                                    <th>To</th>
-                                    <th>Time & Date</th>
-                                    <th>Mode Of Travel</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>@Html.TextBoxFor(model => model.MovementOrder.ReturnStartDate, null, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBoxFor(model => model.MovementOrder.ReturnFrom, null, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBoxFor(model => model.MovementOrder.ReturnTo, null, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBoxFor(model => model.MovementOrder.ReturnEndDate, null, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBoxFor(model => model.MovementOrder.ReturnModeOfTravel, null, new { @class = "form-control" })</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <b>2.</b> The officer will leave on <b>ONWARD JOURNEY START TIME & DATE</b> and return on completion of the duty.
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <b>3. </b>The journey will be performed by Train/Auto.
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <b>4. Certified that the above move has been sanctioned in accordance with provision of TR 4 and TA/DA will be admitted as permissible under the rules.</b>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <b>5. </b>The expenditure is debitable under Major Head 2076 Minor Head 109-D-1 Movement of Personnel.
-                    </div>
-                </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Start Time & Date", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.OnwardStartDate, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.OnwardStartDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "End Time & Date", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.OnwardEndDate, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.OnwardEndDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "From", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.OnwordFrom, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.OnwordFrom, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "To", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.OnwordTo, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.OnwordTo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Mode Of Travel", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.OnwordModeOfTravel, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.OnwordModeOfTravel, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Return Journey", new { @class = "control-label col-md-2" })
 
-                <div class="row">
-                    <div class="col-md-12 ">
-                        <span class="pull-right"> @Html.TextBoxFor(model => model.MovementOrder.SigningAuthority, null, new { @class = "form-control" }) </span>
-                        <span class="pull-right"> @Html.TextBoxFor(model => model.MovementOrder.SADesignation, null, new { @class = "form-control" })</span>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Return Start Time & Date", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.ReturnStartDate, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.ReturnStartDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Return End Time & Date", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.ReturnEndDate, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.ReturnEndDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "From", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.ReturnFrom, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.ReturnFrom, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "To", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.ReturnTo, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.ReturnTo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Mode Of Travel", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.ReturnModeOfTravel, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.ReturnModeOfTravel, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Signing Authority", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.SigningAuthority, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.SigningAuthority, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.MovementOrder.SADesignation, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MovementOrder.SADesignation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        Distribution:-<br />
-                        1.	DQA(WP), New Delhi <br />
-                        2.	AAO, Ahmedabad <br />
-                        3.	<b>INSPECTOR NAME</b>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
-
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+@section scripts{
+    <script>
+        $(function () {
+
+            $.ajax({
+                url: "@Url.Action("GetJsonObjOfUsers", "Library")",
+                type: 'GET',
+                data: {},
+                success: function (data) {
+                    $('#sInspectorName').empty();
+                    $.each(data, function (index, optiondata) {
+                        $("#sInspectorName").append("<option value='" + optiondata.UserId + "'>" + optiondata.Name + "</option>");
+                    });
+                    //$("#sApprovalBy").append("<option value='OTHERS'>OTHERS</option>");
+                    $("#sInspectorName option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                    $("#sInspectorName").val("");
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong binding Inspector Name");
+
+                }
+            });
+
+            $('li').removeClass("active");
+            $('#liLibrary').addClass("active")
+            $('#liMovementOrder ').addClass("active")
+            $('#liMovementOrder i').addClass("text-aqua")
+        });
+    </script>
+}

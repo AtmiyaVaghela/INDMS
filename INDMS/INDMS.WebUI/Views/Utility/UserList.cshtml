@@ -1,0 +1,162 @@
+﻿@model INDMS.WebUI.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Users
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Utility</a></li>
+            <li class="active">Users</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Your Page Content Here -->
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["MSG"] != null) {
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["MSG"]
+                    </div>
+                }
+                @if (TempData["Error"] != null) {
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["Error"]
+                    </div>
+                }
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">@Html.ActionLink("New", "CreateUser", "Utility", null, new { @class = "btn btn-primary" })</h3>
+                    </div><!-- /.box-header -->
+
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td style="display:none">
+                                        User Id
+                                    </td>
+                                    <td>
+                                        Name
+                                    </td>
+                                    <td>
+                                        Designation
+                                    </td>
+                                    <td>
+                                        User Name
+                                    </td>
+                                    <td>
+                                        Role
+                                    </td>
+
+                                    <td>
+                                        Email
+                                    </td>
+                                    <td>
+                                        Active Status
+                                    </td>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Users != null) {
+                                    foreach (var item in Model.Users) {
+
+                                        var ActiveStatus = (item.Active ?? "Y").Equals("Y") ? "Active" : "Inactive";
+
+                                        <tr>
+                                            <td>
+                                                @{
+                                        var buttonText = ActiveStatus.Equals("Active") ? "Inactive" : "Active";
+                                        var classText = buttonText.Equals("Active") ? "btn btn-sm btn-success" : "btn btn-sm btn-danger";
+                                                }
+                                                <input onclick="ChangeStatus(this);" type="button" value="@buttonText" class="@classText" />
+                                              @Html.ActionLink("Edit", "UserEdit", new { userId = @item.UserId }, new { @class = "btn btn-sm btn-primary", @title = "Edit" })
+                                            </td>
+                                            <td style="display:none">
+                                                @item.UserId
+                                            </td>
+                                            <td>
+                                                @item.Name
+                                            </td>
+                                            <td>
+                                                @item.Designation
+                                            </td>
+                                            <td>
+                                                @item.UserName
+                                            </td>
+                                            <td>
+                                                @item.Role
+                                            </td>
+
+                                            <td>
+                                                @item.Email
+                                            </td>
+                                            <td>
+                                                @ActiveStatus
+                                            </td>
+                                      
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+@section scripts{
+    <script>
+
+        function ChangeStatus(obj){
+            if (obj != '') {
+                var model = {};
+                model.UserId = $(obj).closest('tr').find('td:eq(1)').text().trim();
+                model.Active = obj.value == "Active" ? "Y" : "N";
+                $.ajax({
+                    url: '@Url.Action("ChangeStatus","Utility")',
+                    type: "POST",
+                    cache: false,
+                    datatype: "json",
+                    data: model,
+                    success: function (result) {                        
+                        obj.value = model.Active == "Y" ? "Inactive" : "Active";
+                        if (obj.value == "Active") {
+                            $(obj).closest('tr').find('td:eq(6)').text("Inactive");                            
+                            $(obj).removeClass();
+                            $(obj).addClass("btn btn-sm btn-success");
+                        }
+                        else {
+                            $(obj).closest('tr').find('td:eq(6)').text("Active");
+                            $(obj).removeClass();
+                            $(obj).addClass("btn btn-sm btn-danger");
+                        }
+                    },
+                    error: function (xhr) {
+                        alert("Something seems Wrong");
+                    }
+                });
+            }
+        }
+
+        $(function () {
+            $('li').removeClass("active");
+            $('#liLibrary').addClass("active")
+            $('#liDrawing ').addClass("active")
+            $('#liDrawing i').addClass("text-aqua")
+        });
+    </script>
+}
+

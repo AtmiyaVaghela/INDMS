@@ -23,5 +23,6 @@ namespace INDMS.WebUI.Models
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string Active { get; set; }
+        public string Designation { get; set; }
     }
 }
