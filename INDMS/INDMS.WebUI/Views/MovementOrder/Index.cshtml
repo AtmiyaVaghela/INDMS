@@ -1,7 +1,66 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+@model INDMS.WebUI.ViewModels.DrawingViewModel
+@{
+    ViewBag.Title = "Drawings";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Drawings
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Library</a></li>
+            <li class="active">Drawings</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Your Page Content Here -->
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["MSG"] != null) {
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["MSG"]
+                    </div>
+                }
+                @if (TempData["Error"] != null) {
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["Error"]
+                    </div>
+                }
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            @*@Html.ActionLink("New", "DrawingsNew", "Library", null, new { @class = "btn btn-primary" })*@
+                        </h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <h1>Under Development</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+@section scripts{
+    <script>
+        $(function () {
+            $('li').removeClass("active");
+            $('#liLibrary').addClass("active")
+            $('#liMovementOrder ').addClass("active")
+            $('#liMovementOrder i').addClass("text-aqua")
+        });
+    </script>
+}
 

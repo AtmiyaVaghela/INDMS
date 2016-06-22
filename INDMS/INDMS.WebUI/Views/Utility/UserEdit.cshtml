@@ -39,7 +39,9 @@
 
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title"></h3>
+                        <h3 class="box-title">
+                            @Html.ActionLink("Back", "UserList", null, new { @class = "btn btn-primary" })
+                        </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     @using (Html.BeginForm("UserEdit","Utility",FormMethod.Post)) {

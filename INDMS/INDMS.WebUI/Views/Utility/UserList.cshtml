@@ -134,12 +134,12 @@
                     success: function (result) {                        
                         obj.value = model.Active == "Y" ? "Inactive" : "Active";
                         if (obj.value == "Active") {
-                            $(obj).closest('tr').find('td:eq(6)').text("Inactive");                            
+                            $(obj).closest('tr').find('td:eq(7)').text("Inactive");                            
                             $(obj).removeClass();
                             $(obj).addClass("btn btn-sm btn-success");
                         }
                         else {
-                            $(obj).closest('tr').find('td:eq(6)').text("Active");
+                            $(obj).closest('tr').find('td:eq(7)').text("Active");
                             $(obj).removeClass();
                             $(obj).addClass("btn btn-sm btn-danger");
                         }
@@ -153,9 +153,9 @@
 
         $(function () {
             $('li').removeClass("active");
-            $('#liLibrary').addClass("active")
-            $('#liDrawing ').addClass("active")
-            $('#liDrawing i').addClass("text-aqua")
+            $('#liUtility').addClass("active")
+            $('#liUserList ').addClass("active")
+            $('#liUserList i').addClass("text-aqua")
         });
     </script>
 }
