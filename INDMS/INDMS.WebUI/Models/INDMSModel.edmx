@@ -20,6 +20,16 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="Firms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirmName" Type="nvarchar(max)" />
+          <Property Name="FirmAddress" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Active" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="GeneralBooks">
           <Key>
             <PropertyRef Name="ID" />
@@ -166,6 +176,7 @@
         </EntityType>
         <EntityContainer Name="INDMSModelStoreContainer">
           <EntitySet Name="Drawings" EntityType="Self.Drawings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firms" EntityType="Self.Firms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralBooks" EntityType="Self.GeneralBooks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GuideLine" EntityType="Self.GuideLine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MovementOrder" EntityType="Self.MovementOrder" Schema="dbo" store:Type="Tables" />
@@ -291,6 +302,7 @@
           <EntitySet Name="Drawings" EntityType="INDMSModel.Drawing" />
           <EntitySet Name="QAPs" EntityType="INDMSModel.QAP" />
           <EntitySet Name="MovementOrders" EntityType="INDMSModel.MovementOrder" />
+          <EntitySet Name="Firms" EntityType="INDMSModel.Firm" />
         </EntityContainer>
         <EntityType Name="Drawing">
           <Key>
@@ -352,6 +364,16 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="UpdatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Flag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Firm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirmName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirmAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Active" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -525,6 +547,17 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firms">
+            <EntityTypeMapping TypeName="INDMSModel.Firm">
+              <MappingFragment StoreEntitySet="Firms">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FirmAddress" ColumnName="FirmAddress" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

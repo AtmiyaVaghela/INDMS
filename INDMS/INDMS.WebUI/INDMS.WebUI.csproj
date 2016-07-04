@@ -436,6 +436,10 @@
     <Content Include="plugins\datepicker\locales\bootstrap-datepicker.vi.js" />
     <Content Include="plugins\datepicker\locales\bootstrap-datepicker.zh-CN.js" />
     <Content Include="plugins\datepicker\locales\bootstrap-datepicker.zh-TW.js" />
+    <Content Include="plugins\daterangepicker\daterangepicker-bs3.css" />
+    <Content Include="plugins\daterangepicker\daterangepicker.js" />
+    <Content Include="plugins\daterangepicker\moment.js" />
+    <Content Include="plugins\daterangepicker\moment.min.js" />
     <Content Include="plugins\fastclick\fastclick.js" />
     <Content Include="plugins\fastclick\fastclick.min.js" />
     <Content Include="plugins\font-awesome-4.6.2\css\font-awesome.css" />
@@ -2045,6 +2049,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FirmsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\MovementOrderController.cs" />
@@ -2062,6 +2067,9 @@
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ExceptionLogger.cs" />
+    <Compile Include="Models\Firm.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GeneralBook.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
@@ -2234,6 +2242,11 @@
     <Content Include="Views\MovementOrder\Index.cshtml" />
     <Content Include="Views\Utility\UserList.cshtml" />
     <Content Include="Views\Utility\UserEdit.cshtml" />
+    <Content Include="Views\Firms\Create.cshtml" />
+    <Content Include="Views\Firms\Delete.cshtml" />
+    <Content Include="Views\Firms\Details.cshtml" />
+    <Content Include="Views\Firms\Edit.cshtml" />
+    <Content Include="Views\Firms\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

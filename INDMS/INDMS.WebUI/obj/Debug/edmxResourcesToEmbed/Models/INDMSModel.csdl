@@ -110,6 +110,7 @@
     <EntitySet Name="Drawings" EntityType="INDMSModel.Drawing" />
     <EntitySet Name="QAPs" EntityType="INDMSModel.QAP" />
     <EntitySet Name="MovementOrders" EntityType="INDMSModel.MovementOrder" />
+    <EntitySet Name="Firms" EntityType="INDMSModel.Firm" />
   </EntityContainer>
   <EntityType Name="Drawing">
     <Key>
@@ -171,5 +172,15 @@
     <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Flag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Firm">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirmName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FirmAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

@@ -13,8 +13,9 @@ namespace INDMS.WebUI.App_Start
                 "~/plugins/jvectormap/jquery-jvectormap-1.2.2.css",
                  "~/plugins/select2/select2.min.css",
                 "~/Content/AdminLTE.min.css",
-                "~/Content/skins/_all-skins.min.css",               
+                "~/Content/skins/_all-skins.min.css",
                 "~/plugins/datepicker/datepicker3.css",
+                "~/plugins/daterangepicker/daterangepicker-bs3.css",
                 "~/plugins/datatables/dataTables.bootstrap.css"
                 ));
 
@@ -22,6 +23,8 @@ namespace INDMS.WebUI.App_Start
                 "~/plugins/jQuery/jQuery-2.1.4.min.js",
                 "~/Scripts/bootstrap.min.js",
                 "~/plugins/datepicker/bootstrap-datepicker.js",
+                "~/plugins/daterangepicker/moment.min.js",
+                "~/plugins/daterangepicker/daterangepicker.js",
                 "~/plugins/select2/select2.full.min.js",
                 "~/plugins/datatables/jquery.dataTables.min.js",
                 "~/plugins/datatables/dataTables.bootstrap.min.js",

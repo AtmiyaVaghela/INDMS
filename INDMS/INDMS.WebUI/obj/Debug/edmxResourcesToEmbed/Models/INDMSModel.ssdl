@@ -15,6 +15,16 @@
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="Firms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirmName" Type="nvarchar(max)" />
+    <Property Name="FirmAddress" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Active" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="GeneralBooks">
     <Key>
       <PropertyRef Name="ID" />
@@ -161,6 +171,7 @@
   </EntityType>
   <EntityContainer Name="INDMSModelStoreContainer">
     <EntitySet Name="Drawings" EntityType="Self.Drawings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Firms" EntityType="Self.Firms" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GeneralBooks" EntityType="Self.GeneralBooks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GuideLine" EntityType="Self.GuideLine" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MovementOrder" EntityType="Self.MovementOrder" Schema="dbo" store:Type="Tables" />

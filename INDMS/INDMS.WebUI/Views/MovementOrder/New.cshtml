@@ -4,6 +4,7 @@
     ViewBag.Title = "New - Movement Order";
 }
 
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -20,13 +21,15 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null) {
+                @if (TempData["MSG"] != null)
+                {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null) {
+                @if (TempData["Error"] != null)
+                {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -34,6 +37,7 @@
                 }
             </div>
         </div>
+
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">
@@ -41,12 +45,14 @@
                 </h3>
             </div> @*/ .box-header*@
             <!--form start-->
-            @using (Html.BeginForm("New", "MovementOrder", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+            @using (Html.BeginForm("New", "MovementOrder", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
                 <div class="form-horizontal">
                     @Html.AntiForgeryToken()
                     <div class="box-body">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
+
                             @Html.Label("", "Movement Order No.", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.TextBoxFor(model => model.MovementOrder.OrderNo, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
@@ -74,22 +80,19 @@
                         </div>
                         <div class="form-group">
                             @Html.Label("", "Inspector Name", new { @class = "control-label col-md-2" })
+
                             <div class="col-md-4">
                                 <select id="sInspectorName" class="form-control select2" name="MovementOrder.InspectorName"></select>
-                            
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("", "Designation", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.Designation, null, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.MovementOrder.Designation, null, new { @class = "form-control", @placeholder = "Designation", @disabled = "disabled" })
                                 @Html.ValidationMessageFor(model => model.MovementOrder.Designation, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.Label("", "Firm Name", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.FirmName, null, new { @class = "form-control" })
+                                <select id="MovementOrder_FirmName" class="form-control select2" name="MovementOrder.FirmName"></select>
                                 @Html.ValidationMessageFor(model => model.MovementOrder.FirmName, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -188,10 +191,11 @@
         </div>
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
-
 @section scripts{
     <script>
         $(function () {
+
+            var insData;
 
             $.ajax({
                 url: "@Url.Action("GetJsonObjOfUsers", "Library")",
@@ -199,6 +203,7 @@
                 data: {},
                 success: function (data) {
                     $('#sInspectorName').empty();
+                    insData = data;
                     $.each(data, function (index, optiondata) {
                         $("#sInspectorName").append("<option value='" + optiondata.UserId + "'>" + optiondata.Name + "</option>");
                     });
@@ -211,6 +216,47 @@
                     alert("Something seems Wrong binding Inspector Name");
 
                 }
+            });
+
+            $("#sInspectorName").change(function () {
+                if (insData != null) {
+                    $.each(insData, function (index, optionData) {
+                        if ($("#sInspectorName").val() == optionData.UserId) {
+                            $("#MovementOrder_Designation").val(optionData.Designation);
+                        }
+                    });
+                }
+                else {
+                    console.log("Designatino data is null");
+                }
+
+            });
+
+            $.ajax({
+                url: "@Url.Action("GetFirms", "Utility")",
+                type: 'GET',
+                data: {},
+                success: function (data) {
+                    $('#MovementOrder_FirmName').empty();
+
+                    $.each(data, function (index, optiondata) {
+                        $("#MovementOrder_FirmName").append("<option value='" + optiondata.Id + "'>" + optiondata.FirmName + "</option>");
+                    });
+                    //$("#sApprovalBy").append("<option value='OTHERS'>OTHERS</option>");
+                    $("#MovementOrder_FirmName option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                    $("#MovementOrder_FirmName").val("");
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong binding Firm");
+
+                }
+            });
+
+            $("#MovementOrder_OnwardStartDate").daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                format: 'DD/MM/YYYY h:mm A'
             });
 
             $('li').removeClass("active");
