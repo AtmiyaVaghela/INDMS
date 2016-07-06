@@ -24,3 +24,9 @@ insert into Firms(FirmName,FirmAddress) values ('M/S PATEL BRASS WORKS','2, BHAK
 insert into Firms(FirmName,FirmAddress) values ('M/S SUPER WAUDITE JOINTINGS PVT. LTD.','G/1, SHYAM SUNDER APPARTMENT, NR. SUSHRUSHA HOSPITAL, 6 LAXMI SOCIETY, NAVRANGPURA, AHMEDABAD-380006');
 
 commit;
+
+insert into ParameterMaster(KeyName,KeyValue) values ('ModeOfTravel','BUS');
+insert into ParameterMaster(KeyName,KeyValue) values ('ModeOfTravel','AUTO');
+insert into ParameterMaster(KeyName,KeyValue) values ('ModeOfTravel','TRAIN');
+
+commit;

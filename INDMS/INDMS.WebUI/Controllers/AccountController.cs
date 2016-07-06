@@ -58,7 +58,8 @@ namespace INDMS.WebUI.Controllers
             Response.Cookies["INDMS"]["UserName"] = System.Text.Encoding.ASCII.EncodeBase64(user.UserName);
             Response.Cookies["INDMS"]["Name"] = System.Text.Encoding.ASCII.EncodeBase64(user.Name);
             Response.Cookies["INDMS"]["Role"] = System.Text.Encoding.ASCII.EncodeBase64(user.Role);
-            Response.Cookies["INDMS"].Expires.AddMinutes(30);
+            Response.Cookies["INDMS"].Expires = DateTime.Now.AddMinutes(30);
+            
         }
 
         [HttpPost]

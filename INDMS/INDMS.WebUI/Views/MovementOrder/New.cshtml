@@ -80,12 +80,12 @@
                         </div>
                         <div class="form-group">
                             @Html.Label("", "Inspector Name", new { @class = "control-label col-md-2" })
-
                             <div class="col-md-4">
                                 <select id="sInspectorName" class="form-control select2" name="MovementOrder.InspectorName"></select>
                             </div>
+
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.Designation, null, new { @class = "form-control", @placeholder = "Designation", @disabled = "disabled" })
+                                @Html.TextBoxFor(model => model.MovementOrder.Designation, null, new { @class = "form-control", @disabled = "disabled", @placeholder = "Designation" })
                                 @Html.ValidationMessageFor(model => model.MovementOrder.Designation, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -96,61 +96,48 @@
                                 @Html.ValidationMessageFor(model => model.MovementOrder.FirmName, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        <!--Onward Journey-->
                         <div class="form-group">
                             @Html.Label("", "Onward Journey", new { @class = "control-label col-md-2" })
-
                         </div>
                         <div class="form-group">
-                            @Html.Label("", "Start Time & Date", new { @class = "control-label col-md-2" })
+                            @Html.Label("", "Date & Time", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.OnwardStartDate, null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.MovementOrder.OnwardStartDate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("", "End Time & Date", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.OnwardEndDate, null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.MovementOrder.OnwardEndDate, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(model => model.OnwordDateAndTime, null, new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.Label("", "From", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.OnwordFrom, null, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.MovementOrder.OnwordFrom, null, new { @class = "form-control", @placeholder = "From" })
                                 @Html.ValidationMessageFor(model => model.MovementOrder.OnwordFrom, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("", "To", new { @class = "control-label col-md-2" })
+
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.OnwordTo, null, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.MovementOrder.OnwordTo, null, new { @class = "form-control", @placeholder = "To" })
                                 @Html.ValidationMessageFor(model => model.MovementOrder.OnwordTo, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.Label("", "Mode Of Travel", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.OnwordModeOfTravel, null, new { @class = "form-control" })
+                                <select id="MovementOrder_OnwordModeOfTravel" name="MovementOrder.OnwordModeOfTravel" class="form-control select2 mot"></select>
                                 @Html.ValidationMessageFor(model => model.MovementOrder.OnwordModeOfTravel, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("", "Return Journey", new { @class = "control-label col-md-2" })
-
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("", "Return Start Time & Date", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.ReturnStartDate, null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.MovementOrder.ReturnStartDate, "", new { @class = "text-danger" })
+                            <div class="col-md-4" id="divOnwordMOT" style="display:none">
+                                @Html.TextBoxFor(model => model.OnwardModeOfTravel, null, new { @class = "form-control" })
                             </div>
                         </div>
+
+                        <!--Return Journey-->
                         <div class="form-group">
-                            @Html.Label("", "Return End Time & Date", new { @class = "control-label col-md-2" })
+                            @Html.Label("", "Return Journey", new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("", "Date & Time", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.ReturnEndDate, null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.MovementOrder.ReturnEndDate, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(model => model.ReturnDateAndTime, null, new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
@@ -159,29 +146,30 @@
                                 @Html.TextBoxFor(model => model.MovementOrder.ReturnFrom, null, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.MovementOrder.ReturnFrom, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("", "To", new { @class = "control-label col-md-2" })
+
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.ReturnTo, null, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.MovementOrder.ReturnTo, null, new { @class = "form-control", @placeholder = "To" })
                                 @Html.ValidationMessageFor(model => model.MovementOrder.ReturnTo, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.Label("", "Mode Of Travel", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.ReturnModeOfTravel, null, new { @class = "form-control" })
+                                <select id="MovementOrder_ReturnModeOfTravel" name="MovementOrder.ReturnModeOfTravel" class="form-control select2 mot"></select>
                                 @Html.ValidationMessageFor(model => model.MovementOrder.ReturnModeOfTravel, "", new { @class = "text-danger" })
                             </div>
+                            <div class="col-md-4" id="divReturnMOT" style="display:none">
+                                @ Html.TextBoxFor(model => model.ReturnModeOfTravel, null, new { @class = "form-control" })
+                            </div>
                         </div>
+
                         <div class="form-group">
                             @Html.Label("", "Signing Authority", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.SigningAuthority, null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.MovementOrder.SigningAuthority, "", new { @class = "text-danger" })
+                                <select id="sSigningAuthority" class="form-control select2" name="MovementOrder.SigningAuthority"></select>
                             </div>
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.MovementOrder.SADesignation, null, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.MovementOrder.SADesignation, null, new { @class = "form-control", @disabled = "disabled", @placeholder = "Designation" })
                                 @Html.ValidationMessageFor(model => model.MovementOrder.SADesignation, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -195,6 +183,20 @@
     <script>
         $(function () {
 
+            $("#OnwordDateAndTime").daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                format: 'DD/MM/YYYY h:mm A'
+            });
+
+            $("#ReturnDateAndTime").daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                format: 'DD/MM/YYYY h:mm A'
+            });
+
+
+
             var insData;
 
             $.ajax({
@@ -203,13 +205,18 @@
                 data: {},
                 success: function (data) {
                     $('#sInspectorName').empty();
+                    $('#sSigningAuthority').empty();
                     insData = data;
                     $.each(data, function (index, optiondata) {
                         $("#sInspectorName").append("<option value='" + optiondata.UserId + "'>" + optiondata.Name + "</option>");
+                        $("#sSigningAuthority").append("<option value='" + optiondata.UserId + "'>" + optiondata.Name + "</option>");
                     });
                     //$("#sApprovalBy").append("<option value='OTHERS'>OTHERS</option>");
                     $("#sInspectorName option").eq(0).before($("<option></option>").val("").text("-Select-"));
-                    $("#sInspectorName").val("");
+                    $("#sSigningAuthority option").eq(0).before($("<option></option>").val("").text("-Select-"));
+
+                    $('#sInspectorName').select2("val", "");
+                    $('#sSigningAuthority').select2("val", "");
                 },
 
                 error: function (xhr) {
@@ -244,7 +251,7 @@
                     });
                     //$("#sApprovalBy").append("<option value='OTHERS'>OTHERS</option>");
                     $("#MovementOrder_FirmName option").eq(0).before($("<option></option>").val("").text("-Select-"));
-                    $("#MovementOrder_FirmName").val("");
+                    $('#MovementOrder_FirmName').select2("val", "");
                 },
 
                 error: function (xhr) {
@@ -257,6 +264,49 @@
                 timePicker: true,
                 timePickerIncrement: 30,
                 format: 'DD/MM/YYYY h:mm A'
+            });
+
+            $.ajax({
+                url: "@Url.Action("GetJsonObjOfParam","Library")",
+                type: 'POST',
+                data: { data: "ModeOfTravel" },
+                success: function (data) {
+                    $('.mot').empty();
+                    $.each(data, function (index, optiondata) {
+                        $(".mot").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
+                    });
+                    $(".mot").each(function () {
+                        $(this).append("<option value='OTHERS'>OTHERS</option>");
+                        $(this).find("option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                        //$(".mot option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                        $(this).select2("val", "");
+                    });
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong");
+
+                }
+            });
+
+            $("#MovementOrder_OnwardModeOfTravel").change(function () {
+                if ($(this).val() == "OTHERS") {
+                    $("#divOnwordMOT").show();
+                }
+                else {
+                    $("#divOnwordMOT").hide();
+                }
+
+            });
+
+            $("#MovementOrder_ReturnModeOfTravel").change(function () {
+                if ($(this).val() == "OTHERS") {
+                    $("#divReturnMOT").show();
+                }
+                else {
+                    $("#divReturnMOT").hide();
+                }
+
             });
 
             $('li').removeClass("active");
