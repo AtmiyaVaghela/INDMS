@@ -125,7 +125,7 @@
                                 <select id="MovementOrder_OnwordModeOfTravel" name="MovementOrder.OnwordModeOfTravel" class="form-control select2 mot"></select>
                                 @Html.ValidationMessageFor(model => model.MovementOrder.OnwordModeOfTravel, "", new { @class = "text-danger" })
                             </div>
-                            <div class="col-md-4" id="divOnwordMOT" style="display:none">
+                            <div class="col-md-4" id="divOnwordMOT" style="display:none;">
                                 @Html.TextBoxFor(model => model.OnwardModeOfTravel, null, new { @class = "form-control" })
                             </div>
                         </div>
@@ -158,8 +158,8 @@
                                 <select id="MovementOrder_ReturnModeOfTravel" name="MovementOrder.ReturnModeOfTravel" class="form-control select2 mot"></select>
                                 @Html.ValidationMessageFor(model => model.MovementOrder.ReturnModeOfTravel, "", new { @class = "text-danger" })
                             </div>
-                            <div class="col-md-4" id="divReturnMOT" style="display:none">
-                                @ Html.TextBoxFor(model => model.ReturnModeOfTravel, null, new { @class = "form-control" })
+                            <div class="col-md-4" id="divReturnMOT" style="display:none;">
+                                @Html.TextBoxFor(model => model.ReturnModeOfTravel, null, new { @class = "form-control" })
                             </div>
                         </div>
 
@@ -172,6 +172,11 @@
                                 @Html.TextBoxFor(model => model.MovementOrder.SADesignation, null, new { @class = "form-control", @disabled = "disabled", @placeholder = "Designation" })
                                 @Html.ValidationMessageFor(model => model.MovementOrder.SADesignation, "", new { @class = "text-danger" })
                             </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-md-offset-2 col-md-6">
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -288,25 +293,17 @@
 
                 }
             });
-
-            $("#MovementOrder_OnwardModeOfTravel").change(function () {
+         
+            $("#MovementOrder_OnwordModeOfTravel").change(function () {
                 if ($(this).val() == "OTHERS") {
-                    $("#divOnwordMOT").show();
+                    $('#divOnwordMOT').css('display', 'block');
                 }
-                else {
-                    $("#divOnwordMOT").hide();
-                }
-
             });
-
+         
             $("#MovementOrder_ReturnModeOfTravel").change(function () {
                 if ($(this).val() == "OTHERS") {
-                    $("#divReturnMOT").show();
+                    $('#divReturnMOT').css('display', 'block');
                 }
-                else {
-                    $("#divReturnMOT").hide();
-                }
-
             });
 
             $('li').removeClass("active");
