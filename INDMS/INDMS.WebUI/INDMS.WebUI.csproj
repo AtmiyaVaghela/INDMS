@@ -2057,6 +2057,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\MovementOrderController.cs" />
+    <Compile Include="Controllers\PurchaseOrderController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2104,6 +2105,9 @@
     <Compile Include="Models\PolicyLetter.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PurchaseOrder.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\QAP.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
@@ -2133,6 +2137,7 @@
     <Compile Include="ViewModels\MovementOrderViewModel.cs" />
     <Compile Include="ViewModels\PolicyLetterViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseOrderViewModel.cs" />
     <Compile Include="ViewModels\QAPViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />
     <Compile Include="ViewModels\StandingOrderViewModel.cs" />
@@ -2259,6 +2264,9 @@
     <Content Include="Views\Firms\Index.cshtml" />
     <Content Include="Views\MovementOrder\Approve.cshtml" />
     <Content Include="Views\MovementOrder\Edit.cshtml" />
+    <Content Include="Views\PurchaseOrder\Index.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\PurchaseOrder\New.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

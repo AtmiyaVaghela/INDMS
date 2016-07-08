@@ -39,7 +39,8 @@
                         @{
                             var name = string.Empty;
                             var userId = string.Empty;
-                            if (Request.Cookies["INDMS"] != null) {
+                            if (Request.Cookies["INDMS"] != null)
+                            {
                                 name = System.Text.Encoding.ASCII.DecodeBase64(Request.Cookies["INDMS"]["Name"]);
                                 userId = Request.Cookies["INDMS"]["UserID"] + ".JPG";
                             }
@@ -87,6 +88,11 @@
                             <li id="liQAP"><a href="~/Library/QAP"><i class="fa fa-circle-o"></i>QAP</a></li>
                             <li id="liMovementOrder"><a href="~/MovementOrder/Index"><i class="fa fa-circle-o"></i>Movement Order</a></li>
                         </ul>
+                    </li>
+                    <li class="treeview" id="liPO">
+                        <a href="~/PurchaseOrder/Index">
+                            <i class="glyphicon glyphicon-list-alt"></i><span>Purchase Order</span> 
+                        </a>                        
                     </li>
                     <li id="liUtility" class="treeview">
                         <a href="#">

@@ -62,6 +62,27 @@ CREATE TABLE [dbo].[MovementOrder] (
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
+CREATE TABLE [dbo].[PurchaseOrder]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [FileNo] VARCHAR(MAX) NULL, 
+    [PONo] VARCHAR(MAX) NULL, 
+    [PODate] DATETIME NULL, 
+    [POValue] NUMERIC(18, 2) NULL, 
+    [Quantity] NUMERIC(18, 2) NULL, 
+    [NoOfLots] NUMERIC(18, 2) NULL, 
+    [DeliveryDate] DATETIME NULL, 
+    [PoPlacingAuthority] VARCHAR(MAX) NULL, 
+	[Inspectors] varchar(max) null,
+	[Firm] varchar(max) null,
+	[FirmAddress] varchar(max) null,
+    [CreatedDate] DATETIME NULL, 
+    [CreatedBy] VARCHAR(MAX) NULL, 
+    [UpdatedDate] DATETIME NULL, 
+    [UpdatedBy] VARCHAR(MAX) NULL, 
+    [Flag] VARCHAR(MAX) NULL
+);
+
 
 
 
