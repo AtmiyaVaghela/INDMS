@@ -1,7 +1,7 @@
 ﻿@model INDMS.WebUI.ViewModels.MovementOrderViewModel
 
 @{
-    ViewBag.Title = "Movement Orders";
+    ViewBag.Title = "Movement Orders - Approve";
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -9,7 +9,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Movement Orders
+            Movement Orders - Approve
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Library</a></li>
@@ -64,7 +64,7 @@
                                     <td>
                                         Signing Authority
                                     </td>
-                                    
+
 
                                     <td>
                                         File
@@ -95,9 +95,10 @@
                                             <td>
                                                 @item.SigningAuthority
                                             </td>
-                                            
                                             <td>
-                                                @Html.ActionLink(" ", "Print", new { id = @item.Id }, new { @class = "fa fa-print", @title = "Edit" }) | 
+                                                @Html.ActionLink(" ", "Print", new { id = @item.Id }, new { @class = "fa fa-print", @title = "Edit" }) |
+                                                @Html.ActionLink(" ", "Approve", new { id = @item.Id }, new { @class = "fa fa-check", @title = "Approve" }) |
+                                                @Html.ActionLink(" ", "Reject", new { id = @item.Id }, new { @class = "fa fa-remove", @title = "Reject" }) |
                                                 @Html.ActionLink(" ", "Edit", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
                                             </td>
                                         </tr>
@@ -121,4 +122,3 @@
         });
     </script>
 }
-

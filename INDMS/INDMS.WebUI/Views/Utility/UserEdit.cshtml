@@ -22,14 +22,16 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null) {
+                @if (TempData["MSG"] != null)
+                {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4>	<i class="icon fa fa-check"></i> Alert!</h4>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null) {
+                @if (TempData["Error"] != null)
+                {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4>	<i class="icon fa fa-check"></i> Alert!</h4>
@@ -44,13 +46,14 @@
                         </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    @using (Html.BeginForm("UserEdit","Utility",FormMethod.Post)) {
+                    @using (Html.BeginForm("UserEdit", "Utility", FormMethod.Post))
+                    {
                         <div class="form-horizontal">
                             @Html.AntiForgeryToken()
                             <div class="box-body">
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group">
-                                    @Html.HiddenFor(x=>x.UserId)
+                                    @Html.HiddenFor(x => x.UserId)
 
                                     @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
@@ -112,11 +115,12 @@
                 if (value == "OTHERS") {
                     $('#divODesignation').css('display', 'block');
                 }
-                else {
-                    $('#sDesignation').val('');
+                else {                    
                     $('#divODesignation').css('display', 'none');
                 }
             });
+
+            $('#Role').select2("val", "@Model.Role");
 
 
             $.ajax({
@@ -133,6 +137,8 @@
                     $("#sDesignation").append("<option value='OTHERS'>OTHERS</option>");
                     $("#sDesignation option").eq(0).before($("<option></option>").val("").text("-Select-"));
                     $('#sDesignation').select2("val", "@Model.Designation");
+
+                    $('#sDesignation option[value="@Model.Designation"]').attr("selected", "selected");
                 },
 
                 error: function (xhr) {

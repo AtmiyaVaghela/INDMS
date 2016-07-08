@@ -244,6 +244,20 @@
 
             });
 
+            $("#sSigningAuthority").change(function () {
+                if (insData != null) {
+                    $.each(insData, function (index, optionData) {
+                        if ($("#sSigningAuthority").val() == optionData.UserId) {
+                            $("#MovementOrder_SADesignation").val(optionData.Designation);
+                        }
+                    });
+                }
+                else {
+                    console.log("Designatino data is null");
+                }
+
+            });
+
             $.ajax({
                 url: "@Url.Action("GetFirms", "Utility")",
                 type: 'GET',

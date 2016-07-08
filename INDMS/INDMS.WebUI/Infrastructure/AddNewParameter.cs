@@ -16,15 +16,20 @@ namespace INDMS.WebUI.Infrastructure
                 obj.KeyValue = keyValue;
                 obj.CreatedBy = HttpContext.Current.Request.Cookies["INDMS"]["UserID"];
 
-                IEnumerable<ParameterMaster> result = from d in db.ParameterMasters
-                                                      where d.KeyName == obj.KeyName && d.KeyValue == obj.KeyValue
-                                                      select d;
-
-                if (result.Count() < 1)
+                if (obj.KeyValue.Trim() != "")
                 {
-                    db.ParameterMasters.Add(obj);
-                    db.SaveChanges();
-                }
+                    IEnumerable<ParameterMaster> result = from d in db.ParameterMasters
+                                                          where d.KeyName == obj.KeyName && d.KeyValue == obj.KeyValue
+                                                          select d;
+
+                    if (result.Count() < 1)
+                    {
+                        db.ParameterMasters.Add(obj);
+                        db.SaveChanges();
+                    }
+                }                
+
+              
             }
         }
     }

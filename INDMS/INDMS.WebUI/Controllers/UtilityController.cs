@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -148,44 +149,66 @@ namespace INDMS.WebUI.Controllers
         [CAuthRole("Admin")]
         public ActionResult UserEdit(User user, string ODesignation)
         {
+            User u;
             if (ModelState.IsValid)
             {
                 try
                 {
-
-                    user.Designation = user.Designation.Equals("OTHERS") ? ODesignation : user.Designation;
-
-                    user.CreatedBy = Request.Cookies["INDMS"]["UserID"];
-
-                    IEnumerable<User> u = from d in db.Users
-                                          where d.UserName == user.UserName
-                                          select d;
-
-                    if (u.Count() == 1)
+                    using (INDMSEntities ctx = new INDMSEntities())
                     {
-                        try
-                        {
-                            db.Entry(user).State = EntityState.Modified;
-
-                            db.SaveChanges();
-                            ModelState.Clear();
-
-                            TempData["MSG"] = "User Saved.";
-                            return RedirectToAction("UserList");
-                        }
-                        catch (RetryLimitExceededException /* dex */)
-                        {
-                            TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
-                        }
-                        catch (Exception ex)
-                        {
-                            TempData["Error"] = ex.Message;
-                        }
-
+                        u = ctx.Users.SingleOrDefault(d => d.UserName == user.UserName);
                     }
-                    else
+
+                    if (u != null)
                     {
-                        TempData["Error"] = "User Name Already Used.";
+                        string pwd = u.Password;
+                        u.Role = user.Role;
+                        u.Name = user.Name;
+                        u.Email = user.Email;
+                        u.Designation = user.Designation.Equals("OTHERS") ? ODesignation : user.Designation;
+                        u.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                        u.CreatedDate = DateTime.Now;
+                 
+
+
+                        using (var ctx = new INDMSEntities())
+                        {
+                            try
+                            {
+                                db.Entry(u).State = EntityState.Modified;
+
+                                db.SaveChanges();
+                                ModelState.Clear();
+
+                                TempData["MSG"] = "User Saved.";
+                                return RedirectToAction("UserList");
+
+                            }
+                            catch (RetryLimitExceededException /* dex */)
+                            {
+                                TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
+                            }
+                            catch (DbEntityValidationException e)
+                            {
+                                foreach (var eve in e.EntityValidationErrors)
+                                {
+                                    Response.Write(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                        eve.Entry.Entity.GetType().Name, eve.Entry.State));
+                                    foreach (var ve in eve.ValidationErrors)
+                                    {
+                                        Response.Write(string.Format("- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"",
+                                            ve.PropertyName,
+                                            eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName),
+                                            ve.ErrorMessage));
+                                    }
+                                }
+                                throw;
+                            }
+                            catch (Exception ex)
+                            {
+                                TempData["Error"] = ex.Message;
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)

@@ -35,7 +35,7 @@ namespace INDMS.WebUI.Models
         public string SADesignation { get; set; }
         public string Distribution { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public System.DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public string UpdatedDate { get; set; }
         public string Flag { get; set; }

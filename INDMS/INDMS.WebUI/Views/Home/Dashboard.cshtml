@@ -2,6 +2,8 @@
     ViewBag.Title = "Dashboard";
 }
 
+@using INDMS.WebUI.Infrastructure.Encoding
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -26,6 +28,23 @@
                     </div><!-- /.info-box-content -->
                 </div><!-- /.info-box -->
             </div><!-- /.col -->
+            @{
+                if (Request.Cookies["INDMS"]["Role"].ToString() == System.Text.Encoding.ASCII.EncodeBase64("Admin"))
+                {
+                    <a href="~/MovementOrder/Approve">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-green"><i class="fa fa-envelope-o"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Movement Order</span>
+                                    <span class="info-box-number" id="MovementOrder"></span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div><!-- /.col -->
+                    </a>
+                }
+            }
+
         </div><!-- /.row -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
@@ -38,11 +57,26 @@
                 data: {},
                 success: function (data) {
                     $('#uploads').empty();
-                    $("#uploads").html(data);          
+                    $("#uploads").html(data);
                 },
 
                 error: function (xhr) {
                     alert("Something seems Wrong binding Uploads");
+
+                }
+            });
+
+            $.ajax({
+                url: "@Url.Action("GetPendingMovementOrder", "Home")",
+                type: 'GET',
+                data: {},
+                success: function (data) {
+                    $('#MovementOrder').empty();
+                    $("#MovementOrder").html(data);
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong binding Movement Orders");
 
                 }
             });
