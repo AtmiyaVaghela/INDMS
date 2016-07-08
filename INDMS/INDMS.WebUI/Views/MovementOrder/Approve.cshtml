@@ -97,8 +97,8 @@
                                             </td>
                                             <td>
                                                 @Html.ActionLink(" ", "Print", new { id = @item.Id }, new { @class = "fa fa-print", @title = "Edit" }) |
-                                                @Html.ActionLink(" ", "Approve", new { id = @item.Id }, new { @class = "fa fa-check", @title = "Approve" }) |
-                                                @Html.ActionLink(" ", "Reject", new { id = @item.Id }, new { @class = "fa fa-remove", @title = "Reject" }) |
+                                                @Html.ActionLink(" ", "Approve", new { id = @item.Id }, new { @class = "fa fa-check", @title = "Approve", @id = "Approve" }) |
+                                                @Html.ActionLink(" ", "Reject", new { id = @item.Id }, new { @class = "fa fa-remove", @title = "Reject",@id ="Reject" }) |
                                                 @Html.ActionLink(" ", "Edit", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
                                             </td>
                                         </tr>
@@ -115,6 +115,43 @@
 @section scripts{
     <script>
         $(function () {
+
+            $("#Approve").click(function () {
+                var href = $(this).attr('href');
+                alert(href);
+                event.preventDefault();
+                $.ajax({
+                    url: href,
+                    type: 'POST',
+                    data: {},
+                    success: function (data) {
+                        alert(data);
+                        $("#Approve").closest("tr").remove();
+                    },
+                    error: function (xhr) {
+                        alert("Your request not submited");
+                    }
+                });
+            });
+
+            $("#Reject").click(function () {
+                var href = $(this).attr('href');
+                alert(href);
+                event.preventDefault();
+                $.ajax({
+                    url: href,
+                    type: 'POST',
+                    data: {},
+                    success: function (data) {
+                        alert(data);
+                        $("#Approve").closest("tr").remove();
+                    },
+                    error: function (xhr) {
+                        alert("Your request not submited");
+                    }
+                });
+            });
+
             $('li').removeClass("active");
             $('#liLibrary').addClass("active")
             $('#liMovementOrder ').addClass("active")

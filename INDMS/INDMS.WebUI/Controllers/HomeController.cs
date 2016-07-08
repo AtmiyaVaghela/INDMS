@@ -32,7 +32,7 @@ namespace INDMS.WebUI.Controllers
         [CAuthRole("Admin")]
         public ActionResult GetPendingMovementOrder()
         {
-            int i = db.MovementOrders.Where(d => d.Flag != "ACCEPTED").Count();
+            int i = db.MovementOrders.Where(d => d.Flag != "ACCEPTED" && d.Flag != "REJECTED").Count();
             return Json(i, JsonRequestBehavior.AllowGet);
         }
 

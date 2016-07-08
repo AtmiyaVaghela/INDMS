@@ -64,8 +64,6 @@
                                     <td>
                                         Signing Authority
                                     </td>
-                                    
-
                                     <td>
                                         File
                                     </td>
@@ -74,9 +72,22 @@
                             <tbody>
                                 @if (Model.MovementOrders != null)
                                 {
+                                    var className = string.Empty;
                                     foreach (var item in Model.MovementOrders)
                                     {
-                                        <tr>
+                                        if (@item.Flag == "ACCEPTED")
+                                        {
+                                            className = "success";
+                                        }
+                                        else if (@item.Flag == "REJECTED")
+                                        {
+                                            className = "danger";
+                                        }
+                                        else
+                                        {
+                                            className = "warning";
+                                        }
+                                        <tr class="@className">
                                             <td>
                                                 @item.OrderNo
                                             </td>
@@ -95,15 +106,19 @@
                                             <td>
                                                 @item.SigningAuthority
                                             </td>
-                                            
+
                                             <td>
-                                                @Html.ActionLink(" ", "Print", new { id = @item.Id }, new { @class = "fa fa-print", @title = "Edit" }) | 
-                                                @Html.ActionLink(" ", "Edit", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
+                                                @Html.ActionLink(" ", "Print", new { id = @item.Id }, new { @class = "fa fa-print", @title = "Edit" })
+                                                @if (@item.Flag != "ACCEPTED")
+                                                {
+                                                    @Html.ActionLink(" ", "Edit", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
+                                                }
                                             </td>
                                         </tr>
                                     }
                                 }
                             </tbody>
+
                         </table>
                     </div>
                 </div>

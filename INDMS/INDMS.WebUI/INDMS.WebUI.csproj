@@ -2258,6 +2258,7 @@
     <Content Include="Views\Firms\Edit.cshtml" />
     <Content Include="Views\Firms\Index.cshtml" />
     <Content Include="Views\MovementOrder\Approve.cshtml" />
+    <Content Include="Views\MovementOrder\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

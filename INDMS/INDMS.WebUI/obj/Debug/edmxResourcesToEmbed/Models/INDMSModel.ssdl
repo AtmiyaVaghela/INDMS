@@ -74,7 +74,7 @@
     <Property Name="SADesignation" Type="varchar(max)" Nullable="false" />
     <Property Name="Distribution" Type="varchar(max)" />
     <Property Name="CreatedBy" Type="varchar(max)" />
-    <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="UpdatedBy" Type="varchar(max)" />
     <Property Name="UpdatedDate" Type="varchar(max)" />
     <Property Name="Flag" Type="varchar(max)" />

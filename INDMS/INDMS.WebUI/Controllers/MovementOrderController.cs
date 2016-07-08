@@ -214,6 +214,206 @@ namespace INDMS.WebUI.Controllers
             return View(m);
         }
 
+        [AuthUser]
+        public ActionResult Edit(int? Id)
+        {
+            MovementOrderViewModel m = new MovementOrderViewModel();
+
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                m.MovementOrder = db.MovementOrders.Find(Id);
+                if (m.MovementOrder == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+            }
+            return View(m);
+        }
+
+        [HttpPost]
+        [AuthUser]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(MovementOrderViewModel m)
+        {
+            if (!string.IsNullOrEmpty(m.MovementOrder.OrderNo))
+            {
+                if (!string.IsNullOrEmpty(m.MovementOrder.Subject))
+                {
+                    if (!string.IsNullOrEmpty(m.MovementOrder.InspectorName))
+                    {
+                        if (!string.IsNullOrEmpty(m.MovementOrder.FirmName))
+                        {
+                            //Onward 
+                            if (!string.IsNullOrEmpty(m.OnwordDateAndTime))
+                            {
+                                string[] OnwardDateTime = m.OnwordDateAndTime.Split('-');
+                                m.MovementOrder.OnwardStartDate = Convert.ToDateTime(OnwardDateTime[0].Trim());
+                                m.MovementOrder.OnwardEndDate = Convert.ToDateTime(OnwardDateTime[1].Trim());
+
+                                if (!string.IsNullOrEmpty(m.MovementOrder.OnwordFrom))
+                                {
+                                    if (!string.IsNullOrEmpty(m.MovementOrder.OnwordTo))
+                                    {
+                                        if (!string.IsNullOrEmpty(m.MovementOrder.OnwordModeOfTravel))
+                                        {
+                                            if (m.MovementOrder.OnwordTo == "OTHER")
+                                            {
+                                                if (string.IsNullOrEmpty(m.OnwardModeOfTravel))
+                                                {
+                                                    TempData["Error"] = "Please Enter Onward - Mode Of Travel.";
+                                                    return View(m);
+                                                }
+                                                else
+                                                {
+                                                    AddParam("ModeOfTravel", m.OnwardModeOfTravel.Trim());
+                                                }
+                                            }
+
+                                            //Return
+                                            if (!string.IsNullOrEmpty(m.ReturnDateAndTime))
+                                            {
+                                                string[] ReturnDateTime = m.ReturnDateAndTime.Split('-');
+                                                m.MovementOrder.ReturnStartDate = Convert.ToDateTime(ReturnDateTime[0].Trim());
+                                                m.MovementOrder.ReturnEndDate = Convert.ToDateTime(ReturnDateTime[1].Trim());
+
+                                                if (!string.IsNullOrEmpty(m.MovementOrder.ReturnFrom))
+                                                {
+                                                    if (!string.IsNullOrEmpty(m.MovementOrder.ReturnTo))
+                                                    {
+                                                        if (!string.IsNullOrEmpty(m.MovementOrder.ReturnModeOfTravel))
+                                                        {
+                                                            if (m.MovementOrder.ReturnTo == "OTHER")
+                                                            {
+                                                                if (string.IsNullOrEmpty(m.ReturnModeOfTravel))
+                                                                {
+                                                                    TempData["Error"] = "Please Enter Return - Mode Of Travel.";
+                                                                    return View(m);
+                                                                }
+                                                                else
+                                                                {
+                                                                    AddParam("ModeOfTravel", m.ReturnModeOfTravel.Trim());
+                                                                }
+                                                            }
+
+                                                            if (!string.IsNullOrEmpty(m.MovementOrder.SigningAuthority))
+                                                            {
+                                                                try
+                                                                {
+                                                                
+                                                                    m.MovementOrder.UpdatedBy = Request.Cookies["INDMS"]["UserID"];
+                                                                    m.MovementOrder.UpdatedDate = DateTime.Now.ToString();
+
+
+                                                                    m.MovementOrder.Designation = db.Users.SingleOrDefault(d => d.UserId == new Guid(m.MovementOrder.InspectorName)).Designation;
+                                                                    m.MovementOrder.SADesignation = db.Users.SingleOrDefault(d => d.UserId == new Guid(m.MovementOrder.SigningAuthority)).Designation;
+
+
+                                                                    if (ModelState.IsValid)
+                                                                    {
+                                                                        using (var ctx = new INDMSEntities())
+                                                                        {
+                                                                            ctx.Entry(m.MovementOrder).State = System.Data.Entity.EntityState.Modified;
+                                                                            ctx.SaveChanges();
+                                                                            ModelState.Clear();
+                                                                            TempData["MSG"] = "Saved Successfully.";
+                                                                            return RedirectToAction("Index");
+                                                                        }
+                                                                    }
+                                                                }
+                                                                catch (DbEntityValidationException e)
+                                                                {
+                                                                    foreach (var eve in e.EntityValidationErrors)
+                                                                    {
+                                                                        Response.Write(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                                                            eve.Entry.Entity.GetType().Name, eve.Entry.State));
+                                                                        foreach (var ve in eve.ValidationErrors)
+                                                                        {
+                                                                            Response.Write(string.Format("- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"",
+                                                                                ve.PropertyName,
+                                                                                eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName),
+                                                                                ve.ErrorMessage));
+                                                                        }
+                                                                    }
+                                                                    throw;
+                                                                }
+                                                                catch (Exception ex)
+                                                                {
+                                                                    Response.Write(ex);
+                                                                    throw ex;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                TempData["Error"] = "Please select Signing Authority";
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            TempData["Error"] = "Please select Return - Mode Of Travel.";
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        TempData["Error"] = "Please select Return - To.";
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    TempData["Error"] = "Please select Return - From.";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                TempData["Error"] = "Please enter Return Date & Time.";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            TempData["Error"] = "Please select Onward - Mode Of Travel.";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        TempData["Error"] = "Please select Onward - To.";
+                                    }
+                                }
+                                else
+                                {
+                                    TempData["Error"] = "Please select Onward - From.";
+                                }
+                            }
+                            else
+                            {
+                                TempData["Error"] = "Please enter Onward Date & Time.";
+                            }
+                        }
+                        else
+                        {
+                            TempData["Error"] = "Please Select valid Firm Name";
+                        }
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Please Select valid Inspector Name.";
+                    }
+                }
+                else
+                {
+                    TempData["Error"] = "Please enter valid Subject.";
+                }
+            }
+            else
+            {
+                TempData["Error"] = "Please enter Valid Order Number";
+            }
+
+            return View(m);
+        }
+
         public ActionResult Print(int? id)
         {
             MovementOrderViewModel m = new MovementOrderViewModel();
@@ -267,7 +467,7 @@ namespace INDMS.WebUI.Controllers
         public ActionResult Approve()
         {
             MovementOrderViewModel m = new MovementOrderViewModel();
-            m.MovementOrders = db.MovementOrders.Where(x => x.Flag != "Accepted");
+            m.MovementOrders = db.MovementOrders.Where(x => x.Flag != "ACCEPTED" && x.Flag != "REJECTED");
             foreach (var item in m.MovementOrders)
             {
                 item.InspectorName = db.Users.SingleOrDefault(d => d.UserId == new Guid(item.InspectorName)).Name;
@@ -282,6 +482,7 @@ namespace INDMS.WebUI.Controllers
         [CAuthRole("Admin")]
         public ActionResult Approve(int? id)
         {
+            string Msg = string.Empty;
             MovementOrderViewModel m = new MovementOrderViewModel();
 
             if (id == null)
@@ -297,18 +498,55 @@ namespace INDMS.WebUI.Controllers
                 }
                 else
                 {
-                    m.MovementOrder.Flag = "Accepted";
+                    m.MovementOrder.Flag = "ACCEPTED";
                     using (var ctx = new INDMSEntities())
                     {
                         ctx.Entry(m.MovementOrder).State = System.Data.Entity.EntityState.Modified;
                         ctx.SaveChanges();
+                        Msg = "success";
                     }
                 }
-               
-            }
-            
 
-            return View();
+            }
+
+
+            return Json(Msg, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [AuthUser]
+        [CAuthRole("Admin")]
+        public ActionResult Reject(int? id)
+        {
+            string Msg = string.Empty;
+            MovementOrderViewModel m = new MovementOrderViewModel();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                m.MovementOrder = db.MovementOrders.Find(id);
+                if (m.MovementOrder == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    m.MovementOrder.Flag = "REJECTED";
+                    using (var ctx = new INDMSEntities())
+                    {
+                        ctx.Entry(m.MovementOrder).State = System.Data.Entity.EntityState.Modified;
+                        ctx.SaveChanges();
+                        Msg = "success";
+                    }
+                }
+
+            }
+
+
+            return Json(Msg, JsonRequestBehavior.AllowGet);
         }
 
         private static void AddParam(string strKeyName, string strKeyValue)

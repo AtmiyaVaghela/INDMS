@@ -55,10 +55,14 @@ CREATE TABLE [dbo].[MovementOrder] (
     [SADesignation]      VARCHAR (MAX) NOT NULL,
     [Distribution]       VARCHAR (MAX) NULL,
     [CreatedBy]          VARCHAR (MAX) NULL,
-    [CreatedDate]        DATETIME       NOT NULL,
+    [CreatedDate]        DATETIME      NOT NULL,
     [UpdatedBy]          VARCHAR (MAX) NULL,
-    [UpdatedDate]        VARCHAR (MAX) NULL,
+    [UpdatedDate]        VARCHAR(MAX) NULL,
     [Flag]               VARCHAR (MAX) DEFAULT ('OPEN') NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
+
+
 
