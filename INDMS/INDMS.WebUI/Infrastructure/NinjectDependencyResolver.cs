@@ -3,30 +3,25 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace INDMS.WebUI.Infrastructure
-{
-    public class NinjectDependencyResolver : IDependencyResolver
-    {
+namespace INDMS.WebUI.Infrastructure {
+
+    public class NinjectDependencyResolver : IDependencyResolver {
         private IKernel kernel;
 
-        public NinjectDependencyResolver(IKernel kernelParam)
-        {
+        public NinjectDependencyResolver(IKernel kernelParam) {
             kernel = kernelParam;
             AddBinding();
         }
 
-        public object GetService(Type serviceType)
-        {
+        public object GetService(Type serviceType) {
             return kernel.TryGet(serviceType);
         }
 
-        public IEnumerable<object> GetServices(Type serviceType)
-        {
+        public IEnumerable<object> GetServices(Type serviceType) {
             return kernel.GetAll(serviceType);
         }
 
-        private void AddBinding()
-        {
+        private void AddBinding() {
         }
     }
 }

@@ -13,15 +13,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-namespace INDMS.WebUI.Controllers
-{
-    public class UtilityController : Controller
-    {
+namespace INDMS.WebUI.Controllers {
+
+    public class UtilityController : Controller {
         private INDMSEntities db = new INDMSEntities();
 
         [CAuthRole("Admin")]
-        public ActionResult UserList()
-        {
+        public ActionResult UserList() {
             UserViewModel u = new UserViewModel();
             u.Users = from d in db.Users
 
@@ -32,8 +30,7 @@ namespace INDMS.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangeStatus(User m)
-        {
+        public ActionResult ChangeStatus(User m) {
             User u = db.Users.Find(m.UserId);
             u.Active = m.Active;
 
@@ -45,8 +42,7 @@ namespace INDMS.WebUI.Controllers
             return Json(m.UserId, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetAllDesignation()
-        {
+        public ActionResult GetAllDesignation() {
             IEnumerable<string> designations = from d in db.Users
                                                where d.Designation != null
                                                select d.Designation;
@@ -54,8 +50,7 @@ namespace INDMS.WebUI.Controllers
             return Json(designations, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetFirms()
-        {
+        public ActionResult GetFirms() {
             IEnumerable<Firm> Firms = from d in db.Firms
                                       where d.Active == "1"
                                       select d;
@@ -65,15 +60,13 @@ namespace INDMS.WebUI.Controllers
 
         // GET: Utility
         [CAuthRole("Admin")]
-        public ActionResult CreateUser()
-        {
+        public ActionResult CreateUser() {
             PopulateRoleDropDownList();
 
             return View();
         }
 
-        private void PopulateRoleDropDownList()
-        {
+        private void PopulateRoleDropDownList() {
             var roleQuery = from d in db.Roles
                             orderby d.Role1
                             select d;
@@ -84,12 +77,9 @@ namespace INDMS.WebUI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CAuthRole("Admin")]
-        public ActionResult CreateUser(User user, string ODesignation)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
+        public ActionResult CreateUser(User user, string ODesignation) {
+            if (ModelState.IsValid) {
+                try {
                     user.UserId = Guid.NewGuid();
                     user.Designation = user.Designation.Equals("OTHERS") ? ODesignation : user.Designation;
                     user.Password = System.Text.Encoding.ASCII.EncodeBase64(user.UserName);
@@ -99,20 +89,17 @@ namespace INDMS.WebUI.Controllers
                                           where d.UserName == user.UserName
                                           select d;
 
-                    if (u.Count() < 1)
-                    {
+                    if (u.Count() < 1) {
                         db.Users.Add(user);
                         db.SaveChanges();
                         TempData["MSG"] = "User Saved.";
                         return RedirectToAction("UserList");
                     }
-                    else
-                    {
+                    else {
                         TempData["Error"] = "User Name Already Used.";
                     }
                 }
-                catch (Exception ex)
-                {
+                catch (Exception ex) {
                     TempData["Error"] = ex.Message;
                 }
             }
@@ -122,45 +109,34 @@ namespace INDMS.WebUI.Controllers
 
         [CAuthRole("Admin")]
         [HttpGet]
-        public ActionResult UserEdit(string userId)
-        {
-            if (userId == null)
-            {
+        public ActionResult UserEdit(string userId) {
+            if (userId == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            else
-            {
+            else {
                 User u = db.Users.Find(new Guid(userId));
-                if (u == null)
-                {
+                if (u == null) {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                else
-                {
+                else {
                     PopulateRoleDropDownList();
                     return View(u);
                 }
             }
-
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CAuthRole("Admin")]
-        public ActionResult UserEdit(User user, string ODesignation)
-        {
+        public ActionResult UserEdit(User user, string ODesignation) {
             User u;
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    using (INDMSEntities ctx = new INDMSEntities())
-                    {
+            if (ModelState.IsValid) {
+                try {
+                    using (INDMSEntities ctx = new INDMSEntities()) {
                         u = ctx.Users.SingleOrDefault(d => d.UserName == user.UserName);
                     }
 
-                    if (u != null)
-                    {
+                    if (u != null) {
                         string pwd = u.Password;
                         u.Role = user.Role;
                         u.Name = user.Name;
@@ -168,13 +144,9 @@ namespace INDMS.WebUI.Controllers
                         u.Designation = user.Designation.Equals("OTHERS") ? ODesignation : user.Designation;
                         u.CreatedBy = Request.Cookies["INDMS"]["UserID"];
                         u.CreatedDate = DateTime.Now;
-                 
 
-
-                        using (var ctx = new INDMSEntities())
-                        {
-                            try
-                            {
+                        using (var ctx = new INDMSEntities()) {
+                            try {
                                 db.Entry(u).State = EntityState.Modified;
 
                                 db.SaveChanges();
@@ -182,20 +154,15 @@ namespace INDMS.WebUI.Controllers
 
                                 TempData["MSG"] = "User Saved.";
                                 return RedirectToAction("UserList");
-
                             }
-                            catch (RetryLimitExceededException /* dex */)
-                            {
+                            catch (RetryLimitExceededException /* dex */) {
                                 TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
                             }
-                            catch (DbEntityValidationException e)
-                            {
-                                foreach (var eve in e.EntityValidationErrors)
-                                {
+                            catch (DbEntityValidationException e) {
+                                foreach (var eve in e.EntityValidationErrors) {
                                     Response.Write(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
                                         eve.Entry.Entity.GetType().Name, eve.Entry.State));
-                                    foreach (var ve in eve.ValidationErrors)
-                                    {
+                                    foreach (var ve in eve.ValidationErrors) {
                                         Response.Write(string.Format("- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"",
                                             ve.PropertyName,
                                             eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName),
@@ -204,15 +171,13 @@ namespace INDMS.WebUI.Controllers
                                 }
                                 throw;
                             }
-                            catch (Exception ex)
-                            {
+                            catch (Exception ex) {
                                 TempData["Error"] = ex.Message;
                             }
                         }
                     }
                 }
-                catch (Exception ex)
-                {
+                catch (Exception ex) {
                     TempData["Error"] = ex.Message;
                 }
             }
@@ -221,45 +186,35 @@ namespace INDMS.WebUI.Controllers
         }
 
         [AuthUser]
-        public ActionResult ChangePassword()
-        {
+        public ActionResult ChangePassword() {
             return View();
         }
 
         [HttpPost]
-        public ActionResult ChangePassword(ChangePassword cp)
-        {
-            if (ModelState.IsValid)
-            {
-                if (!string.IsNullOrEmpty(cp.CurrentPassword) && !string.IsNullOrEmpty(cp.NewPassword) && !string.IsNullOrEmpty(cp.ReEnterPassword))
-                {
+        public ActionResult ChangePassword(ChangePassword cp) {
+            if (ModelState.IsValid) {
+                if (!string.IsNullOrEmpty(cp.CurrentPassword) && !string.IsNullOrEmpty(cp.NewPassword) && !string.IsNullOrEmpty(cp.ReEnterPassword)) {
                     User user = db.Users.Find(new Guid(Request.Cookies["INDMS"]["UserID"]));
 
-                    if (user != null)
-                    {
-                        if (System.Text.Encoding.ASCII.EncodeBase64(cp.CurrentPassword).Equals(user.Password))
-                        {
+                    if (user != null) {
+                        if (System.Text.Encoding.ASCII.EncodeBase64(cp.CurrentPassword).Equals(user.Password)) {
                             user.Password = System.Text.Encoding.ASCII.EncodeBase64(cp.NewPassword);
-                            try
-                            {
+                            try {
                                 db.SaveChanges();
                                 TempData["MSG"] = "Password changed successfully.";
                                 return RedirectToAction("ChangePassword");
                             }
-                            catch (RetryLimitExceededException /* dex */)
-                            {
+                            catch (RetryLimitExceededException /* dex */) {
                                 //Log the error (uncomment dex variable name and add a line here to write a log.
                                 TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
                             }
                         }
-                        else
-                        {
+                        else {
                             TempData["Error"] = "Current Password not matched.";
                         }
                     }
                 }
-                else
-                {
+                else {
                     TempData["Error"] = "All Field are required.";
                 }
             }
@@ -267,10 +222,8 @@ namespace INDMS.WebUI.Controllers
         }
 
         [AuthUser]
-        public ActionResult Profile()
-        {
-            if (Request.Cookies["INDMS"] != null)
-            {
+        public ActionResult Profile() {
+            if (Request.Cookies["INDMS"] != null) {
                 ProfileViewModel m = new ProfileViewModel();
 
                 m.User = new Models.User();
@@ -281,34 +234,26 @@ namespace INDMS.WebUI.Controllers
 
                 return View(m);
             }
-            else
-            {
+            else {
                 return RedirectToAction("Logout", "Account");
             }
         }
 
         [HttpPost]
         [AuthUser]
-        public ActionResult Profile(ProfileViewModel m, HttpPostedFileBase inputFile)
-        {
-            if (inputFile != null && inputFile.ContentLength > 0)
-            {
-                if (inputFile.ContentType == "image/jpeg")
-                {
+        public ActionResult Profile(ProfileViewModel m, HttpPostedFileBase inputFile) {
+            if (inputFile != null && inputFile.ContentLength > 0) {
+                if (inputFile.ContentType == "image/jpeg") {
                     System.IO.File.Delete(Server.MapPath("~/ProfilePic/") + Request.Cookies["INDMS"]["UserID"] + ".JPG");
                     inputFile.SaveAs(Server.MapPath("~/ProfilePic/") + Request.Cookies["INDMS"]["UserID"] + ".JPG");
                 }
             }
-            if (!string.IsNullOrEmpty(m.User.Name))
-            {
-                if (!string.IsNullOrEmpty(m.User.Role))
-                {
-                    try
-                    {
+            if (!string.IsNullOrEmpty(m.User.Name)) {
+                if (!string.IsNullOrEmpty(m.User.Role)) {
+                    try {
                         User u = db.Users.Find(m.User.UserId);
 
-                        if (u != null)
-                        {
+                        if (u != null) {
                             u.Name = m.User.Name;
                             u.Role = m.User.Role;
                             u.Email = m.User.Email;
@@ -319,19 +264,16 @@ namespace INDMS.WebUI.Controllers
                             return RedirectToAction("Profile");
                         }
                     }
-                    catch (RetryLimitExceededException /* dex */)
-                    {
+                    catch (RetryLimitExceededException /* dex */) {
                         //Log the error (uncomment dex variable name and add a line here to write a log.
                         TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
                     }
                 }
-                else
-                {
+                else {
                     TempData["Error"] = "Please select Role";
                 }
             }
-            else
-            {
+            else {
                 TempData["Error"] = "Please enter Name.";
             }
             return View(m);

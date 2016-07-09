@@ -21,77 +21,18 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
                     </div>
                 }
-
-                @*<div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"></h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    @using (Html.BeginForm("GuideLines", "Library", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div class="form-horizontal">
-                            @Html.AntiForgeryToken()
-                            <div class="box-body">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                                <div class="form-group">
-                                    @Html.Label("Issuing Authority", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        <select id="sIssuingAuthority" class="form-control select2" name="GuideLine.IssuingAuthority"></select>
-                                        @Html.ValidationMessageFor(model => model.GuideLine.IssuingAuthority, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group" id="divOIssuingAutherity" style="display:none">
-                                    <div class="col-md-offset-2 col-md-6">
-                                        @Html.TextBoxFor(model => model.OIssuingAutherity, null, new { @class = "form-control" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.GuideLine.Subject, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(m => m.GuideLine.Subject, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.GuideLine.Subject, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.GuideLine.Year, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(m => m.GuideLine.Year, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.GuideLine.Year, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("File", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
-                                        <input type="file" id="inputFile" name="inputFile">
-                                        <p class="help-block">File must be PDF.</p>
-                                    </div>
-                                </div>
-                            </div><!-- /.box-body -->
-                            <div class="box-footer">
-                                <div class="col-md-offset-2 col-md-6">
-                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div><!-- /.box -->*@
-
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">
@@ -117,8 +58,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.GuideLines)
-                                {
+                                @foreach (var item in Model.GuideLines) {
                                     <tr>
 
                                         <td>
@@ -178,11 +118,11 @@
                 }
             });*@
 
-            $('li').removeClass("active");
-            $('#liLibrary').addClass("active");
-            $('#liGuideLines ').addClass("active");
-            $('#liGuideLines i').addClass("text-aqua");
-            $('#liGuidelinesAndStandingOrders ').addClass("active");
+        $('li').removeClass("active");
+        $('#liLibrary').addClass("active");
+        $('#liGuideLines ').addClass("active");
+        $('#liGuideLines i').addClass("text-aqua");
+        $('#liGuidelinesAndStandingOrders ').addClass("active");
         });
     </script>
 }

@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace INDMS.WebUI.ViewModels
-{
-    public class ChangePassword
-    {
+namespace INDMS.WebUI.ViewModels {
+
+    public class ChangePassword {
+
         [Required(ErrorMessage = "Current Password Required")]
         [Display(Name = "Current Password")]
         public string CurrentPassword { get; set; }
@@ -20,18 +20,15 @@ namespace INDMS.WebUI.ViewModels
         public string ReEnterPassword { get; set; }
     }
 
-    public class NotEqualAttribute : ValidationAttribute
-    {
+    public class NotEqualAttribute : ValidationAttribute {
         public string PropName { get; set; }
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
             PropertyInfo otherPropertyInfo = validationContext.ObjectType.GetProperty(PropName);
 
             var otherPropertyStringValue = otherPropertyInfo.GetValue(validationContext.ObjectInstance, null).ToString();
 
-            if (Equals(value.ToString(), otherPropertyStringValue))
-            {
+            if (Equals(value.ToString(), otherPropertyStringValue)) {
                 return new ValidationResult(FormatErrorMessage(validationContext.DisplayName));
             }
             return null;

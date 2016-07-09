@@ -22,16 +22,14 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4>	<i class="icon fa fa-check"></i> Alert!</h4>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4>	<i class="icon fa fa-check"></i> Alert!</h4>
@@ -46,8 +44,7 @@
                         </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    @using (Html.BeginForm("UserEdit", "Utility", FormMethod.Post))
-                    {
+                    @using (Html.BeginForm("UserEdit", "Utility", FormMethod.Post)) {
                         <div class="form-horizontal">
                             @Html.AntiForgeryToken()
                             <div class="box-body">
@@ -115,13 +112,12 @@
                 if (value == "OTHERS") {
                     $('#divODesignation').css('display', 'block');
                 }
-                else {                    
+                else {
                     $('#divODesignation').css('display', 'none');
                 }
             });
 
             $('#Role').select2("val", "@Model.Role");
-
 
             $.ajax({
 

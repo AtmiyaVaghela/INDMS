@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web.Mvc;
 
 namespace INDMS.WebUI.Controllers {
+
     public class AccountController : Controller {
         private INDMSEntities db = new INDMSEntities();
 
@@ -29,7 +30,6 @@ namespace INDMS.WebUI.Controllers {
                     else {
                         return RedirectToAction("Dashboard", "Home");
                     }
-
                 }
                 else {
                     User _user = db.Users.Where(i => i.UserName == userName && i.Password == password && i.Active != "N").SingleOrDefault();
@@ -60,7 +60,6 @@ namespace INDMS.WebUI.Controllers {
             Response.Cookies["INDMS"]["Name"] = System.Text.Encoding.ASCII.EncodeBase64(user.Name);
             Response.Cookies["INDMS"]["Role"] = System.Text.Encoding.ASCII.EncodeBase64(user.Role);
             Response.Cookies["INDMS"].Expires = DateTime.Now.AddMinutes(30);
-
         }
 
         [HttpPost]

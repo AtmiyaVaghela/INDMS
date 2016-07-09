@@ -7,8 +7,10 @@ using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace INDMS.WebUI.Infrastructure.Filters {
+
     public class AuthUser : AuthorizeAttribute, IDisposable {
         private INDMSEntities db = new INDMSEntities();
+
         [HandleError]
         protected override bool AuthorizeCore(HttpContextBase httpContext) {
             bool authorise = false;
@@ -45,7 +47,6 @@ namespace INDMS.WebUI.Infrastructure.Filters {
         [HandleError]
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext) {
             if (HttpContext.Current.Request.Cookies["INDMS"] == null) {
-
                 filterContext.Result =
                 new RedirectToRouteResult(
                     new RouteValueDictionary{{ "controller", "Account" },

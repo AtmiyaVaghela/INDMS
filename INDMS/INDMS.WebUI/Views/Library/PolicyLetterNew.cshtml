@@ -20,15 +20,13 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -42,8 +40,7 @@
                         </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    @using (Html.BeginForm("PolicyLetterNew", "Library", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
+                    @using (Html.BeginForm("PolicyLetterNew", "Library", FormMethod.Post, new { enctype = "multipart/form-data" })) {
                         <div class="form-horizontal">
                             @Html.AntiForgeryToken()
                             <div class="box-body">

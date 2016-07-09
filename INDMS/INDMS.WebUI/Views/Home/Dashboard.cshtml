@@ -29,8 +29,7 @@
                 </div><!-- /.info-box -->
             </div><!-- /.col -->
             @{
-                if (Request.Cookies["INDMS"]["Role"].ToString() == System.Text.Encoding.ASCII.EncodeBase64("Admin"))
-                {
+                if (Request.Cookies["INDMS"]["Role"].ToString() == System.Text.Encoding.ASCII.EncodeBase64("Admin")) {
                     <a href="~/MovementOrder/Approve">
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="info-box">
@@ -44,7 +43,6 @@
                     </a>
                 }
             }
-
         </div><!-- /.row -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->

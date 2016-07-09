@@ -64,30 +64,29 @@
                             </thead>
                             <tbody>
                                 @foreach (var item in Model.StandingOrders) {
-                                <tr>
-                                    <td>
-                                        @item.IssuingAuthority
-                                    </td>
-                                    <td>
-                                        @item.Subject
-                                    </td>
-                                    <td>
-                                        @item.Year
-                                    </td>
-                                    <td>
-                                        @item.Revision
-                                    </td>
-                                    <td>
-                                        <a href="@item.FilePath" target="_blank" class="fa fa-folder-open-o" title="Open"></a> |
-                                        @Html.ActionLink(" ", "StandingOrderEdit", new { id = @item.id }, new { @class = "fa fa-edit", @title = "Edit" })
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            @item.IssuingAuthority
+                                        </td>
+                                        <td>
+                                            @item.Subject
+                                        </td>
+                                        <td>
+                                            @item.Year
+                                        </td>
+                                        <td>
+                                            @item.Revision
+                                        </td>
+                                        <td>
+                                            <a href="@item.FilePath" target="_blank" class="fa fa-folder-open-o" title="Open"></a> |
+                                            @Html.ActionLink(" ", "StandingOrderEdit", new { id = @item.id }, new { @class = "fa fa-edit", @title = "Edit" })
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </section><!-- /.content -->

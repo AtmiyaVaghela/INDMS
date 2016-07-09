@@ -65,7 +65,6 @@
                                     <td>
                                         Active Status
                                     </td>
-                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,7 +80,7 @@
                                         var classText = buttonText.Equals("Active") ? "btn btn-sm btn-success" : "btn btn-sm btn-danger";
                                                 }
                                                 <input onclick="ChangeStatus(this);" type="button" value="@buttonText" class="@classText" />
-                                              @Html.ActionLink("Edit", "UserEdit", new { userId = @item.UserId }, new { @class = "btn btn-sm btn-primary", @title = "Edit" })
+                                                @Html.ActionLink("Edit", "UserEdit", new { userId = @item.UserId }, new { @class = "btn btn-sm btn-primary", @title = "Edit" })
                                             </td>
                                             <td style="display:none">
                                                 @item.UserId
@@ -105,7 +104,6 @@
                                             <td>
                                                 @ActiveStatus
                                             </td>
-                                      
                                         </tr>
                                     }
                                 }
@@ -120,7 +118,7 @@
 @section scripts{
     <script>
 
-        function ChangeStatus(obj){
+        function ChangeStatus(obj) {
             if (obj != '') {
                 var model = {};
                 model.UserId = $(obj).closest('tr').find('td:eq(1)').text().trim();
@@ -131,10 +129,10 @@
                     cache: false,
                     datatype: "json",
                     data: model,
-                    success: function (result) {                        
+                    success: function (result) {
                         obj.value = model.Active == "Y" ? "Inactive" : "Active";
                         if (obj.value == "Active") {
-                            $(obj).closest('tr').find('td:eq(7)').text("Inactive");                            
+                            $(obj).closest('tr').find('td:eq(7)').text("Inactive");
                             $(obj).removeClass();
                             $(obj).addClass("btn btn-sm btn-success");
                         }
@@ -159,4 +157,3 @@
         });
     </script>
 }
-

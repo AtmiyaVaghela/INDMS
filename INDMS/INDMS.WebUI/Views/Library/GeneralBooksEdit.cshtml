@@ -46,7 +46,7 @@
                             <div class="box-body">
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group">
-                                    @Html.HiddenFor(x=>x.GeneralBook.ID)
+                                    @Html.HiddenFor(x => x.GeneralBook.ID)
 
                                     @Html.LabelFor(model => model.GeneralBook.Title, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-6">

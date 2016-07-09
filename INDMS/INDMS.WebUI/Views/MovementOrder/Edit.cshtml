@@ -4,7 +4,6 @@
     ViewBag.Title = "Edit - Movement Order";
 }
 
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -21,15 +20,13 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -45,8 +42,7 @@
                 </h3>
             </div> @*/ .box-header*@
             <!--form start-->
-            @using (Html.BeginForm("Edit", "MovementOrder", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
+            @using (Html.BeginForm("Edit", "MovementOrder", FormMethod.Post, new { enctype = "multipart/form-data" })) {
                 <div class="form-horizontal">
                     @Html.AntiForgeryToken()
                     <div class="box-body">
@@ -208,7 +204,7 @@
 
             value = "@Model.MovementOrder.ReturnStartDate.ToString("dd.MM.yyyy hh:mm tt") " + " - " + " @Model.MovementOrder.ReturnEndDate.ToString("dd.MM.yyyy hh:mm tt")";
             $("#ReturnDateAndTime").val(value);
-            
+
             var insData;
 
             $.ajax({
@@ -317,8 +313,6 @@
 
                 }
             });
-
-          
 
             $("#MovementOrder_OnwordModeOfTravel").change(function () {
                 if ($(this).val() == "OTHERS") {

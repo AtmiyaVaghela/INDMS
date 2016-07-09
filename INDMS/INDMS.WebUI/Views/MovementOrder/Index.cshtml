@@ -21,15 +21,13 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -70,21 +68,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.MovementOrders != null)
-                                {
+                                @if (Model.MovementOrders != null) {
                                     var className = string.Empty;
-                                    foreach (var item in Model.MovementOrders)
-                                    {
-                                        if (@item.Flag == "ACCEPTED")
-                                        {
+                                    foreach (var item in Model.MovementOrders) {
+                                        if (@item.Flag == "ACCEPTED") {
                                             className = "success";
                                         }
-                                        else if (@item.Flag == "REJECTED")
-                                        {
+                                        else if (@item.Flag == "REJECTED") {
                                             className = "danger";
                                         }
-                                        else
-                                        {
+                                        else {
                                             className = "warning";
                                         }
                                         <tr class="@className">
@@ -109,8 +102,7 @@
 
                                             <td>
                                                 @Html.ActionLink(" ", "Print", new { id = @item.Id }, new { @class = "fa fa-print", @title = "Edit" })
-                                                @if (@item.Flag != "ACCEPTED")
-                                                {
+                                                @if (@item.Flag != "ACCEPTED") {
                                                     @Html.ActionLink(" ", "Edit", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
                                                 }
                                             </td>
@@ -118,7 +110,6 @@
                                     }
                                 }
                             </tbody>
-
                         </table>
                     </div>
                 </div>
@@ -136,4 +127,3 @@
         });
     </script>
 }
-

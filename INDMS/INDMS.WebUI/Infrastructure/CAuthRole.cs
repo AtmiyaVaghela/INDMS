@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace INDMS.WebUI.Infrastructure {
+
     public class CAuthRole : AuthorizeAttribute {
         private readonly string[] allowRoles;
         private INDMSEntities db = new INDMSEntities();

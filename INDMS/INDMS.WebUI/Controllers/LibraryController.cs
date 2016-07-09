@@ -13,6 +13,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace INDMS.WebUI.Controllers {
+
     [ExceptionHandler]
     public class LibraryController : Controller {
         private INDMSEntities db = new INDMSEntities();
@@ -759,7 +760,6 @@ namespace INDMS.WebUI.Controllers {
             return View(gvm);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthUser]
@@ -1007,7 +1007,6 @@ namespace INDMS.WebUI.Controllers {
                     if (!string.IsNullOrEmpty(m.Drawing.DrawingNo)) {
                         if (!string.IsNullOrEmpty(m.Drawing.Subject)) {
                             if (!string.IsNullOrEmpty(m.Drawing.ApprovalBy)) {
-
                                 if (inputFile != null && inputFile.ContentLength > 0) {
                                     if (inputFile.ContentType == "application/pdf") {
                                         Guid FileName = Guid.NewGuid();
@@ -1172,7 +1171,6 @@ namespace INDMS.WebUI.Controllers {
                             if (!string.IsNullOrEmpty(m.QAP.ApprovedBy)) {
                                 if (inputFile != null && inputFile.ContentLength > 0) {
                                     if (inputFile.ContentType == "application/pdf") {
-
                                         Guid FileName = Guid.NewGuid();
                                         m.QAP.FilePath = "/Uploads/QAP/" + FileName + ".pdf";
                                         string tPath = Path.Combine(Server.MapPath("~/Uploads/QAP/"), FileName + ".pdf");
@@ -1183,7 +1181,6 @@ namespace INDMS.WebUI.Controllers {
                                         }
 
                                         m.QAP.DrawingNoRef = m.QAP.DrawingNoRef.Substring(0, m.QAP.DrawingNoRef.Length - 1);
-
 
                                         m.QAP.CreatedBy = Request.Cookies["INDMS"]["UserID"];
                                         m.QAP.CreatedDate = null;
@@ -1256,7 +1253,6 @@ namespace INDMS.WebUI.Controllers {
                     if (!string.IsNullOrEmpty(m.QAP.QAPNo)) {
                         if (!string.IsNullOrEmpty(m.QAP.Subject)) {
                             if (!string.IsNullOrEmpty(m.QAP.ApprovedBy)) {
-
                                 if (inputFile != null && inputFile.ContentLength > 0) {
                                     if (inputFile.ContentType == "application/pdf") {
                                         Guid FileName = Guid.NewGuid();
@@ -1296,7 +1292,7 @@ namespace INDMS.WebUI.Controllers {
                                 }
                                 catch (Exception ex) {
                                     TempData["Error"] = ex.Message;
-                                }                         
+                                }
                             }
                             else {
                                 TempData["Error"] = "Please Enter Approved By";

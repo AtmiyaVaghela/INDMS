@@ -20,20 +20,18 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
                     </div>
-                }          
+                }
 
                 <div class="box">
                     <div class="box-header">
@@ -66,10 +64,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.Standards != null)
-                                {
-                                    foreach (var item in Model.Standards)
-                                    {
+                                @if (Model.Standards != null) {
+                                    foreach (var item in Model.Standards) {
                                         <tr>
                                             <td>
                                                 @item.StandardNo

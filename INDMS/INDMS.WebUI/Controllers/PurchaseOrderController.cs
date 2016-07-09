@@ -3,15 +3,15 @@ using INDMS.WebUI.Infrastructure.Filters;
 using INDMS.WebUI.Models;
 using INDMS.WebUI.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
 
 namespace INDMS.WebUI.Controllers {
+
     public class PurchaseOrderController : Controller {
+
         // GET: PurchaseOrder
         [AuthUser]
         public ActionResult Index() {
@@ -31,7 +31,7 @@ namespace INDMS.WebUI.Controllers {
                     item.Firm = ctx.Firms.SingleOrDefault(z => z.Id.ToString() == item.Firm).FirmName;
                 }
             }
-            
+
             return View(m);
         }
 
@@ -44,24 +44,15 @@ namespace INDMS.WebUI.Controllers {
         [AuthUser]
         public ActionResult New(PurchaseOrderViewModel m, HttpPostedFileBase inputFile) {
             if (!string.IsNullOrEmpty(m.PurchaseOrder.FileNo)) {
-
                 if (!string.IsNullOrEmpty(m.PurchaseOrder.PONo)) {
-
                     if (!string.IsNullOrEmpty(Convert.ToString(m.PurchaseOrder.POValue))) {
-
                         if (m.PurchaseOrder.Quantity > (decimal)0.00) {
-
                             if (m.PurchaseOrder.NoOfLots > (decimal)0.00) {
-
                                 if (!string.IsNullOrEmpty(m.PurchaseOrder.PoPlacingAuthority)) {
-
                                     if (m.PurchaseOrder.PoPlacingAuthority.Equals("OTHERS")) {
-
                                         if (!string.IsNullOrEmpty(m.OPOPlacingAuthority)) {
-
                                             m.PurchaseOrder.PoPlacingAuthority = m.OPOPlacingAuthority;
                                             AddParam("POPlacingAuthority", m.OPOPlacingAuthority.Trim());
-
                                         }
                                         else {
                                             TempData["Error"] = "Please enter PO Placing Authority.";
@@ -69,7 +60,6 @@ namespace INDMS.WebUI.Controllers {
                                     }
 
                                     if (m.InspectorId.Length > 0) {
-
                                         foreach (var i in m.InspectorId) {
                                             m.PurchaseOrder.Inspectors += i + ",";
                                         }
@@ -77,13 +67,11 @@ namespace INDMS.WebUI.Controllers {
                                         m.PurchaseOrder.Inspectors = m.PurchaseOrder.Inspectors.Substring(0, m.PurchaseOrder.Inspectors.Length - 1);
 
                                         if (!string.IsNullOrEmpty(m.PurchaseOrder.Firm)) {
-
                                             m.PurchaseOrder.CreatedBy = Request.Cookies["INDMS"]["UserID"];
                                             m.PurchaseOrder.CreatedDate = DateTime.Now;
 
                                             if (inputFile != null && inputFile.ContentLength > 0) {
                                                 if (inputFile.ContentType == "application/pdf") {
-
                                                     Guid FileName = Guid.NewGuid();
                                                     m.PurchaseOrder.FilePath = "/Uploads/PurchaseOrder/" + FileName + ".pdf";
                                                     string tPath = Path.Combine(Server.MapPath("~/Uploads/PurchaseOrder/"), FileName + ".pdf");
@@ -98,7 +86,6 @@ namespace INDMS.WebUI.Controllers {
                                                     TempData["MSG"] = "Save Successfully";
 
                                                     return RedirectToAction("Index");
-
                                                 }
                                                 else {
                                                     TempData["Error"] = "Please select Only PDF File";
@@ -148,6 +135,5 @@ namespace INDMS.WebUI.Controllers {
             string keyValue = strKeyValue;
             obj.Add(keyName, keyValue);
         }
-
     }
 }

@@ -70,6 +70,7 @@
                                     <td>
                                         Firm Name
                                     </td>
+                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,7 +83,7 @@
                                             @item.PONo
                                         </td>
                                         <td>
-                                            @Convert.ToString(item.PODate).Substring(0,9)
+                                            @Convert.ToString(item.PODate).Substring(0, 9)
                                         </td>
                                         <td>
                                             @item.POValue
@@ -94,7 +95,7 @@
                                             @item.NoOfLots
                                         </td>
                                         <td>
-                                            @Convert.ToString(item.DeliveryDate).Substring(0, 9)                                            
+                                            @Convert.ToString(item.DeliveryDate).Substring(0, 9)
                                         </td>
                                         <td>
                                             @item.PoPlacingAuthority
@@ -104,6 +105,9 @@
                                         </td>
                                         <td>
                                             @item.Firm
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(" ", "EditPO", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
                                         </td>
                                     </tr>
                                 }

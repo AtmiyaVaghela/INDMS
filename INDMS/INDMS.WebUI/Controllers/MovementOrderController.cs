@@ -4,15 +4,14 @@ using INDMS.WebUI.Infrastructure.Filters;
 using INDMS.WebUI.Models;
 using INDMS.WebUI.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace INDMS.WebUI.Controllers {
+
     [ExceptionHandler]
     public class MovementOrderController : Controller {
         private INDMSEntities db = new INDMSEntities();
@@ -42,7 +41,7 @@ namespace INDMS.WebUI.Controllers {
                 if (!string.IsNullOrEmpty(m.MovementOrder.Subject)) {
                     if (!string.IsNullOrEmpty(m.MovementOrder.InspectorName)) {
                         if (!string.IsNullOrEmpty(m.MovementOrder.FirmName)) {
-                            //Onward 
+                            //Onward
                             if (!string.IsNullOrEmpty(m.OnwordDateAndTime)) {
                                 string[] OnwardDateTime = m.OnwordDateAndTime.Split('-');
                                 m.MovementOrder.OnwardStartDate = Convert.ToDateTime(OnwardDateTime[0].Trim());
@@ -89,7 +88,6 @@ namespace INDMS.WebUI.Controllers {
 
                                                                     m.MovementOrder.Designation = db.Users.SingleOrDefault(d => d.UserId == new Guid(m.MovementOrder.InspectorName)).Designation;
                                                                     m.MovementOrder.SADesignation = db.Users.SingleOrDefault(d => d.UserId == new Guid(m.MovementOrder.SigningAuthority)).Designation;
-
 
                                                                     if (ModelState.IsValid) {
                                                                         db.MovementOrders.Add(m.MovementOrder);
@@ -196,7 +194,7 @@ namespace INDMS.WebUI.Controllers {
                 if (!string.IsNullOrEmpty(m.MovementOrder.Subject)) {
                     if (!string.IsNullOrEmpty(m.MovementOrder.InspectorName)) {
                         if (!string.IsNullOrEmpty(m.MovementOrder.FirmName)) {
-                            //Onward 
+                            //Onward
                             if (!string.IsNullOrEmpty(m.OnwordDateAndTime)) {
                                 string[] OnwardDateTime = m.OnwordDateAndTime.Split('-');
                                 m.MovementOrder.OnwardStartDate = Convert.ToDateTime(OnwardDateTime[0].Trim());
@@ -238,14 +236,11 @@ namespace INDMS.WebUI.Controllers {
 
                                                             if (!string.IsNullOrEmpty(m.MovementOrder.SigningAuthority)) {
                                                                 try {
-
                                                                     m.MovementOrder.UpdatedBy = Request.Cookies["INDMS"]["UserID"];
                                                                     m.MovementOrder.UpdatedDate = DateTime.Now.ToString();
 
-
                                                                     m.MovementOrder.Designation = db.Users.SingleOrDefault(d => d.UserId == new Guid(m.MovementOrder.InspectorName)).Designation;
                                                                     m.MovementOrder.SADesignation = db.Users.SingleOrDefault(d => d.UserId == new Guid(m.MovementOrder.SigningAuthority)).Designation;
-
 
                                                                     if (ModelState.IsValid) {
                                                                         using (var ctx = new INDMSEntities()) {
@@ -406,9 +401,7 @@ namespace INDMS.WebUI.Controllers {
                         Msg = "success";
                     }
                 }
-
             }
-
 
             return Json(Msg, JsonRequestBehavior.AllowGet);
         }
@@ -436,9 +429,7 @@ namespace INDMS.WebUI.Controllers {
                         Msg = "success";
                     }
                 }
-
             }
-
 
             return Json(Msg, JsonRequestBehavior.AllowGet);
         }

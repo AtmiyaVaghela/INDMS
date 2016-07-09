@@ -38,8 +38,7 @@
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            @using (Html.BeginForm())
-            {
+            @using (Html.BeginForm()) {
                 @Html.AntiForgeryToken()
                 <div class="form-group has-feedback">
                     @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @placeholder = "User Name" })
@@ -65,9 +64,11 @@
             <a href="#">I forgot my password</a><br>
             @*<a href="register.html" class="text-center">Register a new membership</a>*@
         </div><!-- /.login-box-body -->
-    <br />
-    <p class="text-center">Powered By :
-        <img src="~/Img/Tech Elecon logo.png" /> </p>
+        <br />
+        <p class="text-center">
+            Powered By :
+            <img src="~/Img/Tech Elecon logo.png" />
+        </p>
     </div><!-- /.login-box -->
     <!-- jQuery 2.1.4 -->
     <script src="~/plugins/jQuery/jQuery-2.1.4.min.js"></script>

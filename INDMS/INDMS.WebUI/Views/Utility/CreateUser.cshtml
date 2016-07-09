@@ -116,14 +116,13 @@
                 }
             });
 
-
             $.ajax({
 
                 url: '@Url.Action("GetAllDesignation","Utility")',
                 type: 'GET',
                 data: {},
                 success: function (data) {
-                  
+
                     $('#sDesignation').empty();
                     $.each(data, function (index, optiondata) {
                         $("#sDesignation").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
@@ -139,4 +138,4 @@
             });
         });
     </script>
-    }
+}

@@ -1,12 +1,11 @@
 ﻿using INDMS.WebUI.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace INDMS.WebUI.Infrastructure.Filters {
+
     public class ExceptionHandlerAttribute : FilterAttribute, IExceptionFilter {
 
         public void OnException(ExceptionContext filterContext) {
@@ -25,11 +24,11 @@ namespace INDMS.WebUI.Infrastructure.Filters {
         }
 
         private void WriteToFile(ExceptionLogger logger) {
-            string path = HttpContext.Current.Server.MapPath("/Logs/") + "\\"+DateTime.Now.ToString("yyyyMMdd")+".log";
+            string path = HttpContext.Current.Server.MapPath("/Logs/") + "\\" + DateTime.Now.ToString("yyyyMMdd") + ".log";
             using (StreamWriter w = new StreamWriter(path, true)) {
                 w.WriteLine(string.Format("{0} | {1} | {2} | {3}", logger.LogTime, logger.ControllerName, logger.ExceptionMessage, logger.ExceptionStackTrace));
                 w.Close();
             }
-        }     
+        }
     }
 }
