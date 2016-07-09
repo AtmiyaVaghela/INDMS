@@ -1,8 +1,8 @@
-﻿@model INDMS.WebUI.ViewModels.DrawingViewModel
+﻿@model INDMS.WebUI.ViewModels.PurchaseOrderViewModel
 @{
     ViewBag.Title = "Purchase Order";
 }
-
+@using System
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -11,7 +11,7 @@
             Purchase Order
         </h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="#"><i class="glyphicon glyphicon-list-alt"></i>Purchase Order</a></li>            
+            <li class="active"><a href="#"><i class="glyphicon glyphicon-list-alt"></i>Purchase Order</a></li>
         </ol>
     </section>
     <!-- Main content -->
@@ -19,15 +19,13 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -41,10 +39,74 @@
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
-                             
+                                <tr>
+                                    <td>
+                                        FileNo
+                                    </td>
+                                    <td>
+                                        PO No.
+                                    </td>
+                                    <td>
+                                        PO Date
+                                    </td>
+                                    <td>
+                                        PO Value
+                                    </td>
+                                    <td>
+                                        Quantity
+                                    </td>
+                                    <td>
+                                        No. Of Lots
+                                    </td>
+                                    <td>
+                                        DeliveryDate
+                                    </td>
+                                    <td>
+                                        Po Placing Authority
+                                    </td>
+                                    <td>
+                                        Inspectors
+                                    </td>
+                                    <td>
+                                        Firm Name
+                                    </td>
+                                </tr>
                             </thead>
                             <tbody>
-                             
+                                @foreach (var item in Model.PurchaseOrders) {
+                                    <tr>
+                                        <td>
+                                            @item.FileNo
+                                        </td>
+                                        <td>
+                                            @item.PONo
+                                        </td>
+                                        <td>
+                                            @Convert.ToString(item.PODate).Substring(0,9)
+                                        </td>
+                                        <td>
+                                            @item.POValue
+                                        </td>
+                                        <td>
+                                            @item.Quantity
+                                        </td>
+                                        <td>
+                                            @item.NoOfLots
+                                        </td>
+                                        <td>
+                                            @Convert.ToString(item.DeliveryDate).Substring(0, 9)                                            
+                                        </td>
+                                        <td>
+                                            @item.PoPlacingAuthority
+                                        </td>
+                                        <td>
+                                            @item.Inspectors
+                                        </td>
+                                        <td>
+                                            @item.Firm
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -57,7 +119,7 @@
     <script>
         $(function () {
             $('li').removeClass("active");
-            $('#liPO').addClass("active")          
+            $('#liPO').addClass("active")
         });
     </script>
 }

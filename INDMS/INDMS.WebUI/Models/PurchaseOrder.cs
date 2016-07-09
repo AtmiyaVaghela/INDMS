@@ -31,5 +31,6 @@ namespace INDMS.WebUI.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public string Flag { get; set; }
+        public string FilePath { get; set; }
     }
 }

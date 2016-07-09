@@ -103,6 +103,29 @@
     <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileNo" Type="varchar(max)" />
+    <Property Name="PONo" Type="varchar(max)" />
+    <Property Name="PODate" Type="datetime" />
+    <Property Name="POValue" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Quantity" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="NoOfLots" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="DeliveryDate" Type="datetime" />
+    <Property Name="PoPlacingAuthority" Type="varchar(max)" />
+    <Property Name="Inspectors" Type="varchar(max)" />
+    <Property Name="Firm" Type="varchar(max)" />
+    <Property Name="FirmAddress" Type="varchar(max)" />
+    <Property Name="FilePath" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="varchar(max)" />
+    <Property Name="Flag" Type="varchar(max)" />
+  </EntityType>
   <EntityType Name="QAP">
     <Key>
       <PropertyRef Name="Id" />
@@ -177,6 +200,7 @@
     <EntitySet Name="MovementOrder" EntityType="Self.MovementOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParameterMaster" EntityType="Self.ParameterMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PolicyLetter" EntityType="Self.PolicyLetter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QAP" EntityType="Self.QAP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Standards" EntityType="Self.Standards" Schema="dbo" store:Type="Tables" />

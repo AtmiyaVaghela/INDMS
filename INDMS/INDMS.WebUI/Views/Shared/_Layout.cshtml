@@ -39,8 +39,7 @@
                         @{
                             var name = string.Empty;
                             var userId = string.Empty;
-                            if (Request.Cookies["INDMS"] != null)
-                            {
+                            if (Request.Cookies["INDMS"] != null) {
                                 name = System.Text.Encoding.ASCII.DecodeBase64(Request.Cookies["INDMS"]["Name"]);
                                 userId = Request.Cookies["INDMS"]["UserID"] + ".JPG";
                             }
@@ -91,8 +90,8 @@
                     </li>
                     <li class="treeview" id="liPO">
                         <a href="~/PurchaseOrder/Index">
-                            <i class="glyphicon glyphicon-list-alt"></i><span>Purchase Order</span> 
-                        </a>                        
+                            <i class="glyphicon glyphicon-list-alt"></i><span>Purchase Order</span>
+                        </a>
                     </li>
                     <li id="liUtility" class="treeview">
                         <a href="#">
@@ -137,6 +136,22 @@
             $("#example1").DataTable({
                 "order": [[0, "desc"]]
             });
+
+            $('.decimalOnly').keypress(function (event) {
+                return isNumber(event, this)
+            });
+
+            function isNumber(evt, element) {
+
+                var charCode = (evt.which) ? evt.which : event.keyCode
+
+                if (
+                    (charCode != 46 || $(element).val().indexOf('.') != -1) &&      // “.” CHECK DOT, AND ONLY ONE.
+                    (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+            }
         });
     </script>
 

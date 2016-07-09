@@ -11,7 +11,7 @@
             New - Drawings
         </h1>
         <ol class="breadcrumb">
-            <li ><a href="#"><i class="glyphicon glyphicon-list-alt"></i>Purchase Order</a></li>  
+            <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i>Purchase Order</a></li>
             <li class="active">New</li>
         </ol>
     </section>
@@ -20,15 +20,13 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null)
-                {
+                @if (TempData["MSG"] != null) {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null)
-                {
+                @if (TempData["Error"] != null) {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -42,12 +40,102 @@
                         </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    @using (Html.BeginForm("New", "PurchaseOrder", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
+                    @using (Html.BeginForm("New", "PurchaseOrder", FormMethod.Post, new { enctype = "multipart/form-data" })) {
                         <div class="form-horizontal">
                             @Html.AntiForgeryToken()
                             <div class="box-body">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })                              
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    @Html.Label("", "File No", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.PurchaseOrder.FileNo, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.FileNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "PO No", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.PurchaseOrder.PONo, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.PONo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "PO Date", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.PurchaseOrder.PODate, new { @class = "form-control dp" })
+                                        </div><!-- /.input group -->
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.PODate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "PO Value", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.PurchaseOrder.POValue, null, new { @class = "form-control decimalOnly", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.POValue, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "Quantity", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.PurchaseOrder.Quantity, null, new { @class = "form-control decimalOnly", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.Quantity, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "No. OF Lots", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.PurchaseOrder.NoOfLots, null, new { @class = "form-control decimalOnly", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.NoOfLots, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "Delivery Date", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.PurchaseOrder.DeliveryDate, new { @class = "form-control dp" })
+                                        </div><!-- /.input group -->
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.DeliveryDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "PO Placing Authority", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        <select id="PurchaseOrder_PoPlacingAuthority" class="form-control select2" name="PurchaseOrder.PoPlacingAuthority"></select>
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.PoPlacingAuthority, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div id="divPOPlacingAuthority" style="display:none" class="col-md-4">
+                                        @Html.TextBoxFor(m => Model.OPOPlacingAuthority, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "Nominated Quality Inspector's Name", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        <select id="sInspectorId" multiple="multiple" class="form-control select2" name="InspectorId" data-placeholder="Select Inspector's"></select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "Firm Name", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        <select id="PurchaseOrder_Firm" class="form-control select2" name="PurchaseOrder.Firm"></select>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     @Html.Label("File", new { @class = "control-label col-md-2" })
@@ -59,7 +147,7 @@
                             </div><!-- /.box-body -->
                             <div class="box-footer">
                                 <div class="col-md-offset-2 col-md-6">
-                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -71,9 +159,79 @@
 </div><!-- /.content-wrapper -->
 @section scripts{
     <script>
-        $(function () {        
+        $(function () {
+            $.ajax({
+                url: "@Url.Action("GetJsonObjOfParam","Library")",
+                type: 'POST',
+                data: { data: "POPlacingAuthority" },
+                success: function (data) {
+                    $('#PurchaseOrder_PoPlacingAuthority').empty();
+                    $.each(data, function (index, optiondata) {
+                        $("#PurchaseOrder_PoPlacingAuthority").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
+                    });
+                    $("#PurchaseOrder_PoPlacingAuthority").append("<option value='OTHERS'>OTHERS</option>");
+                    $("#PurchaseOrder_PoPlacingAuthority option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                    $('#PurchaseOrder_PoPlacingAuthority').select2("val", "");
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong");
+                }
+            });
+
+            $.ajax({
+                url: "@Url.Action("GetJsonObjOfUsers", "Library")",
+                type: 'GET',
+                data: {},
+                success: function (data) {
+                    $('#sInspectorId').empty();
+                    $.each(data, function (index, optiondata) {
+
+                        $("#sInspectorId").append("<option value='" + optiondata.UserId + "'>" + optiondata.Name + "</option>");
+                    });
+                    //$("#sApprovalBy").append("<option value='OTHERS'>OTHERS</option>");
+
+                    $("#sInspectorId").val("");
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong binding Approval Person");
+
+                }
+            });
+
+            $("#PurchaseOrder_PoPlacingAuthority").change(function () {
+                if ($(this).val() == "OTHERS") {
+                    $('#divPOPlacingAuthority').css('display', 'block');
+                }
+                else {
+                    $('#divPOPlacingAuthority').css('display', 'none');
+                }
+            });
+
+            $.ajax({
+                url: "@Url.Action("GetFirms", "Utility")",
+                type: 'GET',
+                data: {},
+                success: function (data) {
+                    $('#PurchaseOrder_Firm').empty();
+
+                    $.each(data, function (index, optiondata) {
+                        $("#PurchaseOrder_Firm").append("<option value='" + optiondata.Id + "'>" + optiondata.FirmName + "</option>");
+                    });
+                    //$("#sApprovalBy").append("<option value='OTHERS'>OTHERS</option>");
+                    $("#PurchaseOrder_Firm option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                    $('#PurchaseOrder_Firm').select2("val", "");
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong binding Firm");
+
+                }
+            });
+
             $('li').removeClass("active");
-            $('#liPO').addClass("active")          
+            $('#liPO').addClass("active")
         });
     </script>
 }

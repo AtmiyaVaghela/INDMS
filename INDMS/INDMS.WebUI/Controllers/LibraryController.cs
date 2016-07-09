@@ -1323,7 +1323,7 @@ namespace INDMS.WebUI.Controllers {
         public ActionResult GetJsonObjOfParam(string data) {
             IEnumerable<string> KeyValueList = from d in db.ParameterMasters
                                                where d.KeyName == data
-                                               orderby d.KeyName
+                                               orderby d.KeyValue
                                                select d.KeyValue;
 
             return Json(KeyValueList, JsonRequestBehavior.AllowGet);

@@ -62,26 +62,48 @@ CREATE TABLE [dbo].[MovementOrder] (
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
-CREATE TABLE [dbo].[PurchaseOrder]
-(
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [FileNo] VARCHAR(MAX) NULL, 
-    [PONo] VARCHAR(MAX) NULL, 
-    [PODate] DATETIME NULL, 
-    [POValue] NUMERIC(18, 2) NULL, 
-    [Quantity] NUMERIC(18, 2) NULL, 
-    [NoOfLots] NUMERIC(18, 2) NULL, 
-    [DeliveryDate] DATETIME NULL, 
-    [PoPlacingAuthority] VARCHAR(MAX) NULL, 
-	[Inspectors] varchar(max) null,
-	[Firm] varchar(max) null,
-	[FirmAddress] varchar(max) null,
-    [CreatedDate] DATETIME NULL, 
-    [CreatedBy] VARCHAR(MAX) NULL, 
-    [UpdatedDate] DATETIME NULL, 
-    [UpdatedBy] VARCHAR(MAX) NULL, 
-    [Flag] VARCHAR(MAX) NULL
+CREATE TABLE [dbo].[PurchaseOrder] (
+    [Id]                 INT             IDENTITY (1, 1) NOT NULL,
+    [FileNo]             VARCHAR (MAX)   NULL,
+    [PONo]               VARCHAR (MAX)   NULL,
+    [PODate]             DATETIME        NULL,
+    [POValue]            NUMERIC (18, 2) NULL,
+    [Quantity]           NUMERIC (18, 2) NULL,
+    [NoOfLots]           NUMERIC (18, 2) NULL,
+    [DeliveryDate]       DATETIME        NULL,
+    [PoPlacingAuthority] VARCHAR (MAX)   NULL,
+    [Inspectors]         VARCHAR (MAX)   NULL,
+    [Firm]               VARCHAR (MAX)   NULL,
+    [FirmAddress]        VARCHAR (MAX)   NULL,
+	[FilePath] varchar(max) null,
+    [CreatedDate]        DATETIME        NULL,
+    [CreatedBy]          VARCHAR (MAX)   NULL,
+    [UpdatedDate]        DATETIME        NULL,
+    [UpdatedBy]          VARCHAR (MAX)   NULL,
+    [Flag]               VARCHAR (MAX)   NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','CGHQ');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','CPRO(K)');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','CPRO(MB)');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','CPRO(KAR)');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','CPRO(V)');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','GRSEL');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','CSL');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','DPRO');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','DMDE');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','GSL');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','NSRY(K)');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','MDL');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','PIPAVAV');
+insert into ParameterMaster (KeyName,KeyValue) values ('POPlacingAuthority','ABG');
+
+COMMIT;
+
+
+
+
 
 
 

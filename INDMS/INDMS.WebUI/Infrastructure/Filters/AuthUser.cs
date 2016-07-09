@@ -45,8 +45,16 @@ namespace INDMS.WebUI.Infrastructure.Filters {
         [HandleError]
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext) {
             if (HttpContext.Current.Request.Cookies["INDMS"] == null) {
-                filterContext.Result = new RedirectToRouteResult(new
-                    RouteValueDictionary(new { controller = "Account", action = "Login" }));
+
+                filterContext.Result =
+                new RedirectToRouteResult(
+                    new RouteValueDictionary{{ "controller", "Account" },
+                                                 { "action", "Login" },
+                                                 { "returnUrl",    filterContext.HttpContext.Request.RawUrl }
+                                                });
+
+                //filterContext.Result = new RedirectToRouteResult(new
+                //    RouteValueDictionary(new { controller = "Account", action = "Login"  }));
             }
             else {
                 filterContext.Result = new RedirectToRouteResult(new

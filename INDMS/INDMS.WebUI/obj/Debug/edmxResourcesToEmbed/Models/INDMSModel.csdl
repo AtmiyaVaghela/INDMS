@@ -111,6 +111,7 @@
     <EntitySet Name="QAPs" EntityType="INDMSModel.QAP" />
     <EntitySet Name="MovementOrders" EntityType="INDMSModel.MovementOrder" />
     <EntitySet Name="Firms" EntityType="INDMSModel.Firm" />
+    <EntitySet Name="PurchaseOrders" EntityType="INDMSModel.PurchaseOrder" />
   </EntityContainer>
   <EntityType Name="Drawing">
     <Key>
@@ -182,5 +183,28 @@
     <Property Name="FirmAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="Active" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PONo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PODate" Type="DateTime" Precision="3" />
+    <Property Name="POValue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NoOfLots" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+    <Property Name="PoPlacingAuthority" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Inspectors" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Firm" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FirmAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Flag" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>
