@@ -8,7 +8,7 @@ using System.Web.Routing;
 
 namespace INDMS.WebUI.Infrastructure.Filters {
 
-    public class AuthUser : AuthorizeAttribute, IDisposable {
+    public class AuthUser : AuthorizeAttribute {
         private INDMSEntities db = new INDMSEntities();
 
         [HandleError]
@@ -61,10 +61,6 @@ namespace INDMS.WebUI.Infrastructure.Filters {
                 filterContext.Result = new RedirectToRouteResult(new
                     RouteValueDictionary(new { controller = "Error", action = "AccessDenied" }));
             }
-        }
-
-        public void Dispose() {
-            throw new NotImplementedException();
         }
     }
 }

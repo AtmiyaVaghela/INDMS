@@ -27,7 +27,7 @@ namespace INDMS.WebUI.Infrastructure.Filters {
             string path = HttpContext.Current.Server.MapPath("/Logs/") + "\\" + DateTime.Now.ToString("yyyyMMdd") + ".log";
             using (StreamWriter w = new StreamWriter(path, true)) {
                 w.WriteLine(string.Format("{0} | {1} | {2} | {3}", logger.LogTime, logger.ControllerName, logger.ExceptionMessage, logger.ExceptionStackTrace));
-                w.Close();
+                //w.Close();
             }
         }
     }
