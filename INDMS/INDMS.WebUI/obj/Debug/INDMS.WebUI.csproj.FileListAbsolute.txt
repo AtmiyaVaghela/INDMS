@@ -229,3 +229,4 @@ C:\INDMS\INDMS.WebUI\bin\System.Web.Helpers.xml
 C:\INDMS\INDMS.WebUI\bin\System.Web.Mvc.xml
 C:\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.dll
 C:\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.pdb
+C:\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.csprojResolveAssemblyReference.cache

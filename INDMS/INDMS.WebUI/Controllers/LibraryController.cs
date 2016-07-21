@@ -966,12 +966,12 @@ namespace INDMS.WebUI.Controllers {
         public ActionResult Drawings() {
             DrawingViewModel m = new DrawingViewModel();
             m.Drawings = db.Drawings.OrderByDescending(x => x.Id);
-            foreach (Drawing item in m.Drawings) {
-                item.ApprovalBy = db.Users.SingleOrDefault(x => x.UserId == new Guid(item.ApprovalBy)).Name;
-                //from d in db.Users
-                //              where d.UserId.ToString() == item.ApprovalBy
-                //              select d.Name;
-            }
+            //foreach (Drawing item in m.Drawings) {
+            //    item.ApprovalBy = db.Users.SingleOrDefault(x => x.UserId == new Guid(item.ApprovalBy)).Name;
+            //    //from d in db.Users
+            //    //              where d.UserId.ToString() == item.ApprovalBy
+            //    //              select d.Name;
+            //}
             return View(m);
         }
 
@@ -1043,7 +1043,7 @@ namespace INDMS.WebUI.Controllers {
                                 }
                             }
                             else {
-                                TempData["Error"] = "Please Select Approval By.";
+                                TempData["Error"] = "Please Enter Approval By.";
                             }
                         }
                         else {

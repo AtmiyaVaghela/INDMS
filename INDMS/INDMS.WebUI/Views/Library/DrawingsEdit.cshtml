@@ -92,7 +92,8 @@
                                     @Html.Label("Approval By", new { @class = "control-label col-md-2" })
 
                                     <div class="col-md-6">
-                                        <select id="sApprovalBy" class="form-control select2" name="Drawing.ApprovalBy"></select>
+                                        @Html.TextBoxFor(model => model.Drawing.ApprovalBy, null, new { @class = "form-control" })
+                                        @*<select id="sApprovalBy" class="form-control select2" name="Drawing.ApprovalBy"></select>*@
                                     </div>
                                 </div>
 
@@ -124,7 +125,7 @@
     <script>
         $(function () {
 
-            $.ajax({
+            @*$.ajax({
                 url: "@Url.Action("GetJsonObjOfUsers", "Library")",
                 type: 'GET',
                 data: {},
@@ -144,7 +145,7 @@
                     alert("Something seems Wrong binding Approval Person");
 
                 }
-            });
+            });*@
 
             $('li').removeClass("active");
             $('#liLibrary').addClass("active")
