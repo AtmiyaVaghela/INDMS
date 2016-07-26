@@ -20,13 +20,15 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null) {
+                @if (TempData["MSG"] != null)
+                {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null) {
+                @if (TempData["Error"] != null)
+                {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -40,7 +42,8 @@
                         </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    @using (Html.BeginForm("StandardsNew", "Library", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+                    @using (Html.BeginForm("StandardsNew", "Library", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         <div class="form-horizontal">
                             @Html.AntiForgeryToken()
                             <div class="box-body">
@@ -67,25 +70,27 @@
                                         @Html.ValidationMessageFor(model => model.Standard.Revision, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
+                                @*<div class="form-group">
+                                        @Html.Label("Subject", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <select id="sSubjectType" name="Standard.SubjectParam" class="form-control"></select>
+                                            @Html.ValidationMessageFor(model => model.Standard.SubjectParam, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>*@
+
                                 <div class="form-group">
                                     @Html.Label("Subject", new { @class = "control-label col-md-2" })
                                     <div class="col-md-6">
-                                        <select id="sSubjectType" name="Standard.SubjectParam" class="form-control"></select>
-                                        @*@Html.DropDownListFor(m => m.Standard.SubjectParam, new SelectList(ViewBag.SubjectType), new { @class = "form-control" })*@
-                                        @Html.ValidationMessageFor(model => model.Standard.SubjectParam, "", new { @class = "text-danger" })
+                                        @*<select id="subject" name="Standard.Subject" class="form-control select2"></select>*@
+                                        @Html.TextBoxFor(model => model.Standard.Subject, null, new { @class = "form-control" })
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-6">
-                                        <select id="subject" name="Standard.Subject" class="form-control select2"></select>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="divOSubject" style="display:none">
-                                    <div class="col-md-offset-2 col-md-6">
-                                        @Html.TextBoxFor(model => model.OSubject, null, new { @class = "form-control" })
-                                    </div>
-                                </div>
+                                @*<div class="form-group" id="divOSubject" style="display:none">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            @Html.TextBoxFor(model => model.OSubject, null, new { @class = "form-control" })
+                                        </div>
+                                    </div>*@
 
                                 <div class="form-group">
                                     @Html.Label("Type", new { @class = "control-label col-md-2" })
