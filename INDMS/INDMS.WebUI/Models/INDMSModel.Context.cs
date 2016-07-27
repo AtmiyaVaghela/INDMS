@@ -38,5 +38,6 @@ namespace INDMS.WebUI.Models
         public virtual DbSet<MovementOrder> MovementOrders { get; set; }
         public virtual DbSet<Firm> Firms { get; set; }
         public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+        public virtual DbSet<POGeneration> POGenerations { get; set; }
     }
 }

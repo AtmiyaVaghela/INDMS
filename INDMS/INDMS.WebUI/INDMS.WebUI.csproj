@@ -2102,6 +2102,9 @@
     <Compile Include="Models\ParameterMaster.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\POGeneration.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PolicyLetter.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>

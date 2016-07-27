@@ -94,6 +94,19 @@
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="POGeneration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PO_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FCL" Type="int" />
+          <Property Name="PO_CORRESPONDENCE" Type="int" />
+          <Property Name="DRAWING" Type="int" />
+          <Property Name="QAP" Type="int" />
+          <Property Name="I_NOTE" Type="int" />
+          <Property Name="Active" Type="int" />
+        </EntityType>
         <EntityType Name="PolicyLetter">
           <Key>
             <PropertyRef Name="id" />
@@ -204,6 +217,7 @@
           <EntitySet Name="GuideLine" EntityType="Self.GuideLine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MovementOrder" EntityType="Self.MovementOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParameterMaster" EntityType="Self.ParameterMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POGeneration" EntityType="Self.POGeneration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PolicyLetter" EntityType="Self.PolicyLetter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QAP" EntityType="Self.QAP" Schema="dbo" store:Type="Tables" />
@@ -328,6 +342,7 @@
           <EntitySet Name="MovementOrders" EntityType="INDMSModel.MovementOrder" />
           <EntitySet Name="Firms" EntityType="INDMSModel.Firm" />
           <EntitySet Name="PurchaseOrders" EntityType="INDMSModel.PurchaseOrder" />
+          <EntitySet Name="POGenerations" EntityType="INDMSModel.POGeneration" />
         </EntityContainer>
         <EntityType Name="Drawing">
           <Key>
@@ -422,6 +437,19 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Flag" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="POGeneration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PO_ID" Type="Int32" Nullable="false" />
+          <Property Name="FCL" Type="Int32" />
+          <Property Name="PO_CORRESPONDENCE" Type="Int32" />
+          <Property Name="DRAWING" Type="Int32" />
+          <Property Name="QAP" Type="Int32" />
+          <Property Name="I_NOTE" Type="Int32" />
+          <Property Name="Active" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -630,6 +658,20 @@
                 <ScalarProperty Name="PODate" ColumnName="PODate" />
                 <ScalarProperty Name="PONo" ColumnName="PONo" />
                 <ScalarProperty Name="FileNo" ColumnName="FileNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POGenerations">
+            <EntityTypeMapping TypeName="INDMSModel.POGeneration">
+              <MappingFragment StoreEntitySet="POGeneration">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="I_NOTE" ColumnName="I_NOTE" />
+                <ScalarProperty Name="QAP" ColumnName="QAP" />
+                <ScalarProperty Name="DRAWING" ColumnName="DRAWING" />
+                <ScalarProperty Name="PO_CORRESPONDENCE" ColumnName="PO_CORRESPONDENCE" />
+                <ScalarProperty Name="FCL" ColumnName="FCL" />
+                <ScalarProperty Name="PO_ID" ColumnName="PO_ID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

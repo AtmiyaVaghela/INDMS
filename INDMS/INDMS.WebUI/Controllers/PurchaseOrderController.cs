@@ -8,21 +8,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace INDMS.WebUI.Controllers {
+namespace INDMS.WebUI.Controllers
+{
 
-    public class PurchaseOrderController : Controller {
+    public class PurchaseOrderController : Controller
+    {
 
         // GET: PurchaseOrder
         [AuthUser]
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             PurchaseOrderViewModel m = new PurchaseOrderViewModel();
-            using (var ctx = new INDMSEntities()) {
+            using (var ctx = new INDMSEntities())
+            {
                 m.PurchaseOrders = ctx.PurchaseOrders.Where(x => x.Flag != "CLOSED").ToList();
 
-                foreach (var item in m.PurchaseOrders) {
+                foreach (var item in m.PurchaseOrders)
+                {
                     string[] Inspectors = item.Inspectors.Split(',');
                     item.Inspectors = string.Empty;
-                    foreach (var ins in Inspectors) {
+                    foreach (var ins in Inspectors)
+                    {
                         item.Inspectors += ctx.Users.SingleOrDefault(z => z.UserId == new Guid(ins)).Name + ",";
                     }
 
@@ -36,48 +42,65 @@ namespace INDMS.WebUI.Controllers {
         }
 
         [AuthUser]
-        public ActionResult New() {
+        public ActionResult New()
+        {
             return View();
         }
 
         [HttpPost]
         [AuthUser]
-        public ActionResult New(PurchaseOrderViewModel m, HttpPostedFileBase inputFile) {
-            if (!string.IsNullOrEmpty(m.PurchaseOrder.FileNo)) {
-                if (!string.IsNullOrEmpty(m.PurchaseOrder.PONo)) {
-                    if (!string.IsNullOrEmpty(Convert.ToString(m.PurchaseOrder.POValue))) {
-                        if (m.PurchaseOrder.Quantity > (decimal)0.00) {
-                            if (m.PurchaseOrder.NoOfLots > (decimal)0.00) {
-                                if (!string.IsNullOrEmpty(m.PurchaseOrder.PoPlacingAuthority)) {
-                                    if (m.PurchaseOrder.PoPlacingAuthority.Equals("OTHERS")) {
-                                        if (!string.IsNullOrEmpty(m.OPOPlacingAuthority)) {
+        public ActionResult New(PurchaseOrderViewModel m, HttpPostedFileBase inputFile)
+        {
+            if (!string.IsNullOrEmpty(m.PurchaseOrder.FileNo))
+            {
+                if (!string.IsNullOrEmpty(m.PurchaseOrder.PONo))
+                {
+                    if (!string.IsNullOrEmpty(Convert.ToString(m.PurchaseOrder.POValue)))
+                    {
+                        if (m.PurchaseOrder.Quantity > (decimal)0.00)
+                        {
+                            if (m.PurchaseOrder.NoOfLots > (decimal)0.00)
+                            {
+                                if (!string.IsNullOrEmpty(m.PurchaseOrder.PoPlacingAuthority))
+                                {
+                                    if (m.PurchaseOrder.PoPlacingAuthority.Equals("OTHERS"))
+                                    {
+                                        if (!string.IsNullOrEmpty(m.OPOPlacingAuthority))
+                                        {
                                             m.PurchaseOrder.PoPlacingAuthority = m.OPOPlacingAuthority;
                                             AddParam("POPlacingAuthority", m.OPOPlacingAuthority.Trim());
                                         }
-                                        else {
+                                        else
+                                        {
                                             TempData["Error"] = "Please enter PO Placing Authority.";
                                         }
                                     }
 
-                                    if (m.InspectorId.Length > 0) {
-                                        foreach (var i in m.InspectorId) {
+                                    if (m.InspectorId.Length > 0)
+                                    {
+                                        foreach (var i in m.InspectorId)
+                                        {
                                             m.PurchaseOrder.Inspectors += i + ",";
                                         }
 
                                         m.PurchaseOrder.Inspectors = m.PurchaseOrder.Inspectors.Substring(0, m.PurchaseOrder.Inspectors.Length - 1);
 
-                                        if (!string.IsNullOrEmpty(m.PurchaseOrder.Firm)) {
+                                        if (!string.IsNullOrEmpty(m.PurchaseOrder.Firm))
+                                        {
                                             m.PurchaseOrder.CreatedBy = Request.Cookies["INDMS"]["UserID"];
                                             m.PurchaseOrder.CreatedDate = DateTime.Now;
 
-                                            if (inputFile != null && inputFile.ContentLength > 0) {
-                                                if (inputFile.ContentType == "application/pdf") {
+                                            if (inputFile != null && inputFile.ContentLength > 0)
+                                            {
+                                                if (inputFile.ContentType == "application/pdf")
+                                                {
                                                     Guid FileName = Guid.NewGuid();
                                                     m.PurchaseOrder.FilePath = "/Uploads/PurchaseOrder/" + FileName + ".pdf";
                                                     string tPath = Path.Combine(Server.MapPath("~/Uploads/PurchaseOrder/"), FileName + ".pdf");
                                                     inputFile.SaveAs(tPath);
 
-                                                    using (var ctx = new INDMSEntities()) {
+                                                    using (var ctx = new INDMSEntities())
+                                                    {
                                                         ctx.PurchaseOrders.Add(m.PurchaseOrder);
                                                         ctx.SaveChanges();
                                                     }
@@ -87,49 +110,60 @@ namespace INDMS.WebUI.Controllers {
 
                                                     return RedirectToAction("Index");
                                                 }
-                                                else {
+                                                else
+                                                {
                                                     TempData["Error"] = "Please select Only PDF File";
                                                 }
                                             }
-                                            else {
+                                            else
+                                            {
                                                 TempData["Error"] = "Please select file.";
                                             }
                                         }
-                                        else {
+                                        else
+                                        {
                                             TempData["Error"] = "Please select Firm.";
                                         }
                                     }
-                                    else {
+                                    else
+                                    {
                                         TempData["Error"] = "Please select Inspector";
                                     }
                                 }
-                                else {
+                                else
+                                {
                                     TempData["Error"] = "Please select PO Placing Authority.";
                                 }
                             }
-                            else {
+                            else
+                            {
                                 TempData["Error"] = "No. Of Lots must be greater than 0.00";
                             }
                         }
-                        else {
+                        else
+                        {
                             TempData["Error"] = "PO Value must be greater than 0.00";
                         }
                     }
-                    else {
+                    else
+                    {
                         TempData["Error"] = "Please enter PO Value.";
                     }
                 }
-                else {
+                else
+                {
                     TempData["Error"] = "Please enter PO No.";
                 }
             }
-            else {
+            else
+            {
                 TempData["Error"] = "Please enter file No.";
             }
             return View(m);
         }
 
-        private void AddParam(string strKeyName, string strKeyValue) {
+        private void AddParam(string strKeyName, string strKeyValue)
+        {
             AddNewParameter obj = new AddNewParameter();
             string keyName = strKeyName;
             string keyValue = strKeyValue;
