@@ -37,7 +37,7 @@
                         <h3 class="box-title">@Html.ActionLink("New", "New", "PurchaseOrder", null, new { @class = "btn btn-primary" })</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped" style="font-size:small !important">
                             <thead>
                                 <tr>
                                     <td>
@@ -107,7 +107,8 @@
                                             @item.Firm
                                         </td>
                                         <td>
-                                            @Html.ActionLink(" ", "EditPO", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
+                                            @Html.ActionLink(" ", "EditPO", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" }) | 
+                                            @Html.ActionLink(" ", "Index", "POFlow", new { id = @item.Id }, new { @class = "fa  fa-chevron-right", @title = "Timeline" })
                                         </td>
                                     </tr>
                                 }
