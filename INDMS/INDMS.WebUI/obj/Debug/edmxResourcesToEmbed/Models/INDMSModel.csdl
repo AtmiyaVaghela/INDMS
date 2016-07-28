@@ -112,6 +112,7 @@
     <EntitySet Name="MovementOrders" EntityType="INDMSModel.MovementOrder" />
     <EntitySet Name="Firms" EntityType="INDMSModel.Firm" />
     <EntitySet Name="PurchaseOrders" EntityType="INDMSModel.PurchaseOrder" />
+    <EntitySet Name="POGenerations" EntityType="INDMSModel.POGeneration" />
   </EntityContainer>
   <EntityType Name="Drawing">
     <Key>
@@ -206,5 +207,18 @@
     <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Flag" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="POGeneration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PO_ID" Type="Int32" Nullable="false" />
+    <Property Name="FCL" Type="Int32" />
+    <Property Name="PO_CORRESPONDENCE" Type="Int32" />
+    <Property Name="DRAWING" Type="Int32" />
+    <Property Name="QAP" Type="Int32" />
+    <Property Name="I_NOTE" Type="Int32" />
+    <Property Name="Active" Type="Int32" />
   </EntityType>
 </Schema>

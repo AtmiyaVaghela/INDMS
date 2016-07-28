@@ -89,6 +89,19 @@
     <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="POGeneration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PO_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FCL" Type="int" />
+    <Property Name="PO_CORRESPONDENCE" Type="int" />
+    <Property Name="DRAWING" Type="int" />
+    <Property Name="QAP" Type="int" />
+    <Property Name="I_NOTE" Type="int" />
+    <Property Name="Active" Type="int" />
+  </EntityType>
   <EntityType Name="PolicyLetter">
     <Key>
       <PropertyRef Name="id" />
@@ -199,6 +212,7 @@
     <EntitySet Name="GuideLine" EntityType="Self.GuideLine" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MovementOrder" EntityType="Self.MovementOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParameterMaster" EntityType="Self.ParameterMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POGeneration" EntityType="Self.POGeneration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PolicyLetter" EntityType="Self.PolicyLetter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QAP" EntityType="Self.QAP" Schema="dbo" store:Type="Tables" />

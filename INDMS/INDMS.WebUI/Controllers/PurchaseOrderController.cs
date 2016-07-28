@@ -105,6 +105,18 @@ namespace INDMS.WebUI.Controllers
                                                         ctx.SaveChanges();
                                                     }
 
+                                                    if (m.PurchaseOrder.Id > 0)
+                                                    {
+                                                        POGeneration newPo = new POGeneration();
+                                                        newPo.PO_ID = m.PurchaseOrder.Id;
+
+                                                        using (var ctx = new INDMSEntities())
+                                                        {
+                                                            ctx.POGenerations.Add(newPo);
+                                                            ctx.SaveChanges();
+                                                        }
+                                                    }
+
                                                     TempData["RowId"] = m.PurchaseOrder.Id;
                                                     TempData["MSG"] = "Save Successfully";
 

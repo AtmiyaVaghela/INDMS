@@ -2057,6 +2057,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\MovementOrderController.cs" />
+    <Compile Include="Controllers\POFlowController.cs" />
     <Compile Include="Controllers\PurchaseOrderController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2138,6 +2139,7 @@
     <Compile Include="ViewModels\GeneralBookViewModel.cs" />
     <Compile Include="ViewModels\GuideLineViewModel.cs" />
     <Compile Include="ViewModels\MovementOrderViewModel.cs" />
+    <Compile Include="ViewModels\POFlowViewModel.cs" />
     <Compile Include="ViewModels\PolicyLetterViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\PurchaseOrderViewModel.cs" />
@@ -2270,6 +2272,7 @@
     <Content Include="Views\PurchaseOrder\Index.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\PurchaseOrder\New.cshtml" />
+    <Content Include="Views\POFlow\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

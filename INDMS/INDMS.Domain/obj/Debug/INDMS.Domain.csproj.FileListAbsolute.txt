@@ -55,6 +55,5 @@ C:\INDMS\INDMS.Domain\bin\Debug\EntityFramework.dll
 C:\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.dll
 C:\INDMS\INDMS.Domain\bin\Debug\EntityFramework.xml
 C:\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.xml
-C:\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.csprojResolveAssemblyReference.cache
 C:\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.dll
 C:\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.pdb

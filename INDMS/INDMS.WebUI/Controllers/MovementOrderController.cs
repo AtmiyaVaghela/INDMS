@@ -359,7 +359,7 @@ namespace INDMS.WebUI.Controllers {
                         return File(stream, "application/pdf", "MovementOrder.pdf");
                     }
                     catch (Exception ex) {
-                        throw;
+                        throw ex;
                     }
                 }
             }

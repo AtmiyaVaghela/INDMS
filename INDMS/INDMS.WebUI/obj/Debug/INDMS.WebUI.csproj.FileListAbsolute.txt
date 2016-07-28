@@ -227,6 +227,6 @@ C:\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Deployment.xml
 C:\INDMS\INDMS.WebUI\bin\System.Web.Webpages.Razor.xml
 C:\INDMS\INDMS.WebUI\bin\System.Web.Helpers.xml
 C:\INDMS\INDMS.WebUI\bin\System.Web.Mvc.xml
+C:\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.csprojResolveAssemblyReference.cache
 C:\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.dll
 C:\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.pdb
-C:\INDMS\INDMS.WebUI\obj\Debug\INDMS.WebUI.csprojResolveAssemblyReference.cache

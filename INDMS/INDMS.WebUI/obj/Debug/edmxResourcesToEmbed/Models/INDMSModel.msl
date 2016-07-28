@@ -206,5 +206,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="POGenerations">
+      <EntityTypeMapping TypeName="INDMSModel.POGeneration">
+        <MappingFragment StoreEntitySet="POGeneration">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="I_NOTE" ColumnName="I_NOTE" />
+          <ScalarProperty Name="QAP" ColumnName="QAP" />
+          <ScalarProperty Name="DRAWING" ColumnName="DRAWING" />
+          <ScalarProperty Name="PO_CORRESPONDENCE" ColumnName="PO_CORRESPONDENCE" />
+          <ScalarProperty Name="FCL" ColumnName="FCL" />
+          <ScalarProperty Name="PO_ID" ColumnName="PO_ID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
