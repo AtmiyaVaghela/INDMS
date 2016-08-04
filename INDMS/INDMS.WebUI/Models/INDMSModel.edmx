@@ -5,6 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="INDMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminCorrespondence">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileNo" Type="varchar(max)" />
+          <Property Name="LetterNo" Type="varchar(max)" />
+          <Property Name="Subject" Type="varchar(max)" />
+          <Property Name="TypeOf" Type="varchar(max)" />
+          <Property Name="From" Type="varchar(max)" />
+          <Property Name="To" Type="varchar(max)" />
+          <Property Name="CopyTo" Type="varchar(max)" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="FilePath" Type="varchar(max)" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Drawings">
           <Key>
             <PropertyRef Name="Id" />
@@ -19,6 +36,29 @@
           <Property Name="CreatedBy" Type="varchar(max)" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FCL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="POId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POName" Type="varchar(max)" />
+          <Property Name="POSrNo" Type="varchar(max)" />
+          <Property Name="Details" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileNo" Type="varchar(max)" />
+          <Property Name="Subject" Type="varchar(max)" />
+          <Property Name="FilePath" Type="varchar(max)" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Firms">
           <Key>
@@ -94,6 +134,18 @@
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Photographs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FolderName" Type="varchar(max)" />
+          <Property Name="Subject" Type="varchar(max)" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="FilePath" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="POGeneration">
           <Key>
             <PropertyRef Name="Id" />
@@ -159,6 +211,7 @@
           <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="POId" Type="numeric" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -195,6 +248,19 @@
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="TYMemo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FileNo" Type="varchar(max)" />
+          <Property Name="TYMemoNO" Type="varchar(max)" />
+          <Property Name="Subject" Type="varchar(max)" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="FilePath" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="varchar(max)" />
+          <Property Name="CreatedBy" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -211,12 +277,16 @@
           <Property Name="Designation" Type="varchar(max)" />
         </EntityType>
         <EntityContainer Name="INDMSModelStoreContainer">
+          <EntitySet Name="AdminCorrespondence" EntityType="Self.AdminCorrespondence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Drawings" EntityType="Self.Drawings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FCL" EntityType="Self.FCL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Firms" EntityType="Self.Firms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralBooks" EntityType="Self.GeneralBooks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GuideLine" EntityType="Self.GuideLine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MovementOrder" EntityType="Self.MovementOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParameterMaster" EntityType="Self.ParameterMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photographs" EntityType="Self.Photographs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="POGeneration" EntityType="Self.POGeneration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PolicyLetter" EntityType="Self.PolicyLetter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
@@ -224,6 +294,7 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Standards" EntityType="Self.Standards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StandingOrders" EntityType="Self.StandingOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TYMemo" EntityType="Self.TYMemo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -343,6 +414,11 @@
           <EntitySet Name="Firms" EntityType="INDMSModel.Firm" />
           <EntitySet Name="PurchaseOrders" EntityType="INDMSModel.PurchaseOrder" />
           <EntitySet Name="POGenerations" EntityType="INDMSModel.POGeneration" />
+          <EntitySet Name="FCLs" EntityType="INDMSModel.FCL" />
+          <EntitySet Name="AdminCorrespondences" EntityType="INDMSModel.AdminCorrespondence" />
+          <EntitySet Name="Files" EntityType="INDMSModel.File" />
+          <EntitySet Name="Photographs" EntityType="INDMSModel.Photograph" />
+          <EntitySet Name="TYMemoes" EntityType="INDMSModel.TYMemo" />
         </EntityContainer>
         <EntityType Name="Drawing">
           <Key>
@@ -374,6 +450,7 @@
           <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="POId" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="MovementOrder">
           <Key>
@@ -450,6 +527,71 @@
           <Property Name="QAP" Type="Int32" />
           <Property Name="I_NOTE" Type="Int32" />
           <Property Name="Active" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FCL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POId" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="POName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="POSrNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AdminCorrespondence">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LetterNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOf" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="From" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="To" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CopyTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Photograph">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FolderName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TYMemo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="FileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TYMemoNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -582,6 +724,7 @@
           <EntitySetMapping Name="QAPs">
             <EntityTypeMapping TypeName="INDMSModel.QAP">
               <MappingFragment StoreEntitySet="QAP">
+                <ScalarProperty Name="POId" ColumnName="POId" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="FilePath" ColumnName="FilePath" />
@@ -672,6 +815,76 @@
                 <ScalarProperty Name="PO_CORRESPONDENCE" ColumnName="PO_CORRESPONDENCE" />
                 <ScalarProperty Name="FCL" ColumnName="FCL" />
                 <ScalarProperty Name="PO_ID" ColumnName="PO_ID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FCLs">
+            <EntityTypeMapping TypeName="INDMSModel.FCL">
+              <MappingFragment StoreEntitySet="FCL">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="POSrNo" ColumnName="POSrNo" />
+                <ScalarProperty Name="POName" ColumnName="POName" />
+                <ScalarProperty Name="POId" ColumnName="POId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminCorrespondences">
+            <EntityTypeMapping TypeName="INDMSModel.AdminCorrespondence">
+              <MappingFragment StoreEntitySet="AdminCorrespondence">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CopyTo" ColumnName="CopyTo" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="TypeOf" ColumnName="TypeOf" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="LetterNo" ColumnName="LetterNo" />
+                <ScalarProperty Name="FileNo" ColumnName="FileNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="INDMSModel.File">
+              <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="FileNo" ColumnName="FileNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photographs">
+            <EntityTypeMapping TypeName="INDMSModel.Photograph">
+              <MappingFragment StoreEntitySet="Photographs">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="FolderName" ColumnName="FolderName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TYMemoes">
+            <EntityTypeMapping TypeName="INDMSModel.TYMemo">
+              <MappingFragment StoreEntitySet="TYMemo">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="TYMemoNO" ColumnName="TYMemoNO" />
+                <ScalarProperty Name="FileNo" ColumnName="FileNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

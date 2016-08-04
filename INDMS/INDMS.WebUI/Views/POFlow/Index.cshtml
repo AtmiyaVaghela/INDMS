@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            PO Timeline
+            PO Timeline - @Model.PO.PONo
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>PO</a></li>
@@ -23,6 +23,161 @@
             <div class="col-md-12">
                 <!-- The time line -->
                 <ul class="timeline">
+                    @if ((Model.POGeneration.QAP ?? 0) == 1)
+                    {
+                        if (Model.QAP != null)
+                        {
+                            <li>
+                                <i class="fa fa-envelope bg-aqua"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header">QAP</h3>
+                                    <div class="timeline-body">
+                                        <div class="row">
+                                            @Html.HiddenFor(x => Model.QAP.POId)
+
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("File No", new { @class = "control-label col-md-2" })
+                                                <div class="col-md-6">
+                                                    @Html.DisplayFor(model => model.QAP.FileNo, null, new { @class = "control-label" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("QAP No", new { @class = "control-label col-md-2" })
+                                                <div class="col-md-6">
+                                                    @Html.DisplayFor(model => model.QAP.QAPNo, null, new { @class = "control-label" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.LabelFor(model => model.QAP.Subject, new { @class = "control-label col-md-2" })
+                                                <div class="col-md-6">
+                                                    @Html.DisplayFor(model => model.QAP.Subject, null, new { @class = "control-label" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Approval Date", new { @class = "control-label col-md-2" })
+                                                <div class="col-md-6">
+                                                    @{
+                            string adate = Convert.ToString(Model.QAP.ApprovalDate);
+                            if (!string.IsNullOrEmpty(adate))
+                            {
+                                adate = Convert.ToDateTime(adate).ToString("dd-MMM-yyyy");
+                            }
+
+                                                    }
+                                                    @adate
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Approval By", new { @class = "control-label col-md-2" })
+                                                <div class="col-md-6">
+
+                                                    @Html.DisplayFor(m => m.QAP.ApprovedBy, new { @class = "control-label" })
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Drawing No. Reference", new { @class = "control-label col-md-2" })
+                                                <div class="col-md-6">
+                                                    @Html.DisplayFor(m => m.QAP.DrawingNoRef, new { @class = "control-label" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("File", new { @class = "control-label col-md-2" })
+                                                <div class="col-md-6">
+                                                    <a href="@Model.QAP.FilePath" target="_blank" class="fa fa-folder-open-o" title="Open">Open</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <div class="col-md-4">
+                                                    @Html.ActionLink("Edit", "Edit", "QAP", new { @id = Model.QAP.Id }, new { @class = "btn btn-primary" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-footer"></div>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <i class="fa fa-envelope bg-aqua"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header">
+                                        @Html.ActionLink("Add QAP", "New", "QAP", new { @Id = Model.PO.Id }, new { @class = "btn btn-primary" })
+                                    </h3>
+                                    <div class="timeline-body"></div>
+                                    <div class="timeline-footer"></div>
+                                </div>
+                            </li>
+                        }
+                    }
+                    @if ((Model.POGeneration.FCL ?? 0) == 1)
+                    {
+                        if (Model.FCL != null)
+                        {
+                            <li>
+                                <i class="fa fa-envelope bg-aqua"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header">FCL</h3>
+                                    <div class="timeline-body">
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("", "PO Name", new { @class = "control-label col-md-2" })
+                                                <div class="col-md-4">
+                                                    @Html.DisplayFor(m => m.FCL.POName, new { @class = "control-label col-md-2" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("", "PO No", new { @class = "control-label col-md-2" })
+                                                <div class="col-md-4">
+                                                    @Html.DisplayFor(m => m.FCL.POSrNo, new { @class = "control-label col-md-2" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("", "Details", new { @class = "control-label col-md-2" })
+                                                <div class="col-md-4">
+                                                    @Html.DisplayFor(m => m.FCL.Details, new { @class = "control-label col-md-2" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <div class="col-md-4">
+                                                    @Html.ActionLink("Edit", "Edit", "FCL", new { @id = Model.FCL.Id }, new { @class = "btn btn-primary" })
+                                                    @Html.ActionLink("Print FCL", "Print", "FCL", new { @id = Model.FCL.Id }, new { @class = "btn btn-primary" })
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-footer"></div>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <i class="fa fa-envelope bg-aqua"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header">
+                                        @Html.ActionLink("Add New FCL", "New", "FCL", new { @Id = Model.PO.Id }, new { @class = "btn btn-primary" })
+                                    </h3>
+                                    <div class="timeline-body"></div>
+                                    <div class="timeline-footer"></div>
+                                </div>
+                            </li>
+                        }
+                    }
+
+
+
                     <!-- timeline time label -->
                     <li class="time-label">
                         <span class="bg-red">
@@ -34,7 +189,6 @@
                     </li>
                     <!-- /.timeline-label -->
                     <!-- timeline item -->
-
                     <li>
                         <i class="fa fa-envelope bg-blue"></i>
                         <div class="timeline-item">
@@ -44,14 +198,14 @@
                                     <div class="form-group col-md-12">
                                         @Html.Label("", "File No", new { @class = "control-label col-md-2" })
                                         <div class="col-md-4">
-                                            @Html.LabelFor(m=>m.PO.FileNo, new { @class = "control-label col-md-2" })
+                                            @Html.DisplayFor(m => m.PO.FileNo, new { @class = "control-label col-md-2" })
                                         </div>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         @Html.Label("", "PO No", new { @class = "control-label col-md-2" })
                                         <div class="col-md-4">
-                                            @Html.LabelFor(m => m.PO.PONo, new { @class = "control-label col-md-2" })
+                                            @Html.DisplayFor(m => m.PO.PONo, new { @class = "control-label col-md-2" })
                                         </div>
                                     </div>
 
@@ -65,21 +219,21 @@
                                     <div class="form-group col-md-12">
                                         @Html.Label("", "PO Value", new { @class = "control-label col-md-2" })
                                         <div class="col-md-4">
-                                            @Html.LabelFor(m => m.PO.POValue, new { @class = "control-label col-md-2" })
+                                            @Html.DisplayFor(m => m.PO.POValue, new { @class = "control-label col-md-2" })
                                         </div>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         @Html.Label("", "Quantity", new { @class = "control-label col-md-2" })
                                         <div class="col-md-4">
-                                            @Html.LabelFor(m => m.PO.Quantity, new { @class = "control-label col-md-2" })
+                                            @Html.DisplayFor(m => m.PO.Quantity, new { @class = "control-label col-md-2" })
                                         </div>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         @Html.Label("", "No. OF Lots", new { @class = "control-label col-md-2" })
                                         <div class="col-md-4">
-                                            @Html.LabelFor(m => m.PO.NoOfLots, new { @class = "control-label col-md-2" })
+                                            @Html.DisplayFor(m => m.PO.NoOfLots, new { @class = "control-label col-md-2" })
                                         </div>
                                     </div>
 
@@ -96,35 +250,33 @@
                                     <div class="form-group col-md-12">
                                         @Html.Label("", "PO Placing Authority", new { @class = "control-label col-md-2" })
                                         <div class="col-md-4">
-                                            @Html.LabelFor(m => m.PO.PoPlacingAuthority, new { @class = "control-label col-md-2" })
+                                            @Html.DisplayFor(m => m.PO.PoPlacingAuthority, new { @class = "control-label col-md-2" })
                                         </div>
-
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         @Html.Label("", "Nominated Quality Inspector's Name", new { @class = "control-label col-md-2" })
                                         <div class="col-md-4">
-                                            @Html.LabelFor(m => m.PO.Inspectors, new { @class = "control-label col-md-2" })
+                                            @Html.DisplayFor(m => m.PO.Inspectors, new { @class = "control-label col-md-2" })
                                         </div>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         @Html.Label("", "Firm Name", new { @class = "control-label col-md-2" })
                                         <div class="col-md-4">
-                                            @Html.LabelFor(m => m.PO.Firm, new { @class = "control-label col-md-2" })
+                                            @Html.DisplayFor(m => m.PO.Firm, new { @class = "control-label col-md-2" })
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12">
                                         @Html.Label("", "Firm Address", new { @class = "control-label col-md-2" })
                                         <div class="col-md-4">
-                                            @Html.LabelFor(m => m.PO.FirmAddress, new { @class = "control-label col-md-2" })
+                                            @Html.DisplayFor(m => m.PO.FirmAddress, new { @class = "control-label col-md-2" })
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="timeline-footer">
                                 <a class="btn btn-primary btn-xs">Read more</a>
-
                             </div>
                         </div>
                     </li>
@@ -142,7 +294,7 @@
     <script>
         $(function () {
             $('li').removeClass("active");
-            $('#liPo').addClass("active")
+            $('#liPo').addClass("active");
         });
     </script>
 }

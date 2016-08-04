@@ -2052,13 +2052,19 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminCorrespondenceController.cs" />
+    <Compile Include="Controllers\AdminFileController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FCLController.cs" />
     <Compile Include="Controllers\FirmsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\MovementOrderController.cs" />
+    <Compile Include="Controllers\PhotographsController.cs" />
     <Compile Include="Controllers\POFlowController.cs" />
     <Compile Include="Controllers\PurchaseOrderController.cs" />
+    <Compile Include="Controllers\QAPController.cs" />
+    <Compile Include="Controllers\TYMemoController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2069,10 +2075,19 @@
     <Compile Include="Infrastructure\Filters\AuthUser.cs" />
     <Compile Include="Infrastructure\Filters\ExceptionHandlerAttribute.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\AdminCorrespondence.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Drawing.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ExceptionLogger.cs" />
+    <Compile Include="Models\FCL.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\File.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Firm.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
@@ -2103,6 +2118,9 @@
     <Compile Include="Models\ParameterMaster.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Photograph.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\POGeneration.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
@@ -2124,18 +2142,30 @@
     <Compile Include="Models\StandingOrder.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TYMemo.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\AppendixA.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppendixA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\MovementOrder.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MovementOrder.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ViewModels\AdminFileViewModel.cs" />
+    <Compile Include="ViewModels\AppendixAViewModel.cs" />
     <Compile Include="ViewModels\ChangePassword.cs" />
     <Compile Include="ViewModels\DrawingViewModel.cs" />
+    <Compile Include="ViewModels\FCLViewModel.cs" />
     <Compile Include="ViewModels\GeneralBookViewModel.cs" />
     <Compile Include="ViewModels\GuideLineViewModel.cs" />
     <Compile Include="ViewModels\MovementOrderViewModel.cs" />
@@ -2273,6 +2303,15 @@
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\PurchaseOrder\New.cshtml" />
     <Content Include="Views\POFlow\Index.cshtml" />
+    <Content Include="Views\FCL\New.cshtml" />
+    <Content Include="Views\FCL\Edit.cshtml" />
+    <Content Include="Views\QAP\New.cshtml" />
+    <Content Include="Views\AdminFile\Index.cshtml" />
+    <Content Include="Views\AdminCorrespondence\Index.cshtml" />
+    <Content Include="Views\Photographs\Index.cshtml" />
+    <Content Include="Views\TYMemo\Index.cshtml" />
+    <Content Include="Views\AdminFile\New.cshtml" />
+    <Content Include="Views\AdminFile\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2288,6 +2327,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logs\" />
+    <Folder Include="Uploads\AdminFile\" />
     <Folder Include="Uploads\Drawings\" />
     <Folder Include="Uploads\GeneralBooks\" />
     <Folder Include="Uploads\GuideLines\" />
@@ -2302,6 +2342,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\AppendixA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AppendixA.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\MovementOrder.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MovementOrder.cs</LastGenOutput>

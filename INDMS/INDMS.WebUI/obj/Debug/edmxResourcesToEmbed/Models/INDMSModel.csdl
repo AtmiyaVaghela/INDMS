@@ -113,6 +113,11 @@
     <EntitySet Name="Firms" EntityType="INDMSModel.Firm" />
     <EntitySet Name="PurchaseOrders" EntityType="INDMSModel.PurchaseOrder" />
     <EntitySet Name="POGenerations" EntityType="INDMSModel.POGeneration" />
+    <EntitySet Name="FCLs" EntityType="INDMSModel.FCL" />
+    <EntitySet Name="AdminCorrespondences" EntityType="INDMSModel.AdminCorrespondence" />
+    <EntitySet Name="Files" EntityType="INDMSModel.File" />
+    <EntitySet Name="Photographs" EntityType="INDMSModel.Photograph" />
+    <EntitySet Name="TYMemoes" EntityType="INDMSModel.TYMemo" />
   </EntityContainer>
   <EntityType Name="Drawing">
     <Key>
@@ -144,6 +149,7 @@
     <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="POId" Type="Decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="MovementOrder">
     <Key>
@@ -220,5 +226,70 @@
     <Property Name="QAP" Type="Int32" />
     <Property Name="I_NOTE" Type="Int32" />
     <Property Name="Active" Type="Int32" />
+  </EntityType>
+  <EntityType Name="FCL">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="POId" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="POName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="POSrNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AdminCorrespondence">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LetterNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TypeOf" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="From" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="To" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CopyTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="File">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Photograph">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FolderName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TYMemo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="FileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TYMemoNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
 </Schema>

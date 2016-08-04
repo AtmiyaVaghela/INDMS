@@ -4,21 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8124c6afd2f44672b21b68a6630da568" Name="Diagram1">
+      <Diagram DiagramId="8124c6afd2f44672b21b68a6630da568" Name="Diagram1" ShowGrid="true">
         <EntityTypeShape EntityType="INDMSModel.GeneralBook" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="INDMSModel.GuideLine" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="INDMSModel.ParameterMaster" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="INDMSModel.PolicyLetter" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="INDMSModel.Role" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="INDMSModel.Standard" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="INDMSModel.StandingOrder" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INDMSModel.ParameterMaster" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INDMSModel.PolicyLetter" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INDMSModel.Role" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INDMSModel.Standard" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INDMSModel.StandingOrder" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="INDMSModel.User" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="INDMSModel.Drawing" Width="1.5" PointX="3.375" PointY="7.75" />
-        <EntityTypeShape EntityType="INDMSModel.QAP" Width="1.5" PointX="5.375" PointY="8.75" />
-        <EntityTypeShape EntityType="INDMSModel.MovementOrder" Width="1.5" PointX="7.375" PointY="8.75" />
-        <EntityTypeShape EntityType="INDMSModel.Firm" Width="1.5" PointX="9.375" PointY="0.75" />
-        <EntityTypeShape EntityType="INDMSModel.PurchaseOrder" Width="1.5" PointX="9.375" PointY="3.75" />
-        <EntityTypeShape EntityType="INDMSModel.POGeneration" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="INDMSModel.Drawing" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="INDMSModel.QAP" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="INDMSModel.MovementOrder" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="INDMSModel.Firm" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="INDMSModel.PurchaseOrder" Width="1.5" PointX="6.75" PointY="8.75" />
+        <EntityTypeShape EntityType="INDMSModel.POGeneration" Width="1.5" PointX="8.75" PointY="8.75" />
+        <EntityTypeShape EntityType="INDMSModel.FCL" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="INDMSModel.AdminCorrespondence" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="INDMSModel.File" Width="1.5" PointX="10.75" PointY="9.75" />
+        <EntityTypeShape EntityType="INDMSModel.Photograph" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="INDMSModel.TYMemo" Width="1.5" PointX="12.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

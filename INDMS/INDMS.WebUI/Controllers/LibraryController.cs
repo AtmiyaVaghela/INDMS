@@ -1474,8 +1474,6 @@ namespace INDMS.WebUI.Controllers
                                             m.QAP.DrawingNoRef = m.QAP.DrawingNoRef.Substring(0, m.QAP.DrawingNoRef.Length - 1);
                                         }
 
-
-
                                         m.QAP.CreatedBy = Request.Cookies["INDMS"]["UserID"];
                                         m.QAP.CreatedDate = null;
 
@@ -1517,7 +1515,10 @@ namespace INDMS.WebUI.Controllers
                     TempData["Error"] = ex.Message;
                 }
             }
+
             return View(m);
+
+
         }
 
         [AuthUser]

@@ -109,6 +109,7 @@ namespace INDMS.WebUI.Controllers
                                                     {
                                                         POGeneration newPo = new POGeneration();
                                                         newPo.PO_ID = m.PurchaseOrder.Id;
+                                                        newPo.FCL = 1;
 
                                                         using (var ctx = new INDMSEntities())
                                                         {

@@ -1,5 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="INDMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdminCorrespondence">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileNo" Type="varchar(max)" />
+    <Property Name="LetterNo" Type="varchar(max)" />
+    <Property Name="Subject" Type="varchar(max)" />
+    <Property Name="TypeOf" Type="varchar(max)" />
+    <Property Name="From" Type="varchar(max)" />
+    <Property Name="To" Type="varchar(max)" />
+    <Property Name="CopyTo" Type="varchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="FilePath" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
   <EntityType Name="Drawings">
     <Key>
       <PropertyRef Name="Id" />
@@ -14,6 +31,29 @@
     <Property Name="CreatedBy" Type="varchar(max)" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FCL">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="POName" Type="varchar(max)" />
+    <Property Name="POSrNo" Type="varchar(max)" />
+    <Property Name="Details" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Files">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileNo" Type="varchar(max)" />
+    <Property Name="Subject" Type="varchar(max)" />
+    <Property Name="FilePath" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Firms">
     <Key>
@@ -89,6 +129,18 @@
     <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="Photographs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FolderName" Type="varchar(max)" />
+    <Property Name="Subject" Type="varchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="FilePath" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
+  </EntityType>
   <EntityType Name="POGeneration">
     <Key>
       <PropertyRef Name="Id" />
@@ -154,6 +206,7 @@
     <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="POId" Type="numeric" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -190,6 +243,19 @@
     <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="TYMemo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FileNo" Type="varchar(max)" />
+    <Property Name="TYMemoNO" Type="varchar(max)" />
+    <Property Name="Subject" Type="varchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="FilePath" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="UserId" />
@@ -206,12 +272,16 @@
     <Property Name="Designation" Type="varchar(max)" />
   </EntityType>
   <EntityContainer Name="INDMSModelStoreContainer">
+    <EntitySet Name="AdminCorrespondence" EntityType="Self.AdminCorrespondence" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Drawings" EntityType="Self.Drawings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FCL" EntityType="Self.FCL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Firms" EntityType="Self.Firms" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GeneralBooks" EntityType="Self.GeneralBooks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GuideLine" EntityType="Self.GuideLine" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MovementOrder" EntityType="Self.MovementOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParameterMaster" EntityType="Self.ParameterMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Photographs" EntityType="Self.Photographs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="POGeneration" EntityType="Self.POGeneration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PolicyLetter" EntityType="Self.PolicyLetter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
@@ -219,6 +289,7 @@
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Standards" EntityType="Self.Standards" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StandingOrders" EntityType="Self.StandingOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TYMemo" EntityType="Self.TYMemo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
