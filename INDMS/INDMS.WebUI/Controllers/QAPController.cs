@@ -2,7 +2,6 @@
 using INDMS.WebUI.Models;
 using INDMS.WebUI.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -56,20 +55,16 @@ namespace INDMS.WebUI.Controllers
         [AuthUser]
         public ActionResult New(QAPViewModel m, HttpPostedFileBase inputFile)
         {
-
-
             if (ModelState.IsValid)
             {
                 try
                 {
-
                     using (var ctx = new INDMSEntities())
                     {
                         m.POGeneration = ctx.POGenerations.Where(x => x.PO_ID == m.QAP.POId).FirstOrDefault();
                         m.PO = ctx.PurchaseOrders.Find(m.QAP.POId);
                         if (m.PO != null)
                         {
-               
                             m.QAP.PONo = m.PO.PONo;
                         }
                     }
@@ -107,7 +102,6 @@ namespace INDMS.WebUI.Controllers
                                                 ctx.QAPs.Add(m.QAP);
                                                 ctx.SaveChanges();
                                             }
-
 
                                             TempData["RowId"] = m.QAP.Id;
                                             TempData["MSG"] = "Save Successfully";

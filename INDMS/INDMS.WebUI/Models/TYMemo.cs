@@ -20,7 +20,7 @@ namespace INDMS.WebUI.Models
         public string Subject { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public string FilePath { get; set; }
-        public string CreatedDate { get; set; }
-        public byte[] CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

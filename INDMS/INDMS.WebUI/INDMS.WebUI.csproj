@@ -2161,6 +2161,7 @@
       <DependentUpon>MovementOrder.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ViewModels\AdminCorrespondenceViewModel.cs" />
     <Compile Include="ViewModels\AdminFileViewModel.cs" />
     <Compile Include="ViewModels\AppendixAViewModel.cs" />
     <Compile Include="ViewModels\ChangePassword.cs" />
@@ -2169,6 +2170,7 @@
     <Compile Include="ViewModels\GeneralBookViewModel.cs" />
     <Compile Include="ViewModels\GuideLineViewModel.cs" />
     <Compile Include="ViewModels\MovementOrderViewModel.cs" />
+    <Compile Include="ViewModels\PhotographsViewModel.cs" />
     <Compile Include="ViewModels\POFlowViewModel.cs" />
     <Compile Include="ViewModels\PolicyLetterViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
@@ -2176,6 +2178,7 @@
     <Compile Include="ViewModels\QAPViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />
     <Compile Include="ViewModels\StandingOrderViewModel.cs" />
+    <Compile Include="ViewModels\TYMemoViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2312,6 +2315,12 @@
     <Content Include="Views\TYMemo\Index.cshtml" />
     <Content Include="Views\AdminFile\New.cshtml" />
     <Content Include="Views\AdminFile\Edit.cshtml" />
+    <Content Include="Views\AdminCorrespondence\New.cshtml" />
+    <Content Include="Views\AdminCorrespondence\Edit.cshtml" />
+    <Content Include="Views\Photographs\New.cshtml" />
+    <Content Include="Views\Photographs\Edit.cshtml" />
+    <Content Include="Views\TYMemo\New.cshtml" />
+    <Content Include="Views\TYMemo\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2327,15 +2336,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logs\" />
+    <Folder Include="Uploads\AdminCorrespondence\" />
     <Folder Include="Uploads\AdminFile\" />
     <Folder Include="Uploads\Drawings\" />
     <Folder Include="Uploads\GeneralBooks\" />
     <Folder Include="Uploads\GuideLines\" />
+    <Folder Include="Uploads\Photographs\" />
     <Folder Include="Uploads\PolicyLetter\" />
     <Folder Include="Uploads\PurchaseOrder\" />
     <Folder Include="Uploads\QAP\" />
     <Folder Include="Uploads\Standards\" />
     <Folder Include="Uploads\StandingOrders\" />
+    <Folder Include="Uploads\TYMemos\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

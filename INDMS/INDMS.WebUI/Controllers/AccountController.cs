@@ -8,7 +8,6 @@ using System.Web.Mvc;
 
 namespace INDMS.WebUI.Controllers
 {
-
     public class AccountController : Controller
     {
         private INDMSEntities db = new INDMSEntities();
@@ -59,10 +58,10 @@ namespace INDMS.WebUI.Controllers
                             }
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Response.Write(ex.StackTrace);
-                    } 
+                    }
                 }
             }
 

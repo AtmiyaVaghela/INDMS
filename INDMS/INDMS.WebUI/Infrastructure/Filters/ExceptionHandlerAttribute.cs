@@ -6,10 +6,8 @@ using System.Web.Mvc;
 
 namespace INDMS.WebUI.Infrastructure.Filters
 {
-
     public class ExceptionHandlerAttribute : FilterAttribute, IExceptionFilter
     {
-
         public void OnException(ExceptionContext filterContext)
         {
             if (!filterContext.ExceptionHandled)
@@ -24,7 +22,7 @@ namespace INDMS.WebUI.Infrastructure.Filters
 
                 WriteToFile(logger);
 
-                HttpContext.Current.Response.Write(logger.ExceptionMessage+" \n "+logger.ExceptionStackTrace);
+                HttpContext.Current.Response.Write(logger.ExceptionMessage + " \n " + logger.ExceptionStackTrace);
 
                 filterContext.ExceptionHandled = true;
             }

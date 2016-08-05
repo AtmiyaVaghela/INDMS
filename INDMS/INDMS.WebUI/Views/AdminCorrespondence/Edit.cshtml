@@ -1,0 +1,153 @@
+﻿@model INDMS.WebUI.ViewModels.AdminCorrespondenceViewModel
+@{
+    ViewBag.Title = "New - AdminCorrespondence";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            New - AdminCorrespondence
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active"><a href="#"><i class="fa fa-dashboard"></i>AdminCorrespondence</a></li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Your Page Content Here -->
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["MSG"] != null)
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["MSG"]
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["Error"]
+                    </div>
+                }
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            <p>@Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })</p>
+                        </h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    @using (Html.BeginForm("New", "AdminCorrespondence", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-horizontal">
+                            @Html.AntiForgeryToken()
+                            <div class="box-body">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(x => x.AdminCorrespondence.Id)
+                                <div class="form-group">
+                                    @Html.Label("File No", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.AdminCorrespondence.FileNo, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AdminCorrespondence.FileNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "Letter No.", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.AdminCorrespondence.LetterNo, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AdminCorrespondence.LetterNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.AdminCorrespondence.Subject, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.AdminCorrespondence.Subject, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AdminCorrespondence.Subject, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "Type Of Correspondence", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.AdminCorrespondence.TypeOf, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AdminCorrespondence.TypeOf, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.AdminCorrespondence.From, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.AdminCorrespondence.From, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AdminCorrespondence.From, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.AdminCorrespondence.To, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.AdminCorrespondence.To, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AdminCorrespondence.To, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "Copy To", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.AdminCorrespondence.CopyTo, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AdminCorrespondence.CopyTo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Date", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.AdminCorrespondence.Date, new { @class = "form-control dp" })
+                                        </div><!-- /.input group -->
+                                        @Html.ValidationMessageFor(model => model.AdminCorrespondence.Date, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("File", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.HiddenFor(x => @Model.file)
+                                        @if (Model.file != null)
+                                        {
+                                            <a href="@Model.file" target="_blank" class="fa fa-folder-open-o" title="Open">Open</a>
+                                        }
+                                        <input type="file" id="inputFile" name="inputFile">
+                                        <p class="help-block">File must be PDF.</p>
+                                    </div>
+                                </div>
+                            </div><!-- /.box-body -->
+                            <div class="box-footer">
+                                <div class="col-md-offset-2 col-md-4">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+@section scripts{
+    <script>
+        $(function () {
+            $('li').removeClass("active");
+            $('#liAdminFiles').addClass("active");
+            $('#liAdminCorrespondence').addClass("active");
+            $('#liAdminCorrespondence i').addClass("text-aqua");
+        });
+    </script>
+}

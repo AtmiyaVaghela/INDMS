@@ -67,10 +67,10 @@
                                 <div class="form-group">
                                     @Html.Label("File", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.HiddenFor(x => @Model.file)
-                                        @if (Model.file != null)
+                                        @Html.HiddenFor(x => @Model.file1)
+                                        @if (Model.file1 != null)
                                         {
-                                            <a href="@Model.file" target="_blank" class="fa fa-folder-open-o" title="Open">Open</a>
+                                            <a href="@Model.file1" target="_blank" class="fa fa-folder-open-o" title="Open">Open</a>
                                         }
                                         <input type="file" id="inputFile" name="inputFile">
                                         <p class="help-block">File must be PDF.</p>

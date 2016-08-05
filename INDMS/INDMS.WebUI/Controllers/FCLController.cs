@@ -8,7 +8,6 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace INDMS.WebUI.Controllers
@@ -24,7 +23,6 @@ namespace INDMS.WebUI.Controllers
         [AuthUser]
         public ActionResult New(int? Id)
         {
-
             FCLViewModel m = new FCLViewModel();
 
             if (Id == null)
@@ -70,7 +68,6 @@ namespace INDMS.WebUI.Controllers
                     {
                         if (!string.IsNullOrEmpty(m.FCL.Details))
                         {
-
                             m.FCL.POId = m.PO.Id;
                             m.FCL.CreatedBy = Request.Cookies["INDMS"]["UserID"];
                             m.FCL.CreatedDate = null;
@@ -162,7 +159,6 @@ namespace INDMS.WebUI.Controllers
                     {
                         if (!string.IsNullOrEmpty(m.FCL.Details))
                         {
-
                             m.FCL.POId = m.PO.Id;
                             m.FCL.CreatedBy = Request.Cookies["INDMS"]["UserID"];
                             m.FCL.CreatedDate = DateTime.Now;
@@ -200,7 +196,6 @@ namespace INDMS.WebUI.Controllers
             }
 
             return View();
-
         }
 
         [AuthUser]
@@ -230,9 +225,6 @@ namespace INDMS.WebUI.Controllers
                         m.PO = ctx.PurchaseOrders.Find(m.FCL.POId);
                         if (m.PO != null)
                         {
-
-
-
                             md.FCLNo = m.FCL.Id.ToString();
                             md.Date = DateTime.Now.ToString("dd-MM-yyyy");
                             int firmId = Convert.ToInt32(m.PO.Firm);

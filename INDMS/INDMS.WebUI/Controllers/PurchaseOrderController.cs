@@ -10,10 +10,8 @@ using System.Web.Mvc;
 
 namespace INDMS.WebUI.Controllers
 {
-
     public class PurchaseOrderController : Controller
     {
-
         // GET: PurchaseOrder
         [AuthUser]
         public ActionResult Index()

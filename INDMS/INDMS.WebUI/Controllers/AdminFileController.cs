@@ -2,7 +2,6 @@
 using INDMS.WebUI.Models;
 using INDMS.WebUI.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -112,15 +111,15 @@ namespace INDMS.WebUI.Controllers
                 }
                 else
                 {
-                    m.file = m.File.FilePath;
+                    m.file1 = m.File.FilePath;
                 }
             }
             return View(m);
         }
 
+        [HttpPost]
         [AuthUser]
         [ValidateAntiForgeryToken]
-        [HttpPost]
         public ActionResult Edit(AdminFileViewModel m, HttpPostedFileBase inputFile)
         {
             if (ModelState.IsValid)
@@ -145,11 +144,11 @@ namespace INDMS.WebUI.Controllers
                         }
                         else
                         {
-                            m.File.FilePath = m.file;
+                            m.File.FilePath = m.file1;
                         }
 
                         m.File.CreatedBy = Request.Cookies["INDMS"]["UserID"];
-                        m.File.CreatedDate = null;
+                        m.File.CreatedDate = DateTime.Now;
 
                         using (var ctx = new INDMSEntities())
                         {

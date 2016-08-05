@@ -253,8 +253,8 @@
     <Property Name="Subject" Type="varchar(max)" />
     <Property Name="Date" Type="datetime" />
     <Property Name="FilePath" Type="varchar(max)" />
-    <Property Name="CreatedDate" Type="varchar(max)" />
-    <Property Name="CreatedBy" Type="varbinary(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="User">
     <Key>

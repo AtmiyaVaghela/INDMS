@@ -258,8 +258,8 @@
           <Property Name="Subject" Type="varchar(max)" />
           <Property Name="Date" Type="datetime" />
           <Property Name="FilePath" Type="varchar(max)" />
-          <Property Name="CreatedDate" Type="varchar(max)" />
-          <Property Name="CreatedBy" Type="varbinary(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -590,8 +590,8 @@
           <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedBy" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

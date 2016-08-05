@@ -39,21 +39,18 @@
                                                 @Html.Label("File No", new { @class = "control-label col-md-2" })
                                                 <div class="col-md-6">
                                                     @Html.DisplayFor(model => model.QAP.FileNo, null, new { @class = "control-label" })
-
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 @Html.Label("QAP No", new { @class = "control-label col-md-2" })
                                                 <div class="col-md-6">
                                                     @Html.DisplayFor(model => model.QAP.QAPNo, null, new { @class = "control-label" })
-
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 @Html.LabelFor(model => model.QAP.Subject, new { @class = "control-label col-md-2" })
                                                 <div class="col-md-6">
                                                     @Html.DisplayFor(model => model.QAP.Subject, null, new { @class = "control-label" })
-
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
@@ -76,7 +73,6 @@
 
                                                     @Html.DisplayFor(m => m.QAP.ApprovedBy, new { @class = "control-label" })
                                                 </div>
-
                                             </div>
                                             <div class="form-group col-md-12">
                                                 @Html.Label("Drawing No. Reference", new { @class = "control-label col-md-2" })
@@ -153,7 +149,6 @@
                                                     @Html.ActionLink("Edit", "Edit", "FCL", new { @id = Model.FCL.Id }, new { @class = "btn btn-primary" })
                                                     @Html.ActionLink("Print FCL", "Print", "FCL", new { @id = Model.FCL.Id }, new { @class = "btn btn-primary" })
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -175,8 +170,6 @@
                             </li>
                         }
                     }
-
-
 
                     <!-- timeline time label -->
                     <li class="time-label">
@@ -298,4 +291,3 @@
         });
     </script>
 }
-

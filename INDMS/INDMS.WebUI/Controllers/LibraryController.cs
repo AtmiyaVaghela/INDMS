@@ -14,7 +14,6 @@ using System.Web.Mvc;
 
 namespace INDMS.WebUI.Controllers
 {
-
     [ExceptionHandler]
     public class LibraryController : Controller
     {
@@ -1428,7 +1427,6 @@ namespace INDMS.WebUI.Controllers
 
                     item.DrawingNoRef = item.DrawingNoRef.Substring(0, item.DrawingNoRef.Length - 1);
                 }
-
             }
             return View(m);
         }
@@ -1436,8 +1434,6 @@ namespace INDMS.WebUI.Controllers
         [AuthUser]
         public ActionResult QAPNew()
         {
-
-
             return View();
         }
 
@@ -1517,8 +1513,6 @@ namespace INDMS.WebUI.Controllers
             }
 
             return View(m);
-
-
         }
 
         [AuthUser]

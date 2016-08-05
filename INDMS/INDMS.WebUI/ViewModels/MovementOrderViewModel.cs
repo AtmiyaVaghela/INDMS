@@ -1,9 +1,10 @@
 ﻿using INDMS.WebUI.Models;
 using System.Collections.Generic;
 
-namespace INDMS.WebUI.ViewModels {
-
-    public class MovementOrderViewModel {
+namespace INDMS.WebUI.ViewModels
+{
+    public class MovementOrderViewModel
+    {
         public MovementOrder MovementOrder { get; set; }
         public string OnwordDateAndTime { get; set; }
         public string ReturnDateAndTime { get; set; }

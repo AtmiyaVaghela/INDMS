@@ -1,10 +1,11 @@
 ﻿using System.Web.Optimization;
 
-namespace INDMS.WebUI.App_Start {
-
-    public class BundleConfig {
-
-        public static void RegisterBundles(BundleCollection bundles) {
+namespace INDMS.WebUI.App_Start
+{
+    public class BundleConfig
+    {
+        public static void RegisterBundles(BundleCollection bundles)
+        {
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                 "~/Content/bootstrap.min.css",
                 "~/plugins/font-awesome-4.6.2/css/font-awesome.min.css",

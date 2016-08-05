@@ -1,4 +1,5 @@
-﻿@{
+﻿@model INDMS.WebUI.ViewModels.AdminCorrespondenceViewModel
+@{
     ViewBag.Title = "Admin Correspondence";
 }
 
@@ -36,16 +37,77 @@
 
                 <div class="box">
                     <div class="box-header">
-
+                        <h3 class="box-title">@Html.ActionLink("New", "New", "AdminCorrespondence", null, new { @class = "btn btn-primary" })</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                        <h1>Under Development</h1>
-
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
-
+                                <tr>
+                                    <td>
+                                        File No
+                                    </td>
+                                    <td>
+                                        Letter No
+                                    </td>
+                                    <td>
+                                        Subject
+                                    </td>
+                                    <td>
+                                        Type
+                                    </td>
+                                    <td>
+                                        From
+                                    </td>
+                                    <td>
+                                        To
+                                    </td>
+                                    <td>
+                                        Copy To
+                                    </td>
+                                    <td>
+                                        Date
+                                    </td>
+                                    <td></td>
+                                </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                                @if (Model.AdminCorrespondences != null)
+                                {
+                                    foreach (var item in Model.AdminCorrespondences)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.FileNo
+                                            </td>
+                                            <td>
+                                                @item.LetterNo
+                                            </td>
+                                            <td>
+                                                @item.Subject
+                                            </td>
+                                            <td>
+                                                @item.TypeOf
+                                            </td>
+                                            <td>
+                                                @item.From
+                                            </td>
+                                            <td>
+                                                @item.To
+                                            </td>
+                                            <td>
+                                                @item.CopyTo
+                                            </td>
+                                            <td>
+                                                @item.Date
+                                            </td>
+                                            <td>
+                                                <a href="@item.FilePath" target="_blank" class="fa fa-folder-open-o" title="Open"></a> |
+                                                @Html.ActionLink(" ", "Edit", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
                         </table>
                     </div>
                 </div>

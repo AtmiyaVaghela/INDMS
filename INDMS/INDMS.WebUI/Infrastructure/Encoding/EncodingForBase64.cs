@@ -1,9 +1,11 @@
-﻿namespace INDMS.WebUI.Infrastructure.Encoding {
-
-    public static class EncodingForBase64 {
-
-        public static string EncodeBase64(this System.Text.Encoding encoding, string text) {
-            if (text == null) {
+﻿namespace INDMS.WebUI.Infrastructure.Encoding
+{
+    public static class EncodingForBase64
+    {
+        public static string EncodeBase64(this System.Text.Encoding encoding, string text)
+        {
+            if (text == null)
+            {
                 return null;
             }
 
@@ -11,8 +13,10 @@
             return System.Convert.ToBase64String(textAsBytes);
         }
 
-        public static string DecodeBase64(this System.Text.Encoding encoding, string encodedText) {
-            if (encodedText == null) {
+        public static string DecodeBase64(this System.Text.Encoding encoding, string encodedText)
+        {
+            if (encodedText == null)
+            {
                 return null;
             }
 

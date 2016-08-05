@@ -1,4 +1,5 @@
-﻿@{
+﻿@model INDMS.WebUI.ViewModels.TYMemoViewModel
+@{
     ViewBag.Title = "TY Memo";
 }
 
@@ -36,16 +37,54 @@
 
                 <div class="box">
                     <div class="box-header">
-
+                        <h3 class="box-title">@Html.ActionLink("New", "New", "TYMemo", null, new { @class = "btn btn-primary" })</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                        <h1>Under Development</h1>
-
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
-
+                                <tr>
+                                    <td>
+                                        File No
+                                    </td>
+                                    <td>
+                                        TY Memo No
+                                    </td>
+                                    <td>
+                                        Subject
+                                    </td>
+                                    <td>
+                                        Date
+                                    </td>
+                                    <td></td>
+                                </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                                @if (Model.TYMemos != null)
+                                {
+                                    foreach (var item in Model.TYMemos)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.FileNo
+                                            </td>
+                                            <td>
+                                                @item.TYMemoNO
+                                            </td>
+                                            <td>
+                                                @item.Subject
+                                            </td>
+                                            <td>
+                                                @item.Date
+                                            </td>
+
+                                            <td>
+                                                <a href="@item.FilePath" target="_blank" class="fa fa-folder-open-o" title="Open"></a> |
+                                                @Html.ActionLink(" ", "Edit", new { id = @item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -57,9 +96,9 @@
     <script>
         $(function () {
             $('li').removeClass("active");
-            $('#liAdminFiles').addClass("active")
-            $('#liTYMemo').addClass("active")
-            $('#liTYMemo i').addClass("text-aqua")
+            $('#liAdminFiles').addClass("active");
+            $('#liTYMemo').addClass("active");
+            $('#liTYMemo i').addClass("text-aqua");
         });
     </script>
 }
