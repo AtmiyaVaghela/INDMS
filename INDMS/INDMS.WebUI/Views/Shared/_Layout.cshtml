@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Application Name | @ViewBag.Title </title>
+    <title>SAHAJ | @ViewBag.Title </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @Styles.Render("~/bundles/css")
@@ -16,9 +16,9 @@
             <!-- Logo -->
             <a href="~/Home/Dashboard" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>AP</b></span>
+                <span class="logo-mini"><b>SAHAJ</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg">Application Name</span>
+                <span class="logo-lg">SAHAJ</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -39,7 +39,8 @@
                         @{
                             var name = string.Empty;
                             var userId = string.Empty;
-                            if (Request.Cookies["INDMS"] != null) {
+                            if (Request.Cookies["INDMS"] != null)
+                            {
                                 name = System.Text.Encoding.ASCII.DecodeBase64(Request.Cookies["INDMS"]["Name"]);
                                 userId = Request.Cookies["INDMS"]["UserID"] + ".JPG";
                             }
@@ -144,7 +145,11 @@
             });
 
             $("#example1").DataTable({
-                "order": [[0, "desc"]]
+                "order": [[0, "desc"]],
+                "search": {
+                    "smart": false
+                }
+
             });
 
             $('.decimalOnly').keypress(function (event) {

@@ -57,5 +57,3 @@ C:\INDMS\INDMS.Domain\bin\Debug\EntityFramework.xml
 C:\INDMS\INDMS.Domain\bin\Debug\EntityFramework.SqlServer.xml
 C:\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.dll
 C:\INDMS\INDMS.Domain\obj\Debug\INDMS.Domain.pdb
-C:\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.dll.CodeAnalysisLog.xml
-C:\INDMS\INDMS.Domain\bin\Debug\INDMS.Domain.dll.lastcodeanalysissucceeded
