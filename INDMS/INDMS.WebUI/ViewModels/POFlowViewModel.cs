@@ -1,4 +1,5 @@
 ﻿using INDMS.WebUI.Models;
+using System.Collections.Generic;
 
 namespace INDMS.WebUI.ViewModels
 {
@@ -8,6 +9,7 @@ namespace INDMS.WebUI.ViewModels
         public int POId { get; set; }
         public PurchaseOrder PO { get; set; }
         public FCL FCL { get; set; }
+        public IEnumerable<FCLDetail> FCLDetails { get; set; }
         public QAP QAP { get; set; }
     }
 }

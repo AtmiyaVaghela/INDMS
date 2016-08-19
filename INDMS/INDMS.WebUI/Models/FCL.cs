@@ -17,8 +17,6 @@ namespace INDMS.WebUI.Models
         public decimal Id { get; set; }
         public decimal POId { get; set; }
         public string POName { get; set; }
-        public string POSrNo { get; set; }
-        public string Details { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
     }

@@ -27,6 +27,7 @@ namespace INDMS.WebUI.Controllers
                     m.POGeneration = ctx.POGenerations.Where(x => x.PO_ID == Id).FirstOrDefault();
                     m.PO = ctx.PurchaseOrders.Find(Id);
                     m.FCL = ctx.FCLs.FirstOrDefault(x => x.POId == m.PO.Id);
+
                     m.QAP = ctx.QAPs.FirstOrDefault(x => x.POId == m.PO.Id);
 
                     string[] Inspectors = m.PO.Inspectors.Split(',');

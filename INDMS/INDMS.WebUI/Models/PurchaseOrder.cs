@@ -26,11 +26,14 @@ namespace INDMS.WebUI.Models
         public string Inspectors { get; set; }
         public string Firm { get; set; }
         public string FirmAddress { get; set; }
+        public string FilePath { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public string Flag { get; set; }
-        public string FilePath { get; set; }
+        public string Subject { get; set; }
+        public string Equipment { get; set; }
+        public string SparesFor { get; set; }
     }
 }

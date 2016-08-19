@@ -308,6 +308,7 @@ namespace INDMS.WebUI.Controllers
                             u.Name = m.User.Name;
                             u.Role = m.User.Role;
                             u.Email = m.User.Email;
+                            u.ContactNo = m.User.ContactNo;
 
                             db.SaveChanges();
                             TempData["MSG"] = "Profile Updated.";

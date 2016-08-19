@@ -35,6 +35,12 @@ namespace INDMS.WebUI.Controllers
                 {
                     m.POGeneration = ctx.POGenerations.Where(x => x.PO_ID == Id).SingleOrDefault();
                     m.PO = ctx.PurchaseOrders.Find(Id);
+
+                    List<FCLDetail> fclDetails = new List<FCLDetail>();
+                    fclDetails.Add(new FCLDetail { POSrNo = "", PODetails = "" });
+                    //fclDetails.Add(new FCLDetail { POSrNo = "3", PODetails = "4" });
+
+                    m.FCLDetails = fclDetails;
                     if (m.PO != null)
                     {
                         m.FCL = new FCL();
@@ -64,47 +70,58 @@ namespace INDMS.WebUI.Controllers
             {
                 if (!string.IsNullOrEmpty(m.FCL.POName))
                 {
-                    if (!string.IsNullOrEmpty(m.FCL.POSrNo))
-                    {
-                        if (!string.IsNullOrEmpty(m.FCL.Details))
-                        {
-                            m.FCL.POId = m.PO.Id;
-                            m.FCL.CreatedBy = Request.Cookies["INDMS"]["UserID"];
-                            m.FCL.CreatedDate = null;
+                    m.FCL.POId = m.PO.Id;
+                    m.FCL.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                    m.FCL.CreatedDate = null;
 
-                            using (var ctx = new INDMSEntities())
+                    using (var ctx = new INDMSEntities())
+                    {
+                        using (var ctxTr = ctx.Database.BeginTransaction())
+                        {
+                            try
                             {
                                 ctx.FCLs.Add(m.FCL);
                                 ctx.SaveChanges();
-                            }
 
-                            POGeneration POG = new POGeneration();
-                            using (var ctx = new INDMSEntities())
+                                foreach (var item in m.FCLDetails)
+                                {
+                                    item.FCLId = m.FCL.Id;
+                                    ctx.FCLDetails.Add(item);
+                                    ctx.SaveChanges();
+                                }
+
+                                ctxTr.Commit();
+                            }
+                            catch (Exception)
                             {
-                                POG = ctx.POGenerations.SingleOrDefault(x => x.PO_ID == m.PO.Id);
-                                POG.PO_CORRESPONDENCE = 1;
-                                POG.DRAWING = 1;
-                                POG.QAP = 1;
-
-                                ctx.Entry(POG).State = EntityState.Modified;
-                                ctx.SaveChanges();
-                                ModelState.Clear();
+                                ctxTr.Rollback();
                             }
-
-                            TempData["RowId"] = m.FCL.Id;
-                            TempData["MSG"] = "Save Successfully";
-
-                            return RedirectToAction("Index", "POFlow", new { id = m.PO.Id });
-                        }
-                        else
-                        {
-                            TempData["Error"] = "Please enter Details.";
                         }
                     }
-                    else
-                    {
-                        TempData["Error"] = "Please enter Sr. No.";
-                    }
+
+                    //using (var ctx = new INDMSEntities())
+                    //{
+                    //    ctx.FCLs.Add(m.FCL);
+                    //    ctx.SaveChanges();
+                    //}
+
+                    //POGeneration POG = new POGeneration();
+                    //using (var ctx = new INDMSEntities())
+                    //{
+                    //    POG = ctx.POGenerations.SingleOrDefault(x => x.PO_ID == m.PO.Id);
+                    //    POG.PO_CORRESPONDENCE = 1;
+                    //    POG.DRAWING = 1;
+                    //    POG.QAP = 1;
+
+                    //    ctx.Entry(POG).State = EntityState.Modified;
+                    //    ctx.SaveChanges();
+                    //    ModelState.Clear();
+                    //}
+
+                    TempData["RowId"] = m.FCL.Id;
+                    TempData["MSG"] = "Save Successfully";
+
+                    return RedirectToAction("Index", "POFlow", new { id = m.PO.Id });
                 }
                 else
                 {
@@ -155,35 +172,21 @@ namespace INDMS.WebUI.Controllers
             {
                 if (!string.IsNullOrEmpty(m.FCL.POName))
                 {
-                    if (!string.IsNullOrEmpty(m.FCL.POSrNo))
+                    m.FCL.POId = m.PO.Id;
+                    m.FCL.CreatedBy = Request.Cookies["INDMS"]["UserID"];
+                    m.FCL.CreatedDate = DateTime.Now;
+
+                    using (var ctx = new INDMSEntities())
                     {
-                        if (!string.IsNullOrEmpty(m.FCL.Details))
-                        {
-                            m.FCL.POId = m.PO.Id;
-                            m.FCL.CreatedBy = Request.Cookies["INDMS"]["UserID"];
-                            m.FCL.CreatedDate = DateTime.Now;
-
-                            using (var ctx = new INDMSEntities())
-                            {
-                                ctx.Entry(m.FCL).State = EntityState.Modified;
-                                ctx.SaveChanges();
-                                ModelState.Clear();
-                            }
-
-                            TempData["RowId"] = m.FCL.Id;
-                            TempData["MSG"] = "Save Successfully";
-
-                            return RedirectToAction("Index", "POFlow", new { id = m.PO.Id });
-                        }
-                        else
-                        {
-                            TempData["Error"] = "Please enter Details.";
-                        }
+                        ctx.Entry(m.FCL).State = EntityState.Modified;
+                        ctx.SaveChanges();
+                        ModelState.Clear();
                     }
-                    else
-                    {
-                        TempData["Error"] = "Please enter Sr. No.";
-                    }
+
+                    TempData["RowId"] = m.FCL.Id;
+                    TempData["MSG"] = "Save Successfully";
+
+                    return RedirectToAction("Index", "POFlow", new { id = m.PO.Id });
                 }
                 else
                 {
@@ -248,9 +251,6 @@ namespace INDMS.WebUI.Controllers
                             }
 
                             md.InspectorDetails = m.PO.Inspectors.Substring(0, m.PO.Inspectors.Length - 1);
-
-                            md.POSrNo = m.FCL.POSrNo;
-                            md.Details = m.FCL.Details;
 
                             mdl.Add(md);
 

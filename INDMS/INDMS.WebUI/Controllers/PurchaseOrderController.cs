@@ -73,6 +73,41 @@ namespace INDMS.WebUI.Controllers
                                             TempData["Error"] = "Please enter PO Placing Authority.";
                                         }
                                     }
+                                    if (m.PurchaseOrder.SparesFor != null)
+                                    {
+                                        if (m.PurchaseOrder.SparesFor.Equals("OTHERS"))
+                                        {
+                                            if (!string.IsNullOrEmpty(m.OSparesFor.Trim()))
+                                            {
+                                                m.PurchaseOrder.SparesFor = m.OSparesFor.Trim();
+                                                string strKeyName = "StdSpareFor";
+                                                string strKeyValue = m.OSparesFor.Trim();
+                                                AddParam(strKeyName, strKeyValue);
+                                            }
+                                            else
+                                            {
+                                                ModelState.AddModelError("PurchaseOrder.SparesqFor", "Please enter Spares for");
+                                            }
+                                        }
+                                    }
+
+                                    if (m.PurchaseOrder.Equipment != null)
+                                    {
+                                        if (m.PurchaseOrder.Equipment.Equals("OTHERS"))
+                                        {
+                                            if (!string.IsNullOrEmpty(m.OEquipment.Trim()))
+                                            {
+                                                m.PurchaseOrder.Equipment = m.OEquipment.Trim();
+                                                string strKeyName = "StdEquipment";
+                                                string strKeyValue = m.OEquipment.Trim();
+                                                AddParam(strKeyName, strKeyValue);
+                                            }
+                                            else
+                                            {
+                                                ModelState.AddModelError("PurchaseOrder.Equipment", "Please enter Spares for");
+                                            }
+                                        }
+                                    }
 
                                     if (m.InspectorId.Length > 0)
                                     {

@@ -20,13 +20,15 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null) {
+                @if (TempData["MSG"] != null)
+                {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null) {
+                @if (TempData["Error"] != null)
+                {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -40,7 +42,8 @@
                         </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    @using (Html.BeginForm("New", "PurchaseOrder", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+                    @using (Html.BeginForm("New", "PurchaseOrder", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         <div class="form-horizontal">
                             @Html.AntiForgeryToken()
                             <div class="box-body">
@@ -138,6 +141,37 @@
                                 </div>
 
                                 <div class="form-group">
+                                    @Html.Label("", "Subject", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.PurchaseOrder.Subject, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.Subject, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("", "Equipment", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        <select id="PurchaseOrder_Equipment" name="PurchaseOrder.Equipment" class="form-control"></select>
+                                        @*@Html.TextBoxFor(model => model.PurchaseOrder.Equipment, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })*@
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.Equipment, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4" id="divEquipment" style="display:none">
+                                        @Html.TextBoxFor(model => model.OEquipment, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("", "Spares For", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        <select id="PurchaseOrder_SparesFor" name="PurchaseOrder.SparesFor" class="form-control"></select>
+                                        @*@Html.TextBoxFor(model => model.PurchaseOrder.SparesFor, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })*@
+                                        @Html.ValidationMessageFor(model => model.PurchaseOrder.SparesFor, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4" id="divSparesFor" style="display:none">
+                                        @Html.TextBoxFor(model => model.OSparesFor, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     @Html.Label("File", new { @class = "control-label col-md-2" })
                                     <div class="col-md-6">
                                         <input type="file" id="inputFile" name="inputFile">
@@ -227,6 +261,66 @@
                 error: function (xhr) {
                     alert("Something seems Wrong binding Firm");
 
+                }
+            });
+
+            $.ajax({
+                url: "@Url.Action("GetJsonObjOfParam","Library")",
+                type: 'POST',
+                data: { data: "StdSpareFor" },
+                success: function (data) {
+                    $('#PurchaseOrder_SparesFor').empty();
+                    $.each(data, function (index, optiondata) {
+                        $("#PurchaseOrder_SparesFor").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
+                    });
+                    $("#PurchaseOrder_SparesFor").append("<option value='OTHERS'>OTHERS</option>");
+                    $("#PurchaseOrder_SparesFor option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                    $("#PurchaseOrder_SparesFor").val("");
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong");
+
+                }
+            });
+
+            $('#PurchaseOrder_SparesFor').change(function () {
+                var v = $('#PurchaseOrder_SparesFor').val();
+                if (v == "OTHERS") {
+                    $('#divSparesFor').css('display', 'block');
+                }
+                else {
+                    $('#divSparesFor').css('display', 'none');
+                }
+            });
+
+            $.ajax({
+                url: "@Url.Action("GetJsonObjOfParam","Library")",
+                type: 'POST',
+                data: { data: "StdEquipment" },
+                success: function (data) {
+                    $('#PurchaseOrder_Equipment').empty();
+                    $.each(data, function (index, optiondata) {
+                        $("#PurchaseOrder_Equipment").append("<option value='" + optiondata + "'>" + optiondata + "</option>");
+                    });
+                    $("#PurchaseOrder_Equipment").append("<option value='OTHERS'>OTHERS</option>");
+                    $("#PurchaseOrder_Equipment option").eq(0).before($("<option></option>").val("").text("-Select-"));
+                    $("#PurchaseOrder_Equipment").val("");
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong");
+
+                }
+            });
+
+            $('#PurchaseOrder_Equipment').change(function () {
+                var v = $('#PurchaseOrder_Equipment').val();
+                if (v == "OTHERS") {
+                    $('#divEquipment').css('display', 'block');
+                }
+                else {
+                    $('#divEquipment').css('display', 'none');
                 }
             });
 

@@ -39,10 +39,18 @@
     <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="POId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
     <Property Name="POName" Type="varchar(max)" />
-    <Property Name="POSrNo" Type="varchar(max)" />
-    <Property Name="Details" Type="varchar(max)" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="CreatedBy" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="FCLDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FCLId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="POSrNo" Type="varchar(max)" />
+    <Property Name="PODetails" Type="varchar(max)" />
+    <Property Name="Active" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Files">
     <Key>
@@ -190,6 +198,9 @@
     <Property Name="UpdatedDate" Type="datetime" />
     <Property Name="UpdatedBy" Type="varchar(max)" />
     <Property Name="Flag" Type="varchar(max)" />
+    <Property Name="Subject" Type="varchar(max)" />
+    <Property Name="Equipment" Type="varchar(max)" />
+    <Property Name="SparesFor" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="QAP">
     <Key>
@@ -270,11 +281,14 @@
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="Active" Type="varchar" MaxLength="10" />
     <Property Name="Designation" Type="varchar(max)" />
+    <Property Name="OfficerRank" Type="varchar(max)" />
+    <Property Name="ContactNo" Type="varchar(max)" />
   </EntityType>
   <EntityContainer Name="INDMSModelStoreContainer">
     <EntitySet Name="AdminCorrespondence" EntityType="Self.AdminCorrespondence" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Drawings" EntityType="Self.Drawings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FCL" EntityType="Self.FCL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FCLDetails" EntityType="Self.FCLDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Firms" EntityType="Self.Firms" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GeneralBooks" EntityType="Self.GeneralBooks" Schema="dbo" store:Type="Tables" />

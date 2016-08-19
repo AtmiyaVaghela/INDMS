@@ -37,12 +37,13 @@ namespace INDMS.WebUI.Models
         public virtual DbSet<QAP> QAPs { get; set; }
         public virtual DbSet<MovementOrder> MovementOrders { get; set; }
         public virtual DbSet<Firm> Firms { get; set; }
-        public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public virtual DbSet<POGeneration> POGenerations { get; set; }
-        public virtual DbSet<FCL> FCLs { get; set; }
         public virtual DbSet<AdminCorrespondence> AdminCorrespondences { get; set; }
         public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<Photograph> Photographs { get; set; }
         public virtual DbSet<TYMemo> TYMemoes { get; set; }
+        public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+        public virtual DbSet<FCLDetail> FCLDetails { get; set; }
+        public virtual DbSet<FCL> FCLs { get; set; }
     }
 }

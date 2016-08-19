@@ -9,5 +9,7 @@ namespace INDMS.WebUI.ViewModels
         public IEnumerable<PurchaseOrder> PurchaseOrders { get; set; }
         public string[] InspectorId { get; set; }
         public string OPOPlacingAuthority { get; set; }
+        public string OEquipment { get; set; }
+        public string OSparesFor { get; set; }
     }
 }

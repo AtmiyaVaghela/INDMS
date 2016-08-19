@@ -2085,6 +2085,9 @@
     <Compile Include="Models\FCL.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FCLDetail.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\File.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
