@@ -10,5 +10,7 @@ namespace INDMS.WebUI.ViewModels
         public IList<FCLDetail> FCLDetails { get; set; }
         public POGeneration POGeneration { get; set; }
         public PurchaseOrder PO { get; set; }
+
+        public IEnumerable<FCL> FCLs { get; set; }
     }
 }

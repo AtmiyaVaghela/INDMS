@@ -40,7 +40,7 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">
-                            <p>@Html.ActionLink("Back", "Index", "POFlow", new { @Id = Model.PO.Id}, new { @class = "btn btn-primary" })</p>
+                            <p>@Html.ActionLink("Back", "Index", "POFlow", new { @Id = Model.PO.Id }, new { @class = "btn btn-primary" })</p>
                         </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
@@ -70,17 +70,27 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    @Html.Label("", "PO Sr No.", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.TextBoxFor(model => model.FCL.POSrNo, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
-                                        @Html.ValidationMessageFor(model => model.FCL.POSrNo, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("", "PO Details", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.TextBoxFor(model => model.FCL.Details, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })
-                                        @Html.ValidationMessageFor(model => model.FCL.Details, "", new { @class = "text-danger" })
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <table id="tblFclDetails" class="table table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th>PO Sr. No</th>
+                                                        <th>Details of activity & required documents</th>
+                                                        <th></th>                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < Model.FCLDetails.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>@Html.TextBoxFor(model => model.FCLDetails[i].POSrNo, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })</td>
+                                                            <td>@Html.TextBoxFor(model => model.FCLDetails[i].PODetails, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })</td>                                                            
+                                                            <td></td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div><!-- /.box-body -->
@@ -96,3 +106,37 @@
         </div>
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+@section scripts{
+    <script>
+        $(function () {
+            $("#tblFclDetails tr:last td:last-child").prepend("<button type=\"button\" id=\"btnAdd\" class=\"btn btn-primary fa fa-plus\"></button>");
+
+            var i = @Model.FCLDetails.Count - 1;
+            $("#tblFclDetails tbody").on('click', '#btnAdd', function () {
+                $("#btnAdd").remove();
+
+                i = i + 1;
+                var newRowContent = "<tr>" +
+                          "<td><input class=\"form-control\" id=\"FCLDetails_" + (i) + "__POSrNo\" name=\"FCLDetails[" + (i) + "].POSrNo\" onkeyup=\"javascript:this.value=this.value.toUpperCase();\" type=\"text\" value=\"\"></td>" +
+                          "<td><input class=\"form-control\" id=\"FCLDetails_" + (i) + "__PODetails\" name=\"FCLDetails[" + i + "].PODetails\" onkeyup=\"javascript:this.value=this.value.toUpperCase();\" type=\"text\" value=\"\"></td>" +
+                          "<td>" +
+                          "<button type=\"button\" id=\"btnAdd\" class=\"btn btn-primary fa fa-plus\"></button>" +
+                            //"<button type=\"button\" id=\"btnRemove\" name=\"btnRemove\" class=\"btn btn-danger fa fa-remove\"></button>" +
+                          "</td>" +
+                          "</tr>";
+
+                $("#tblFclDetails tbody").append(newRowContent);
+
+            });
+
+            $("#tblFclDetails tbody").on('click', '#btnRemove', function () {
+                var newRowContent = "<button type=\"button\" id=\"btnAdd\" class=\"btn btn-primary fa fa-plus\"></button>";
+                $(this).closest('tr').remove();
+                if ($(this).closest('tr').is(':last')) {
+                    $('#tblFclDetails tbody tr:last td:last-child').prepend(newRowContent);
+                }
+            });
+
+        });
+    </script>
+}

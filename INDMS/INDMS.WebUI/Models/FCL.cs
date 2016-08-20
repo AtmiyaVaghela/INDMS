@@ -19,5 +19,6 @@ namespace INDMS.WebUI.Models
         public string POName { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
+        public string Flag { get; set; }
     }
 }

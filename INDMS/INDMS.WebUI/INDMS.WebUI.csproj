@@ -2166,6 +2166,7 @@
     </Compile>
     <Compile Include="ViewModels\AdminCorrespondenceViewModel.cs" />
     <Compile Include="ViewModels\AdminFileViewModel.cs" />
+    <Compile Include="ViewModels\AppendixADetailsViewModel.cs" />
     <Compile Include="ViewModels\AppendixAViewModel.cs" />
     <Compile Include="ViewModels\ChangePassword.cs" />
     <Compile Include="ViewModels\DrawingViewModel.cs" />
@@ -2324,6 +2325,7 @@
     <Content Include="Views\Photographs\Edit.cshtml" />
     <Content Include="Views\TYMemo\New.cshtml" />
     <Content Include="Views\TYMemo\Edit.cshtml" />
+    <Content Include="Views\FCL\Approve.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

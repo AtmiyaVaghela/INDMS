@@ -111,8 +111,9 @@
 @section scripts{
     <script>
         $(function () {
+        
 
-            var i = 0;
+            var i = @Model.FCLDetails.Count - 1;
             $("#tblFclDetails tbody").on('click', '#btnAdd', function () {
                 $("#btnAdd").remove();
 

@@ -1,4 +1,5 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
+using INDMS.WebUI.Infrastructure;
 using INDMS.WebUI.Infrastructure.Filters;
 using INDMS.WebUI.Models;
 using INDMS.WebUI.ViewModels;
@@ -99,25 +100,6 @@ namespace INDMS.WebUI.Controllers
                         }
                     }
 
-                    //using (var ctx = new INDMSEntities())
-                    //{
-                    //    ctx.FCLs.Add(m.FCL);
-                    //    ctx.SaveChanges();
-                    //}
-
-                    //POGeneration POG = new POGeneration();
-                    //using (var ctx = new INDMSEntities())
-                    //{
-                    //    POG = ctx.POGenerations.SingleOrDefault(x => x.PO_ID == m.PO.Id);
-                    //    POG.PO_CORRESPONDENCE = 1;
-                    //    POG.DRAWING = 1;
-                    //    POG.QAP = 1;
-
-                    //    ctx.Entry(POG).State = EntityState.Modified;
-                    //    ctx.SaveChanges();
-                    //    ModelState.Clear();
-                    //}
-
                     TempData["RowId"] = m.FCL.Id;
                     TempData["MSG"] = "Save Successfully";
 
@@ -154,6 +136,9 @@ namespace INDMS.WebUI.Controllers
                     {
                         m.POGeneration = ctx.POGenerations.Where(x => x.PO_ID == m.FCL.POId).SingleOrDefault();
                         m.PO = ctx.PurchaseOrders.Find(m.FCL.POId);
+                        m.FCLDetails = (from d in ctx.FCLDetails
+                                        where d.FCLId == Id
+                                        select d).ToList();
                         return View(m);
                     }
                     else
@@ -178,9 +163,40 @@ namespace INDMS.WebUI.Controllers
 
                     using (var ctx = new INDMSEntities())
                     {
-                        ctx.Entry(m.FCL).State = EntityState.Modified;
-                        ctx.SaveChanges();
-                        ModelState.Clear();
+                        using (var ctxTr = ctx.Database.BeginTransaction())
+                        {
+                            try
+                            {
+                                ctx.Entry(m.FCL).State = EntityState.Modified;
+                                ctx.SaveChanges();
+
+                                List<FCLDetail> fclDetails = (from d in ctx.FCLDetails
+                                                              where d.FCLId == m.FCL.Id
+                                                              select d).ToList();
+
+                                foreach (var item in fclDetails)
+                                {
+                                    ctx.Entry(item).State = EntityState.Deleted;
+                                    ctx.SaveChanges();
+                                }
+
+                                foreach (var item in m.FCLDetails)
+                                {
+                                    if (!string.IsNullOrEmpty(item.POSrNo) && !string.IsNullOrEmpty(item.PODetails))
+                                    {
+                                        item.FCLId = m.FCL.Id;
+                                        ctx.FCLDetails.Add(item);
+                                        ctx.SaveChanges();
+                                    }
+                                }
+
+                                ctxTr.Commit();
+                            }
+                            catch (Exception)
+                            {
+                                ctxTr.Rollback();
+                            }
+                        }
                     }
 
                     TempData["RowId"] = m.FCL.Id;
@@ -206,6 +222,7 @@ namespace INDMS.WebUI.Controllers
         {
             FCLViewModel m = new FCLViewModel();
             List<AppendixAViewModel> mdl = new List<AppendixAViewModel>();
+            List<AppendixADetailsViewModel> mddetails = new List<AppendixADetailsViewModel>();
 
             AppendixAViewModel md = new AppendixAViewModel();
 
@@ -254,9 +271,19 @@ namespace INDMS.WebUI.Controllers
 
                             mdl.Add(md);
 
+                            var fclDetails = (from d in ctx.FCLDetails
+                                              where d.FCLId == Id
+                                              select d).ToList();
+
+                            foreach (var item in fclDetails)
+                            {
+                                mddetails.Add(new AppendixADetailsViewModel { PoSrNo = item.POSrNo, PoDetails = item.PODetails });
+                            }
+
                             ReportDocument rd = new ReportDocument();
                             rd.Load(Path.Combine(Server.MapPath("~/Reports"), "AppendixA.rpt"));
-                            rd.SetDataSource(mdl);
+                            rd.Database.Tables[0].SetDataSource(mdl);
+                            rd.Database.Tables[1].SetDataSource(mddetails);
 
                             Response.Buffer = false;
                             Response.ClearContent();
@@ -284,6 +311,96 @@ namespace INDMS.WebUI.Controllers
                     return View(m);
                 }
             }
+        }
+
+        [CAuthRole("Admin")]
+        public ActionResult Approve()
+        {
+            FCLViewModel m = new FCLViewModel();
+
+            using (var ctx = new INDMSEntities())
+            {
+                m.FCLs = ctx.FCLs.Where(x => x.Flag == "OPEN" || x.Flag == null).ToList();
+                //m.PO = ctx.PurchaseOrders.FirstOrDefault(x => x.Id == m.FCL.POId);
+            }
+
+            return View(m);
+        }
+
+        [HttpPost]
+        [AuthUser]
+        [CAuthRole("Admin")]
+        public ActionResult Approve(int? id)
+        {
+            string Msg = string.Empty;
+            FCLViewModel m = new FCLViewModel();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                using (var ctx = new INDMSEntities())
+                {
+                    m.FCL = ctx.FCLs.Find(id);
+                }
+
+                if (m.FCL == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    m.FCL.Flag = "ACCEPTED";
+                    using (var ctx = new INDMSEntities())
+                    {
+                        ctx.Entry(m.FCL).State = System.Data.Entity.EntityState.Modified;
+                        ctx.SaveChanges();
+                        Msg = "success";
+                    }
+                }
+            }
+
+            return Json(Msg, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [AuthUser]
+        [CAuthRole("Admin")]
+        public ActionResult Reject(int? id)
+        {
+            string Msg = string.Empty;
+            FCLViewModel m = new FCLViewModel();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                using (var ctx = new INDMSEntities())
+                {
+                    m.FCL = ctx.FCLs.Find(id);
+                }
+
+                if (m.FCL == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    m.FCL.Flag = "REJECTED";
+                    using (var ctx = new INDMSEntities())
+                    {
+                        ctx.Entry(m.FCL).State = System.Data.Entity.EntityState.Modified;
+                        ctx.SaveChanges();
+                        Msg = "success";
+                    }
+                }
+            }
+
+            return Json(Msg, JsonRequestBehavior.AllowGet);
         }
     }
 }

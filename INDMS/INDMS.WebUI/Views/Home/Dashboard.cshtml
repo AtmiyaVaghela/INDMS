@@ -29,7 +29,8 @@
                 </div><!-- /.info-box -->
             </div><!-- /.col -->
             @{
-                if (Request.Cookies["INDMS"]["Role"].ToString() == System.Text.Encoding.ASCII.EncodeBase64("Admin")) {
+                if (Request.Cookies["INDMS"]["Role"].ToString() == System.Text.Encoding.ASCII.EncodeBase64("Admin"))
+                {
                     <a href="~/MovementOrder/Approve">
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="info-box">
@@ -37,6 +38,17 @@
                                 <div class="info-box-content">
                                     <span class="info-box-text">Movement Order</span>
                                     <span class="info-box-number" id="MovementOrder"></span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div><!-- /.col -->
+                    </a>
+                    <a href="~/FCL/Approve">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">FCL</span>
+                                    <span class="info-box-number" id="FCL"></span>
                                 </div><!-- /.info-box-content -->
                             </div><!-- /.info-box -->
                         </div><!-- /.col -->
@@ -75,7 +87,20 @@
 
                 error: function (xhr) {
                     alert("Something seems Wrong binding Movement Orders");
+                }
+            });
 
+            $.ajax({
+                url: "@Url.Action("GetPendingFCL", "Home")",
+                type: 'GET',
+                data: {},
+                success: function (data) {
+                    $('#FCL').empty();
+                    $("#FCL").html(data);
+                },
+
+                error: function (xhr) {
+                    alert("Something seems Wrong binding FCL");
                 }
             });
         });

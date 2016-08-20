@@ -297,6 +297,7 @@
     <EntitySetMapping Name="FCLs">
       <EntityTypeMapping TypeName="INDMSModel.FCL">
         <MappingFragment StoreEntitySet="FCL">
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="POName" ColumnName="POName" />

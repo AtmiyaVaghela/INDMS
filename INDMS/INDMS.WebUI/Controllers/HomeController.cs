@@ -36,6 +36,15 @@ namespace INDMS.WebUI.Controllers
             return Json(i, JsonRequestBehavior.AllowGet);
         }
 
+        [CAuthRole("Admin")]
+        public ActionResult GetPendingFCL()
+        {
+            int i = db.FCLs.Where(d => d.Flag != "ACCEPTED" && d.Flag != "REJECTED" && d.Flag != "CLOSED").Count();
+            return Json(i, JsonRequestBehavior.AllowGet);
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

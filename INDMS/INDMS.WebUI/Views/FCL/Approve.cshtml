@@ -1,7 +1,7 @@
-﻿@model INDMS.WebUI.ViewModels.MovementOrderViewModel
+﻿@model INDMS.WebUI.ViewModels.FCLViewModel
 
 @{
-    ViewBag.Title = "Movement Orders - Approve";
+    ViewBag.Title = "FCL - Approve";
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -9,11 +9,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Movement Orders - Approve
+            FCL - Approve
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Library</a></li>
-            <li class="active">Movement Orders</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i>PO</a></li>
+            <li class="active">FCL</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -21,13 +21,15 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null) {
+                @if (TempData["MSG"] != null)
+                {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null) {
+                @if (TempData["Error"] != null)
+                {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -37,7 +39,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">
-                            @Html.ActionLink("New", "New", "MovementOrder", null, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("PO", "Index", "PurchaseOrder", null, new { @class = "btn btn-primary" })
                         </h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
@@ -45,50 +47,31 @@
                             <thead>
                                 <tr>
                                     <td>
-                                        Order No
+                                        PO No
                                     </td>
                                     <td>
-                                        Subject
+                                        PO Name
                                     </td>
                                     <td>
-                                        Date
+                                        Created Date
                                     </td>
-                                    <td>
-                                        Inspector Name
-                                    </td>
-                                    <td>
-                                        Firm Name
-                                    </td>
-                                    <td>
-                                        Signing Authority
-                                    </td>
-
-                                    <td>
-                                        File
-                                    </td>
+                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.MovementOrders != null) {
-                                    foreach (var item in Model.MovementOrders) {
+                                @if (Model.FCLs != null)
+                                {
+                                    foreach (var item in Model.FCLs)
+                                    {
                                         <tr>
                                             <td>
-                                                @item.OrderNo
+                                                
                                             </td>
                                             <td>
-                                                @item.Subject
+                                                @item.POName
                                             </td>
                                             <td>
-                                                @item.Date
-                                            </td>
-                                            <td>
-                                                @item.InspectorName
-                                            </td>
-                                            <td>
-                                                @item.FirmName
-                                            </td>
-                                            <td>
-                                                @item.SigningAuthority
+                                                @item.CreatedDate
                                             </td>
                                             <td>
                                                 @Html.ActionLink(" ", "Print", new { id = @item.Id }, new { @class = "fa fa-print", @title = "Print" }) |

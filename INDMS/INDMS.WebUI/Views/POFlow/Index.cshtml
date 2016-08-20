@@ -21,6 +21,20 @@
         <!-- row -->
         <div class="row">
             <div class="col-md-12">
+                @if (TempData["MSG"] != null)
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["MSG"]
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["Error"]
+                    </div>
+                }
                 <!-- The time line -->
                 <ul class="timeline">
                     @if ((Model.POGeneration.QAP ?? 0) == 1)
@@ -115,41 +129,67 @@
                     }
                     @if ((Model.POGeneration.FCL ?? 0) == 1)
                     {
-                        if (Model.FCL != null)
+                        if (Model.FCLs != null)
                         {
+                            <li>
+                                <i class="fa fa-envelope bg-aqua"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header">
+                                        @Html.ActionLink("Add New FCL", "New", "FCL", new { @Id = Model.PO.Id }, new { @class = "btn btn-primary" })
+                                    </h3>
+                                    <div class="timeline-body"></div>
+                                    <div class="timeline-footer"></div>
+                                </div>
+                            </li>
                             <li>
                                 <i class="fa fa-envelope bg-aqua"></i>
                                 <div class="timeline-item">
                                     <h3 class="timeline-header">FCL</h3>
                                     <div class="timeline-body">
                                         <div class="row">
-                                            <div class="form-group col-md-12">
-                                                @Html.Label("", "PO Name", new { @class = "control-label col-md-2" })
-                                                <div class="col-md-4">
-                                                    @Html.DisplayFor(m => m.FCL.POName, new { @class = "control-label col-md-2" })
-                                                </div>
-                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="box">
+                                                    <div class="box-header">
+                                                    </div><!-- /.box-header -->
+                                                    <div class="box-body">
+                                                        <table id="example1" class="table table-bordered table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <td>
+                                                                        Po Name
+                                                                    </td>
+                                                                    <td>
+                                                                        Created Date
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach (var item in Model.FCLs)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@item.POName</td>
+                                                                        <td>
+                                                                            @item.CreatedDate
+                                                                        </td>
+                                                                        <td>
+                                                                            @Html.ActionLink(" ", "Edit", "FCL", new { @id = item.Id }, new { @class = "fa fa-edit", @title = "Edit" })
 
-                                            <div class="form-group col-md-12">
-                                                @Html.Label("", "PO No", new { @class = "control-label col-md-2" })
-                                                <div class="col-md-4">
-                                                    @*@Html.DisplayFor(m => m.FCL.POSrNo, new { @class = "control-label col-md-2" })*@
+                                                                            @Html.ActionLink(" ", "Print", "FCL", new { @id = item.Id }, new { @class = "fa fa-print", @title = "Print" })
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
-
-                                            <div class="form-group col-md-12">
-                                                @Html.Label("", "Details", new { @class = "control-label col-md-2" })
-                                                <div class="col-md-4">
-                                                    @*@Html.DisplayFor(m => m.FCL.Details, new { @class = "control-label col-md-2" })*@
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-md-12">
-                                                <div class="col-md-4">
-                                                    @Html.ActionLink("Edit", "Edit", "FCL", new { @id = Model.FCL.Id }, new { @class = "btn btn-primary" })
-                                                    @Html.ActionLink("Print FCL", "Print", "FCL", new { @id = Model.FCL.Id }, new { @class = "btn btn-primary" })
-                                                </div>
-                                            </div>
+                                            @*<div class="form-group col-md-12">
+                                                    <div class="col-md-4">
+                                                        @Html.ActionLink("Edit", "Edit", "FCL", new { @id = Model.FCL.Id }, new { @class = "btn btn-primary" })
+                                                        @Html.ActionLink("Print FCL", "Print", "FCL", new { @id = Model.FCL.Id }, new { @class = "btn btn-primary" })
+                                                    </div>
+                                                </div>*@
                                         </div>
                                     </div>
                                     <div class="timeline-footer"></div>

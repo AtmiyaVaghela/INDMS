@@ -41,6 +41,7 @@
     <Property Name="POName" Type="varchar(max)" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="CreatedBy" Type="varchar(max)" />
+    <Property Name="Flag" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="FCLDetails">
     <Key>

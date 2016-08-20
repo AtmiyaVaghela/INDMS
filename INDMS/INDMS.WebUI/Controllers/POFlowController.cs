@@ -26,7 +26,9 @@ namespace INDMS.WebUI.Controllers
                 {
                     m.POGeneration = ctx.POGenerations.Where(x => x.PO_ID == Id).FirstOrDefault();
                     m.PO = ctx.PurchaseOrders.Find(Id);
-                    m.FCL = ctx.FCLs.FirstOrDefault(x => x.POId == m.PO.Id);
+                    m.FCLs = (from d in ctx.FCLs
+                              where d.POId == m.PO.Id
+                              select d).ToList();
 
                     m.QAP = ctx.QAPs.FirstOrDefault(x => x.POId == m.PO.Id);
 

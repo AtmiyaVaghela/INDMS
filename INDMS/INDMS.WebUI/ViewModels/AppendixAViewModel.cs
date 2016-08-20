@@ -1,4 +1,7 @@
-﻿namespace INDMS.WebUI.ViewModels
+﻿using INDMS.WebUI.Models;
+using System.Collections.Generic;
+
+namespace INDMS.WebUI.ViewModels
 {
     public class AppendixAViewModel
     {
