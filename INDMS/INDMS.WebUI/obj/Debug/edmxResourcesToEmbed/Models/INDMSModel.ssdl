@@ -17,11 +17,28 @@
     <Property Name="CreatedBy" Type="varchar(max)" />
     <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="CoveringLetter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POId" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="PONo" Type="varchar(max)" />
+    <Property Name="FileNo" Type="varchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="NoOfLots" Type="varchar(max)" />
+    <Property Name="POValue" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Warantee" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Active" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Drawings">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POId" Type="numeric" Precision="18" Scale="0" />
     <Property Name="PONo" Type="varchar(max)" />
     <Property Name="FileNo" Type="varchar(max)" />
     <Property Name="DrawingNo" Type="varchar(max)" Nullable="false" />
@@ -143,12 +160,34 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POId" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="PONo" Type="varchar(max)" />
     <Property Name="FolderName" Type="varchar(max)" />
     <Property Name="Subject" Type="varchar(max)" />
     <Property Name="Date" Type="datetime" />
     <Property Name="FilePath" Type="varchar(max)" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="CreatedBy" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="POCorrespondence">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POId" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="PONo" Type="varchar(max)" />
+    <Property Name="FileNo" Type="varchar(max)" />
+    <Property Name="LetterNo" Type="varchar(max)" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Subject" Type="varchar(max)" />
+    <Property Name="TypeOfCorrespondence" Type="varchar(max)" />
+    <Property Name="From" Type="varchar(max)" />
+    <Property Name="To" Type="varchar(max)" />
+    <Property Name="CopyTo" Type="varchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="FilePath" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
   <EntityType Name="POGeneration">
     <Key>
@@ -232,12 +271,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StandardNo" Type="varchar(max)" Nullable="false" />
-    <Property Name="Year" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="Revision" Type="varchar(max)" Nullable="false" />
-    <Property Name="SubjectParam" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Subject" Type="varchar(max)" Nullable="false" />
-    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StandardNo" Type="varchar(max)" />
+    <Property Name="Year" Type="varchar" MaxLength="10" />
+    <Property Name="Revision" Type="varchar(max)" />
+    <Property Name="SubjectParam" Type="varchar" MaxLength="50" />
+    <Property Name="Subject" Type="varchar(max)" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
     <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
     <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="datetime" />
@@ -247,10 +286,10 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IssuingAuthority" Type="varchar(max)" Nullable="false" />
-    <Property Name="Subject" Type="varchar(max)" Nullable="false" />
-    <Property Name="Year" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Revision" Type="varchar(max)" Nullable="false" />
+    <Property Name="IssuingAuthority" Type="varchar(max)" />
+    <Property Name="Subject" Type="varchar(max)" />
+    <Property Name="Year" Type="varchar" MaxLength="50" />
+    <Property Name="Revision" Type="varchar(max)" />
     <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
     <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="datetime" />
@@ -287,6 +326,7 @@
   </EntityType>
   <EntityContainer Name="INDMSModelStoreContainer">
     <EntitySet Name="AdminCorrespondence" EntityType="Self.AdminCorrespondence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CoveringLetter" EntityType="Self.CoveringLetter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Drawings" EntityType="Self.Drawings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FCL" EntityType="Self.FCL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FCLDetails" EntityType="Self.FCLDetails" Schema="dbo" store:Type="Tables" />
@@ -297,6 +337,7 @@
     <EntitySet Name="MovementOrder" EntityType="Self.MovementOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParameterMaster" EntityType="Self.ParameterMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Photographs" EntityType="Self.Photographs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POCorrespondence" EntityType="Self.POCorrespondence" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="POGeneration" EntityType="Self.POGeneration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PolicyLetter" EntityType="Self.PolicyLetter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />

@@ -98,7 +98,10 @@
                                             @item.NoOfLots
                                         </td>
                                         <td>
-                                            @Convert.ToString(item.DeliveryDate).Substring(0, 9)
+                                            @if (!Convert.ToString(item.DeliveryDate).Equals(""))
+                                            {
+                                                @Convert.ToString(item.DeliveryDate).Substring(0, 9);
+                                            }
                                         </td>
                                         <td>
                                             @item.PoPlacingAuthority

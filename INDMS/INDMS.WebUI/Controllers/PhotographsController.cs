@@ -26,9 +26,29 @@ namespace INDMS.WebUI.Controllers
         }
 
         [AuthUser]
-        public ActionResult New()
+        public ActionResult New(int? Id)
         {
-            return View();
+            PhotographsViewModel m = new PhotographsViewModel();
+
+            if (Id == null)
+            {
+                return View();
+            }
+            else
+            {
+                using (var ctx = new INDMSEntities())
+                {
+                    m.PO = ctx.PurchaseOrders.Find(Id);
+                    if (m.PO != null)
+                    {
+                        m.Photograph = new Photograph();
+                        m.Photograph.POId = m.PO.Id;
+                        m.Photograph.PONo = m.PO.PONo;
+                    }
+                }
+
+                return View(m);
+            }
         }
 
         [AuthUser]

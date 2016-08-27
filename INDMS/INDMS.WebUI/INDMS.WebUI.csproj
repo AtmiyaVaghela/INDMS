@@ -1910,6 +1910,22 @@
     <Content Include="plugins\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="plugins\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="plugins\ladda-bootstrap-master\.gitignore" />
+    <Content Include="plugins\ladda-bootstrap-master\css\prism.css" />
+    <Content Include="plugins\ladda-bootstrap-master\dist\ladda-themeless.css" />
+    <Content Include="plugins\ladda-bootstrap-master\dist\ladda-themeless.min.css" />
+    <Content Include="plugins\ladda-bootstrap-master\dist\ladda.css" />
+    <Content Include="plugins\ladda-bootstrap-master\dist\ladda.jquery.min.js" />
+    <Content Include="plugins\ladda-bootstrap-master\dist\ladda.js" />
+    <Content Include="plugins\ladda-bootstrap-master\dist\ladda.min.css" />
+    <Content Include="plugins\ladda-bootstrap-master\dist\ladda.min.js" />
+    <Content Include="plugins\ladda-bootstrap-master\dist\spin.js" />
+    <Content Include="plugins\ladda-bootstrap-master\dist\spin.min.js" />
+    <Content Include="plugins\ladda-bootstrap-master\index.html" />
+    <Content Include="plugins\ladda-bootstrap-master\js\ladda.jquery.js" />
+    <Content Include="plugins\ladda-bootstrap-master\js\ladda.js" />
+    <Content Include="plugins\ladda-bootstrap-master\js\prism.js" />
+    <Content Include="plugins\ladda-bootstrap-master\js\spin.js" />
     <Content Include="plugins\select2\i18n\az.js" />
     <Content Include="plugins\select2\i18n\bg.js" />
     <Content Include="plugins\select2\i18n\ca.js" />
@@ -1962,6 +1978,7 @@
     <Content Include="plugins\sparkline\jquery.sparkline.js" />
     <Content Include="plugins\sparkline\jquery.sparkline.min.js" />
     <Content Include="ProfilePic\4b23c201-84e9-47d0-834d-8aa8b40f0389.jpg" />
+    <Content Include="Reports\AppendixB.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\AppScript.js" />
@@ -2054,13 +2071,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminCorrespondenceController.cs" />
     <Compile Include="Controllers\AdminFileController.cs" />
+    <Compile Include="Controllers\DrawingController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FCLController.cs" />
     <Compile Include="Controllers\FirmsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\INOTEController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\MovementOrderController.cs" />
     <Compile Include="Controllers\PhotographsController.cs" />
+    <Compile Include="Controllers\POCorrespondenceController.cs" />
     <Compile Include="Controllers\POFlowController.cs" />
     <Compile Include="Controllers\PurchaseOrderController.cs" />
     <Compile Include="Controllers\QAPController.cs" />
@@ -2076,6 +2096,9 @@
     <Compile Include="Infrastructure\Filters\ExceptionHandlerAttribute.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\AdminCorrespondence.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CoveringLetter.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Drawing.cs">
@@ -2124,6 +2147,9 @@
     <Compile Include="Models\Photograph.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\POCorrespondence.cs">
+      <DependentUpon>INDMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\POGeneration.cs">
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
@@ -2152,10 +2178,22 @@
       <DependentUpon>INDMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\AppendixAI.cs">
+      <DependentUpon>AppendixAI.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\AppendixA.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppendixA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\AppendixB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppendixB.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\MovementOrder.cs">
@@ -2173,8 +2211,10 @@
     <Compile Include="ViewModels\FCLViewModel.cs" />
     <Compile Include="ViewModels\GeneralBookViewModel.cs" />
     <Compile Include="ViewModels\GuideLineViewModel.cs" />
+    <Compile Include="ViewModels\INOTEViewModel.cs" />
     <Compile Include="ViewModels\MovementOrderViewModel.cs" />
     <Compile Include="ViewModels\PhotographsViewModel.cs" />
+    <Compile Include="ViewModels\POCorrespondenceViewModel.cs" />
     <Compile Include="ViewModels\POFlowViewModel.cs" />
     <Compile Include="ViewModels\PolicyLetterViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
@@ -2268,6 +2308,13 @@
     <Content Include="plugins\ionicons-2.0.1\scss\_ionicons-font.scss" />
     <Content Include="plugins\ionicons-2.0.1\scss\_ionicons-icons.scss" />
     <Content Include="plugins\ionicons-2.0.1\scss\_ionicons-variables.scss" />
+    <Content Include="plugins\ladda-bootstrap-master\.DS_Store" />
+    <Content Include="plugins\ladda-bootstrap-master\css\.DS_Store" />
+    <Content Include="plugins\ladda-bootstrap-master\css\ladda-theme.scss" />
+    <Content Include="plugins\ladda-bootstrap-master\css\ladda.scss" />
+    <Content Include="plugins\ladda-bootstrap-master\LICENSE" />
+    <Content Include="plugins\ladda-bootstrap-master\package.json" />
+    <Content Include="plugins\ladda-bootstrap-master\README.md" />
     <None Include="Properties\PublishProfiles\INDMS.pubxml" />
     <Content Include="Views\Library\StandingOrder.cshtml" />
     <Content Include="Views\Library\GuideLines.cshtml" />
@@ -2326,6 +2373,14 @@
     <Content Include="Views\TYMemo\New.cshtml" />
     <Content Include="Views\TYMemo\Edit.cshtml" />
     <Content Include="Views\FCL\Approve.cshtml" />
+    <Content Include="Views\Drawing\New.cshtml" />
+    <Content Include="Views\Drawing\Edit.cshtml" />
+    <Content Include="Views\QAP\Edit.cshtml" />
+    <Content Include="Views\INOTE\New.cshtml" />
+    <Content Include="Views\INOTE\Edit.cshtml" />
+    <Content Include="Views\POCorrespondence\New.cshtml" />
+    <Content Include="Views\POCorrespondence\Edit.cshtml" />
+    <Content Include="Views\INOTE\Print.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2347,6 +2402,7 @@
     <Folder Include="Uploads\GeneralBooks\" />
     <Folder Include="Uploads\GuideLines\" />
     <Folder Include="Uploads\Photographs\" />
+    <Folder Include="Uploads\POCorrespondence\" />
     <Folder Include="Uploads\PolicyLetter\" />
     <Folder Include="Uploads\PurchaseOrder\" />
     <Folder Include="Uploads\QAP\" />
@@ -2359,14 +2415,42 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\AppendixAI.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AppendixAI.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\AppendixA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AppendixA.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\AppendixB.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AppendixB.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\MovementOrder.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MovementOrder.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

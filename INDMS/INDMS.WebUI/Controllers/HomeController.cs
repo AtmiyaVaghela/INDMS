@@ -43,8 +43,6 @@ namespace INDMS.WebUI.Controllers
             return Json(i, JsonRequestBehavior.AllowGet);
         }
 
-
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

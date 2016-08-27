@@ -51,28 +51,28 @@
 
                                 <div class="form-group">
                                     @Html.Label("Standard No", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @Html.TextBoxFor(model => model.Standard.StandardNo, null, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Standard.StandardNo, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Standard.Year, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @Html.TextBoxFor(model => model.Standard.Year, null, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Standard.Year, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Standard.Revision, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @Html.TextBoxFor(model => model.Standard.Revision, null, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Standard.Revision, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 @*<div class="form-group">
                                         @Html.Label("Subject", new { @class = "control-label col-md-2" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <select id="sSubjectType" name="Standard.SubjectParam" class="form-control"></select>
                                             @Html.ValidationMessageFor(model => model.Standard.SubjectParam, "", new { @class = "text-danger" })
                                         </div>
@@ -80,42 +80,42 @@
 
                                 <div class="form-group">
                                     @Html.Label("Subject", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @*<select id="subject" name="Standard.Subject" class="form-control select2"></select>*@
                                         @Html.TextBoxFor(model => model.Standard.Subject, null, new { @class = "form-control" })
                                     </div>
                                 </div>
 
                                 @*<div class="form-group" id="divOSubject" style="display:none">
-                                        <div class="col-md-offset-2 col-md-6">
+                                        <div class="col-md-offset-2 col-md-4">
                                             @Html.TextBoxFor(model => model.OSubject, null, new { @class = "form-control" })
                                         </div>
                                     </div>*@
 
                                 <div class="form-group">
                                     @Html.Label("Type", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <select id="TypeD" name="Standard.Type" class="form-control select2"></select>
                                     </div>
                                 </div>
 
                                 <div class="form-group" id="divOType" style="display:none">
-                                    <div class="col-md-offset-2 col-md-6">
+                                    <div class="col-md-offset-2 col-md-4">
                                         @Html.TextBoxFor(model => model.OType, null, new { @class = "form-control" })
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     @Html.Label("File", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <input type="file" id="inputFile" name="inputFile">
                                         <p class="help-block">File must be PDF.</p>
                                     </div>
                                 </div>
                             </div><!-- /.box-body -->
                             <div class="box-footer">
-                                <div class="col-md-offset-2 col-md-6">
-                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                <div class="col-md-offset-2">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>

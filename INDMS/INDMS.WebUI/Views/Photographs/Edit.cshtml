@@ -49,8 +49,18 @@
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                                 @Html.HiddenFor(x => x.Photograph.Id)
+                                @Html.HiddenFor(x => x.Photograph.POId)
+
                                 <div class="form-group">
-                                    @Html.Label("Folder Name", new { @class = "control-label col-md-2" })
+                                    @Html.Label("PO No", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.Photograph.FolderName, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Photograph.FolderName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("File Name", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.TextBoxFor(model => model.Photograph.FolderName, null, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Photograph.FolderName, "", new { @class = "text-danger" })

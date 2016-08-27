@@ -9,5 +9,7 @@ namespace INDMS.WebUI.ViewModels
         public IEnumerable<Photograph> Photographs { get; set; }
 
         public string File { get; set; }
+
+        public PurchaseOrder PO { get; set; }
     }
 }

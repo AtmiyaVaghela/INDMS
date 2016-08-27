@@ -16,7 +16,8 @@ namespace INDMS.WebUI.App_Start
                 "~/Content/skins/_all-skins.min.css",
                 "~/plugins/datepicker/datepicker3.css",
                 "~/plugins/daterangepicker/daterangepicker-bs3.css",
-                "~/plugins/datatables/dataTables.bootstrap.css"
+                "~/plugins/datatables/dataTables.bootstrap.css",
+                "~/plugins/ladda-bootstrap-master/dist/ladda-themeless.min.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
@@ -35,7 +36,9 @@ namespace INDMS.WebUI.App_Start
                 "~/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
                 "~/plugins/slimScroll/jquery.slimscroll.min.js",
                 "~/plugins/chartjs/Chart.min.js",
-                 "~/Scripts/jquery.cookie-1.4.1.min.js"));
+                "~/Scripts/jquery.cookie-1.4.1.min.js",
+                "~/plugins/ladda-bootstrap-master/dist/spin.min.js",
+                "~/plugins/ladda-bootstrap-master/dist/ladda.min.js"));
         }
     }
 }

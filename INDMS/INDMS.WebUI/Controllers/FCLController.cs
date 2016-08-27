@@ -235,6 +235,12 @@ namespace INDMS.WebUI.Controllers
                 using (var ctx = new INDMSEntities())
                 {
                     m.FCL = ctx.FCLs.Find(Id);
+                    string reportName = "AppendixAI.rpt";
+                    if (m.FCL.Flag.Equals("ACCEPTED"))
+                    {
+                        reportName = "AppendixA.rpt";
+                    }
+
                     if (m.FCL == null)
                     {
                         return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -281,7 +287,7 @@ namespace INDMS.WebUI.Controllers
                             }
 
                             ReportDocument rd = new ReportDocument();
-                            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "AppendixA.rpt"));
+                            rd.Load(Path.Combine(Server.MapPath("~/Reports"), reportName));
                             rd.Database.Tables[0].SetDataSource(mdl);
                             rd.Database.Tables[1].SetDataSource(mddetails);
 
@@ -293,7 +299,7 @@ namespace INDMS.WebUI.Controllers
                             {
                                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                                 stream.Seek(0, SeekOrigin.Begin);
-                                return File(stream, "application/pdf", "AppendixA.pdf");
+                                return File(stream, "application/pdf", reportName.Replace("rpt","pdf"));
                             }
                             catch (Exception ex)
                             {
@@ -358,6 +364,36 @@ namespace INDMS.WebUI.Controllers
                         ctx.Entry(m.FCL).State = System.Data.Entity.EntityState.Modified;
                         ctx.SaveChanges();
                         Msg = "success";
+
+                        var poFlow = ctx.POGenerations.Where(x => x.PO_ID == m.FCL.POId).SingleOrDefault();
+                        POFlowViewModel mx = new POFlowViewModel();
+                        if (poFlow != null)
+                        {
+                            mx.POGeneration = new POGeneration();
+                            mx.POGeneration = poFlow;
+                            mx.POGeneration.PO_ID = m.FCL.POId;
+                            mx.POGeneration.FCL = 1;
+                            mx.POGeneration.PO_CORRESPONDENCE = 1;
+                            mx.POGeneration.DRAWING = 1;
+                            mx.POGeneration.QAP = 1;
+
+                            ctx.Entry(mx.POGeneration).State = EntityState.Modified;
+                            ctx.SaveChanges();
+                            Msg = "Success";
+                        }
+                        else
+                        {
+                            mx.POGeneration = new POGeneration();
+                            mx.POGeneration.PO_ID = m.FCL.POId;
+                            mx.POGeneration.FCL = 1;
+                            mx.POGeneration.PO_CORRESPONDENCE = 1;
+                            mx.POGeneration.DRAWING = 1;
+                            mx.POGeneration.QAP = 1;
+
+                            ctx.POGenerations.Add(mx.POGeneration);
+                            ctx.SaveChanges();
+                            Msg = "Success";
+                        }
                     }
                 }
             }

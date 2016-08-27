@@ -21,13 +21,15 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null) {
+                @if (TempData["MSG"] != null)
+                {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null) {
+                @if (TempData["Error"] != null)
+                {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -58,7 +60,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.GuideLines) {
+                                @foreach (var item in Model.GuideLines)
+                                {
                                     <tr>
 
                                         <td>
@@ -86,8 +89,8 @@
 </div><!-- /.content-wrapper -->
 @section scripts{
     <script>
-        @*$(function () {
-            $("#sIssuingAuthority").change(function () {
+        $(function () {
+            @*    $("#sIssuingAuthority").change(function () {
                 var value = $('#sIssuingAuthority').val();
                 if (value == "OTHERS") {
                     $('#divOIssuingAutherity').css('display', 'block');
@@ -118,11 +121,11 @@
                 }
             });*@
 
-        $('li').removeClass("active");
-        $('#liLibrary').addClass("active");
-        $('#liGuideLines ').addClass("active");
-        $('#liGuideLines i').addClass("text-aqua");
-        $('#liGuidelinesAndStandingOrders ').addClass("active");
+            $('li').removeClass("active");
+            $('#liLibrary').addClass("active");
+            $('#liGuideLines').addClass("active");
+            $('#liGuideLines i').addClass("text-aqua");
+            $('#liGuidelinesAndStandingOrders ').addClass("active");
         });
     </script>
 }

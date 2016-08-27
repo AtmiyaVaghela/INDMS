@@ -25,12 +25,9 @@ namespace INDMS.WebUI.Controllers
                 using (var ctx = new INDMSEntities())
                 {
                     m.POGeneration = ctx.POGenerations.Where(x => x.PO_ID == Id).FirstOrDefault();
-                    m.PO = ctx.PurchaseOrders.Find(Id);
-                    m.FCLs = (from d in ctx.FCLs
-                              where d.POId == m.PO.Id
-                              select d).ToList();
 
-                    m.QAP = ctx.QAPs.FirstOrDefault(x => x.POId == m.PO.Id);
+                    //For PO
+                    m.PO = ctx.PurchaseOrders.Find(Id);
 
                     string[] Inspectors = m.PO.Inspectors.Split(',');
                     m.PO.Inspectors = string.Empty;
@@ -45,23 +42,40 @@ namespace INDMS.WebUI.Controllers
 
                     m.PO.Firm = ctx.Firms.SingleOrDefault(z => z.Id.ToString() == m.PO.Firm).FirmName;
 
-                    if (m.QAP != null)
-                    {
-                        m.QAP.ApprovedBy = ctx.Users.SingleOrDefault(x => x.UserId == new Guid(m.QAP.ApprovedBy)).Name;
-                        if (m.QAP.DrawingNoRef != null)
-                        {
-                            string[] d = m.QAP.DrawingNoRef.Split(',');
+                    //For FCL
+                    m.FCLs = (from d in ctx.FCLs
+                              where d.POId == m.PO.Id
+                              select d).ToList();
 
-                            m.QAP.DrawingNoRef = string.Empty;
+                    //For QAP
+                    m.QAPs = ctx.QAPs.Where(x => x.POId == m.PO.Id).ToList();
+
+                    foreach (QAP QAP in m.QAPs)
+                    {
+                        QAP.ApprovedBy = ctx.Users.SingleOrDefault(x => x.UserId == new Guid(QAP.ApprovedBy)).Name;
+                        if (QAP.DrawingNoRef != null)
+                        {
+                            string[] d = QAP.DrawingNoRef.Split(',');
+
+                            QAP.DrawingNoRef = string.Empty;
 
                             foreach (var i in d)
                             {
-                                m.QAP.DrawingNoRef += ctx.Drawings.ToList().SingleOrDefault(x => x.Id == Convert.ToInt32(i)).DrawingNo + " ,";
+                                QAP.DrawingNoRef += ctx.Drawings.ToList().SingleOrDefault(x => x.Id == Convert.ToInt32(i)).DrawingNo + " ,";
                             }
 
-                            m.QAP.DrawingNoRef = m.QAP.DrawingNoRef.Substring(0, m.QAP.DrawingNoRef.Length - 1);
+                            QAP.DrawingNoRef = QAP.DrawingNoRef.Substring(0, QAP.DrawingNoRef.Length - 1);
                         }
                     }
+
+                    //For Drawings
+                    m.Drawings = ctx.Drawings.Where(x => x.POId == Id).ToList();
+
+                    //For I-Note
+                    m.CoveringLetters = ctx.CoveringLetters.Where(x => x.POId == Id).ToList();
+
+                    //For PO Correspondence
+                    m.POCorrespondences = ctx.POCorrespondences.Where(x => x.POId == Id).ToList();
                 }
                 if (m == null)
                 {

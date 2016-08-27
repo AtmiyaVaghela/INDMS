@@ -14,8 +14,8 @@ namespace INDMS.WebUI.Models
     
     public partial class POGeneration
     {
-        public int Id { get; set; }
-        public int PO_ID { get; set; }
+        public decimal Id { get; set; }
+        public decimal PO_ID { get; set; }
         public Nullable<int> FCL { get; set; }
         public Nullable<int> PO_CORRESPONDENCE { get; set; }
         public Nullable<int> DRAWING { get; set; }

@@ -20,13 +20,15 @@
         <!-- Your Page Content Here -->
         <div class="row">
             <div class="col-md-12">
-                @if (TempData["MSG"] != null) {
+                @if (TempData["MSG"] != null)
+                {
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["MSG"]
                     </div>
                 }
-                @if (TempData["Error"] != null) {
+                @if (TempData["Error"] != null)
+                {
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @TempData["Error"]
@@ -40,7 +42,8 @@
                         </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    @using (Html.BeginForm("PolicyLetterNew", "Library", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+                    @using (Html.BeginForm("PolicyLetterNew", "Library", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         <div class="form-horizontal">
                             @Html.AntiForgeryToken()
                             <div class="box-body">
@@ -50,42 +53,42 @@
                                     @Html.HiddenFor(x => x.PLetter.id)
 
                                     @Html.LabelFor(model => model.PLetter.Year, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @Html.TextBoxFor(model => model.PLetter.Year, null, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.PLetter.Year, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     @Html.Label("Issuing Authority", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <select id="sIssuingAuthority" class="form-control select2" name="PLetter.IssuingAuthority"></select>
                                         @Html.ValidationMessageFor(model => model.PLetter.IssuingAuthority, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
                                 <div class="form-group" id="divOIssuingAutherity" style="display:none">
-                                    <div class="col-md-offset-2 col-md-6">
+                                    <div class="col-md-offset-2 col-md-4">
                                         @Html.TextBoxFor(model => model.OIssuingAutherity, null, new { @class = "form-control" })
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     @Html.Label("Policy Letter No", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @Html.TextBoxFor(m => m.PLetter.PLNo, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.PLetter.PLNo, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.PLetter.Subject, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @Html.TextBoxFor(m => m.PLetter.Subject, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.PLetter.Subject, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.PLetter.Date, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -97,7 +100,7 @@
                                 </div>
                                 <div class="form-group">
                                     @Html.Label("File", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @*@if (Model.file != null)
                                             {
                                                 <a href="@Model.file" target="_blank" class="fa fa-folder-open-o" title="Open">Open</a>
@@ -108,8 +111,8 @@
                                 </div>
                             </div><!-- /.box-body -->
                             <div class="box-footer">
-                                <div class="col-md-offset-2 col-md-6">
-                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                <div class="col-md-offset-2 col-md-4">
+                                    <button type="submit" class="btn btn-primary ladda-button" data-style="expand-left"><span class="ladda-label">Submit</span></button>
                                 </div>
                             </div>
                         </div>

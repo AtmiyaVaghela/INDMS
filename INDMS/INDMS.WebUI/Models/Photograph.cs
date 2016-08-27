@@ -15,6 +15,8 @@ namespace INDMS.WebUI.Models
     public partial class Photograph
     {
         public decimal Id { get; set; }
+        public Nullable<decimal> POId { get; set; }
+        public string PONo { get; set; }
         public string FolderName { get; set; }
         public string Subject { get; set; }
         public Nullable<System.DateTime> Date { get; set; }

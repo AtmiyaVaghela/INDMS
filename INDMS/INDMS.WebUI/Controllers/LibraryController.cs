@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -321,26 +322,27 @@ namespace INDMS.WebUI.Controllers
                                 //    }
                                 //}
 
-                                //if (!string.IsNullOrEmpty(m.Standard.Type))
-                                //{
-                                //if (m.Standard.Type.Equals("OTHERS"))
-                                //{
-                                //    m.Standard.Type = m.OType.Trim().ToUpper();
-                                //    string strType = m.OType.Trim().ToUpper();
-                                //    if (!string.IsNullOrEmpty(strType))
-                                //    {
-                                //        string keyName = "StdType";
-                                //        if (keyName != string.Empty)
-                                //        {
-                                //            string keyValue = m.Standard.Type;
-                                //            AddParam(keyName, keyValue);
-                                //        }
-                                //    }
-                                //    else
-                                //    {
-                                //        TempData["Error"] = "Please Enter Type.";
-                                //    }
-                                //}
+                                if (!string.IsNullOrEmpty(m.Standard.Type))
+                                {
+                                    if (m.Standard.Type.Equals("OTHERS"))
+                                    {
+                                        m.Standard.Type = m.OType.Trim().ToUpper();
+                                        string strType = m.OType.Trim().ToUpper();
+                                        if (!string.IsNullOrEmpty(strType))
+                                        {
+                                            string keyName = "StdType";
+                                            if (keyName != string.Empty)
+                                            {
+                                                string keyValue = m.Standard.Type;
+                                                AddParam(keyName, keyValue);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            TempData["Error"] = "Please Enter Type.";
+                                        }
+                                    }
+                                }
 
                                 if (inputFile != null && inputFile.ContentLength > 0)
                                 {
@@ -362,7 +364,7 @@ namespace INDMS.WebUI.Controllers
                                 }
 
                                 m.Standard.CreatedBy = Request.Cookies["INDMS"]["UserID"];
-                                m.Standard.CreatedDate = null;
+                                m.Standard.CreatedDate = DateTime.Now;
 
                                 try
                                 {
@@ -379,9 +381,19 @@ namespace INDMS.WebUI.Controllers
                                 {
                                     TempData["Error"] = "Unable to save changes. Try again, and if the problem persists, see your system administrator.";
                                 }
-                                catch (Exception ex)
+                                catch (DbEntityValidationException e)
                                 {
-                                    TempData["Error"] = ex.Message;
+                                    foreach (var eve in e.EntityValidationErrors)
+                                    {
+                                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                        foreach (var ve in eve.ValidationErrors)
+                                        {
+                                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                                ve.PropertyName, ve.ErrorMessage);
+                                        }
+                                    }
+                                    throw;
                                 }
                                 //}
                                 //else
@@ -464,26 +476,27 @@ namespace INDMS.WebUI.Controllers
                             //{
                             //    TempData["Error"] = "Subject is not added to the Parameter Master.";
                             //}
-                            //if (!string.IsNullOrEmpty(svm.Standard.Type))
-                            //{
-                            //if (svm.Standard.Type.Equals("OTHERS"))
-                            //{
-                            //    svm.Standard.Type = svm.OType.Trim().ToUpper();
-                            //    string strType = svm.OType.Trim().ToUpper();
-                            //    if (!string.IsNullOrEmpty(strType))
-                            //    {
-                            //        string keyName = "StdType";
-                            //        if (keyName != string.Empty)
-                            //        {
-                            //            string keyValue = svm.Standard.Type;
-                            //            AddParam(keyName, keyValue);
-                            //        }
-                            //    }
-                            //    else
-                            //    {
-                            //        TempData["Error"] = "Please Enter Type.";
-                            //    }
-                            //}
+                            if (!string.IsNullOrEmpty(svm.Standard.Type))
+                            {
+                                if (svm.Standard.Type.Equals("OTHERS"))
+                                {
+                                    svm.Standard.Type = svm.OType.Trim().ToUpper();
+                                    string strType = svm.OType.Trim().ToUpper();
+                                    if (!string.IsNullOrEmpty(strType))
+                                    {
+                                        string keyName = "StdType";
+                                        if (keyName != string.Empty)
+                                        {
+                                            string keyValue = svm.Standard.Type;
+                                            AddParam(keyName, keyValue);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        TempData["Error"] = "Please Enter Type.";
+                                    }
+                                }
+                            }
                             if (inputFile != null && inputFile.ContentLength > 0)
                             {
                                 if (inputFile.ContentType == "application/pdf")
@@ -995,6 +1008,14 @@ namespace INDMS.WebUI.Controllers
 
                                 return RedirectToAction("GuideLines");
                             }
+                            else
+                            {
+                                TempData["Error"] = "Please Select PDF File";
+                            }
+                        }
+                        else
+                        {
+                            TempData["Error"] = "Please Select PDF File";
                         }
                     }
                     else
@@ -1116,7 +1137,7 @@ namespace INDMS.WebUI.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "Please Enter Title";
+                    TempData["Error"] = "Please Enter Subject";
                 }
             }
             else
@@ -1124,8 +1145,8 @@ namespace INDMS.WebUI.Controllers
                 TempData["Error"] = "Please Enter Title";
             }
 
-            gbvm.GeneralBooks = db.GeneralBooks.OrderByDescending(x => x.ID);
-            return View();
+            //gbvm.GeneralBooks = db.GeneralBooks.OrderByDescending(x => x.ID);
+            return View(gbvm);
         }
 
         [HttpPost]
@@ -1176,7 +1197,7 @@ namespace INDMS.WebUI.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "Please Enter Title";
+                    TempData["Error"] = "Please Enter Subject";
                 }
             }
             else

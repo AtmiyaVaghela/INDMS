@@ -64,7 +64,7 @@ namespace INDMS.WebUI.Controllers
                     }
                 }
             }
-
+            TempData["Error"] = "User Name & Password not matched!";
             return View();
         }
 

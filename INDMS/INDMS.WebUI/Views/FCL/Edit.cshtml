@@ -77,14 +77,15 @@
                                                     <tr>
                                                         <th>PO Sr. No</th>
                                                         <th>Details of activity & required documents</th>
-                                                        <th></th>                                                  </tr>
+                                                        <th></th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
                                                     @for (int i = 0; i < Model.FCLDetails.Count; i++)
                                                     {
                                                         <tr>
                                                             <td>@Html.TextBoxFor(model => model.FCLDetails[i].POSrNo, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })</td>
-                                                            <td>@Html.TextBoxFor(model => model.FCLDetails[i].PODetails, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })</td>                                                            
+                                                            <td>@Html.TextBoxFor(model => model.FCLDetails[i].PODetails, null, new { @class = "form-control", @onkeyup = "javascript:this.value=this.value.toUpperCase();" })</td>
                                                             <td></td>
                                                         </tr>
                                                     }
@@ -111,7 +112,7 @@
         $(function () {
             $("#tblFclDetails tr:last td:last-child").prepend("<button type=\"button\" id=\"btnAdd\" class=\"btn btn-primary fa fa-plus\"></button>");
 
-            var i = @Model.FCLDetails.Count - 1;
+            var i = @Model.FCLDetails.Count -1;
             $("#tblFclDetails tbody").on('click', '#btnAdd', function () {
                 $("#btnAdd").remove();
 

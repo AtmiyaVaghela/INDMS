@@ -10,6 +10,14 @@ namespace INDMS.WebUI.ViewModels
         public PurchaseOrder PO { get; set; }
         public IEnumerable<FCL> FCLs { get; set; }
         public IEnumerable<FCLDetail> FCLDetails { get; set; }
+
+        public IEnumerable<POCorrespondence> POCorrespondences { get; set; }
+
+        public IEnumerable<Drawing> Drawings { get; set; }
+
         public QAP QAP { get; set; }
+        public IEnumerable<QAP> QAPs { get; set; }
+
+        public IEnumerable<CoveringLetter> CoveringLetters { get; set; }
     }
 }
